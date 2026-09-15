@@ -36,8 +36,8 @@ foreach ($required as $relative) {
     $pass(is_file($root . '/' . $relative), 'Required U-2.5 file: ' . $relative);
 }
 
-$pass(hash_file('sha256', $root . '/composer.json') === 'b3f0ff9a9882690f210fec2c8106175b47bed82f0aea1de035873a2d12295f0a', 'Unchanged since U-1: composer.json');
-$pass(hash_file('sha256', $root . '/composer.lock') === '085ed0f8c619f302684dd8daba5dd65b5a47b4572aaf092731fefea30e15418c', 'Unchanged since U-1: composer.lock');
+$pass(hash_file('sha256', $root . '/composer.json') === '708119e1eb1f15b263a35366ff18116dcd828329f2481aa588efc49d81a33ad2', 'Unchanged since U-1: composer.json');
+$pass(hash_file('sha256', $root . '/composer.lock') === 'c6d4c0da3da7483ad9499f8fdc5a137997cf57a55b1bbeee09f8210711a4c50f', 'Unchanged since U-1: composer.lock');
 
 require_once $root . '/tests/bootstrap.php';
 

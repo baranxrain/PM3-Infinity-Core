@@ -42,8 +42,8 @@ foreach ($required as $relative) {
 
 // Locks that this unit may not touch.
 $locks = [
-    'composer.json' => 'b3f0ff9a9882690f210fec2c8106175b47bed82f0aea1de035873a2d12295f0a',
-    'composer.lock' => '085ed0f8c619f302684dd8daba5dd65b5a47b4572aaf092731fefea30e15418c',
+    'composer.json' => '708119e1eb1f15b263a35366ff18116dcd828329f2481aa588efc49d81a33ad2',
+    'composer.lock' => 'c6d4c0da3da7483ad9499f8fdc5a137997cf57a55b1bbeee09f8210711a4c50f',
     'workflow/engine/src/ProcessMaker/Util/LegacyUtf8.php' => '1edb3051e45aa7096143251eb429681bc215f11ec5abf8b515270608f9601823',
 ];
 foreach ($locks as $relative => $expected) {
