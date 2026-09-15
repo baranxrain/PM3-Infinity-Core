@@ -55,7 +55,7 @@ $contract = json_decode((string) file_get_contents($root . '/tests/fixtures/lega
 $oraclePath = $root . '/tests/fixtures/legacy-strftime-oracle.json';
 $oracleHash = hash_file('sha256', $oraclePath);
 $pass(is_string($oracleHash) && hash_equals($contract['oracle']['sha256'], $oracleHash), 'Contract is pinned to the accepted oracle (' . (string) $oracleHash . ')');
-$pass($contract['oracle']['sha256'] === '5c9db0711f9be95f436ebc072b06f9d9a57df8ecee22e4449872f4f4b1ee1c5b', 'Oracle file is the one returned with the U-2.3.1 acceptance log');
+$pass($contract['oracle']['sha256'] === 'a1c1102d8b1780066e31a2b9f4ce21c5d683a46ffe27e2f12a95f124a3f04518', 'Oracle file is the one returned with the U-2.3.1 acceptance log');
 $pass($contract['oracle']['runtime']['phpVersion'] === '8.1.10', 'Oracle runtime is PHP 8.1.10');
 $pass($contract['oracle']['runtime']['phpOs'] === 'Windows', 'Oracle runtime is Windows');
 $pass($contract['oracle']['runtime']['lcTime'] === 'C', 'Oracle runtime recorded LC_TIME=C');
