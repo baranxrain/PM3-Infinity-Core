@@ -1,203 +1,272 @@
-# Offline Acceptance Gate Guide — U-1 R5 on Windows + Laragon
+# PM3-Infinity-Core Offline Compatibility Test Guide
 
-This unit only adds the test safety net; it does not change any engine runtime file, core dependency, database, route, process, or existing trigger.
+This directory contains the DB-free, offline compatibility and regression suite for **PM3-Infinity-Core**, a maintained fork of ProcessMaker 3.8.3 Community.
 
-## Why was R5 built?
+- Repository: <https://github.com/baranxrain/PM3-Infinity-Core>
+- Stable PHP 8.1 branch: `release/php81-stable`
+- Stable release tag: `pm3infinity-3.8.3-php81.1`
+- License: `AGPL-3.0-only`
+- Target runtime for this release: PHP 8.1.x on Windows/Laragon
 
-On the R4 run under PHP 8.1.10, for the first time, all gates opened up to PHPUnit itself:
+## Current accepted baseline
+
+The final PHP 8.1 acceptance run completed on September 15, 2026 using PHP 8.1.10 on Windows:
 
 ```text
-[SUMMARY] 27 preflight checks passed.
-PHPUnit 9.5.8 by Sebastian Bergmann and contributors.
-[SUMMARY] 3 PHPUnit PHAR integrity checks passed.
-Tests: 17, Assertions: 99, Failures: 2.
+Browser tests: 16, Passed: 16, Failures: 0
+U319_BROWSER_ACCEPTANCE=PASS
+OK (604 tests, 9241 assertions)
+U319_ACCEPTANCE=PASS
 ```
 
-In other words, the PHAR problem on PHP 8.1 was solved and all 17 tests actually ran. But two compatibility tests went red:
+Acceptance-log SHA-256:
 
-- `ProcessMaker\Core\System` appeared to have lost 12 public methods;
-- 45 global trigger functions (`PMF*` and helpers) appeared to have vanished.
+```text
+6bba037c733d665a094669bfe67e9b0ccedcdb8eee5d1762638d2785b5f5dab3
+```
 
-**The root cause was not in the engine; it was in the test scanner itself.** PHP opens the strings `"{$var}"` and `"${var}"` with the `T_CURLY_OPEN` and `T_DOLLAR_OPEN_CURLY_BRACES` tokens, but closes the same brace with a plain `}` token. The R4 scanner only counted `}`; as a result, from the very first string interpolation the brace depth dropped by one, the class scope closed early, and every subsequent definition was reported as "removed."
+Assertion totals may vary slightly with environment details. The test count and PASS markers must match.
 
-Evidence for this diagnosis: `System.php` has three and `class.pmFunctions.php` has two string interpolations; simulating the same algorithm exactly reproduces the 12 methods and 45 functions reported in the owner's log, and after fixing the token counting, all 45 `System` methods and all 103 global functions are found again. The other four classes (`Cases`, `Derivation`, `PMScript`, `WsBase`) have no string interpolation, so they were green even in R4.
+## Run the complete suite
 
-## Changes in R5 vs R4
+Open a new Laragon Terminal after selecting PHP 8.1, change to the repository root, and run:
 
-Only four text files changed; no files were added or removed, and the official PHPUnit 9.5.8 PHAR is byte-for-byte identical to before.
+```bat
+tests\tools\run-u319-checks.cmd
+```
 
-| File | Change |
+This is the authoritative cumulative runner. It executes all historical preflights in order, the browser runtime suite, Composer validation, PHAR integrity checks, and the complete DB-free PHPUnit unit suite. Normal users and release maintainers do **not** need to run every historical runner separately.
+
+The output is written to:
+
+```text
+U319-ACCEPTANCE.log
+```
+
+A successful run must contain:
+
+```text
+Browser tests: 16, Passed: 16, Failures: 0
+U319_BROWSER_ACCEPTANCE=PASS
+OK (604 tests, ... assertions)
+U319_ACCEPTANCE=PASS
+```
+
+Every `[EXIT]` line must be `0`. The final marker alone is not enough if the log was truncated or edited.
+
+## Requirements
+
+- Windows with Laragon, or an equivalent PHP 8.1 CLI environment
+- PHP 8.1.x selected in the same terminal used to run the suite
+- Required PHP extensions reported by the preflights, including JSON, mbstring, PCRE, tokenizer, and PHAR
+- Microsoft Edge, Google Chrome, or Chromium for the U-3.19 browser checks
+- No database, workspace, web server, Packagist access, Bitbucket access, or network access is required
+- The official PHPUnit 9.5.8 PHAR stored at `tests/tools/phpunit-9.5.8.phar`
+
+## Browser runtime checks
+
+`run-u319-browser-checks.cmd` discovers Edge, Chrome, or Chromium and runs `tests/browser/u319-client-runtime.html` in headless mode. It tries the modern headless mode first and falls back to the legacy mode.
+
+The 16 browser cases cover:
+
+- valid array and nested JSON responses;
+- malformed JSON fail-closed behavior;
+- simple and dotted callback resolution;
+- callback receiver (`this`) and argument preservation;
+- rejection of unknown and empty callbacks;
+- function and named PagedTable hooks;
+- rejection of unknown hooks;
+- DOM script execution, synchronous ordering, and node cleanup;
+- generated field-condition true and false behavior.
+
+The browser stage must report:
+
+```text
+Browser tests: 16, Passed: 16, Failures: 0
+U319_BROWSER_ACCEPTANCE=PASS
+```
+
+## Test architecture
+
+The suite intentionally avoids application boot, Laravel/Artisan startup, database access, workspace configuration, and external services. It uses:
+
+- static source scanners and compatibility ledgers;
+- immutable fixtures and decreasing budgets;
+- parser and syntax guards;
+- focused behavioral unit tests;
+- historical stage verifiers;
+- an offline PHPUnit PHAR;
+- a real browser-side JavaScript harness.
+
+The suite currently contains 88 PHP harness files and 604 PHPUnit tests. The cumulative U-3.19 runner has 50 stages.
+
+## Complete runner index
+
+Historical runners are retained for forensic reproduction and focused debugging. Use `run-u319-checks.cmd` for release acceptance.
+
+| Unit | Runner | Purpose |
+| --- | --- | --- |
+| U-1 | `run-u1-checks.cmd` | Base offline harness, engine API anchors, trigger API locks, dependency fixture, and PHPUnit PHAR integrity |
+| U-2.1 | `run-u2-checks.cmd` | PHP 8 executable compatibility ledger and initial removed/deprecated construct fixes |
+| U-2.2.1 | `run-u22-checks.cmd` | Legacy UTF-8 behavioral contract and helper oracle |
+| U-2.2.2 | `run-u222-checks.cmd` | UTF-8 encode call-site migration |
+| U-2.2.3 | `run-u223-checks.cmd` | UTF-8 decode call-site migration |
+| U-2.3.1 | `run-u231-checks.cmd` | `strftime` inventory and live-tree drift protection |
+| U-2.3.2a | `run-u232a-checks.cmd` | `LegacyStrftime` helper contract and accepted oracle |
+| U-2.3.2 | `run-u232-checks.cmd` | Initial strftime compatibility migration |
+| U-2.3.3 | `run-u233-checks.cmd` | Additional strftime call-site migration and ratchet checks |
+| U-2.4.1 | `run-u241-checks.cmd` | First high-risk deprecated API migration guard |
+| U-2.4.2 | `run-u242-checks.cmd` | Follow-up high-risk migration and closure checks |
+| U-2.5 | `run-u25-checks.cmd` | Incremental PHP 8 compatibility hardening |
+| U-2.6 | `run-u26-checks.cmd` | Incremental PHP 8 compatibility hardening |
+| U-2.7 | `run-u27-checks.cmd` | Incremental PHP 8 compatibility hardening |
+| U-2.8 | `run-u28-checks.cmd` | Executable/textual inventory and regression ratchets |
+| U-2.9 | `run-u29-checks.cmd` | Eval inventory classification and historical closure guard |
+| U-3.0 | `run-u30-checks.cmd` | PMScript trigger execution migration baseline |
+| U-3.1 | `run-u31-checks.cmd` | Incremental eval-removal migration and regression checks |
+| U-3.2 | `run-u32-checks.cmd` | Incremental eval-removal migration and regression checks |
+| U-3.3 | `run-u33-checks.cmd` | Incremental eval-removal migration and regression checks |
+| U-3.4 | `run-u34-checks.cmd` | Incremental eval-removal migration and regression checks |
+| U-3.5 | `run-u35-checks.cmd` | Incremental eval-removal migration and regression checks |
+| U-3.6 | `run-u36-checks.cmd` | Incremental eval-removal migration and regression checks |
+| U-3.7 | `run-u37-checks.cmd` | PHP 8 compatibility closure and cumulative ratchet checks |
+| U-3.8 | `run-u38-checks.cmd` | Compatibility hardening and historical harness expansion |
+| U-3.9 | `run-u39-checks.cmd` | Compatibility hardening and historical harness expansion |
+| U-3.10 | `run-u310-checks.cmd` | Compatibility hardening and cumulative preflight expansion |
+| U-3.11 | `run-u311-checks.cmd` | XMLForm eval-site migration |
+| U-3.12 | `run-u312-checks.cmd` | Bootstrap, G, and WebResource eval-site migration |
+| U-3.13 | `run-u313-checks.cmd` | Final Gulliver eval migration and safe expression evaluator |
+| U-3.14 | `run-u314-checks.cmd` | Dynamic model-dispatch eval migration |
+| U-3.15 | `run-u315-checks.cmd` | AdditionalTables eval migration and ratchet reduction |
+| U-3.16 | `run-u316-checks.cmd` | XMLConnection, Event, and Process expression parser migration |
+| U-3.17 | `run-u317-checks.cmd` | PMScript temporary execution bridge and executable-eval closure |
+| U-3.18 | `run-u318-checks.cmd` | Client-side and textual eval-token closure |
+| U-3.19 browser | `run-u319-browser-checks.cmd` | Real headless-browser runtime contracts |
+| U-3.19 cumulative | `run-u319-checks.cmd` | Authoritative full PHP 8.1 release acceptance |
+| U-6 historical | `run-u6-checks.cmd` | Retained dependency and compatibility regression gate |
+
+## PHP 8.1 compatibility outcome
+
+The accepted baseline has zero executable occurrences for the tracked deprecated/removed API families, including:
+
+- `create_function`;
+- legacy `each` usage;
+- `ereg`/`eregi` family;
+- executable `eval`;
+- legacy MySQL extension calls;
+- `strftime`/`strptime` compatibility targets;
+- native `utf8_encode`/`utf8_decode` migration targets;
+- removed interpolation and error-message constructs tracked by the PHP 8 ledger.
+
+Textual inventories may retain known non-executable documentation, fixture, vendor, or false-positive entries. The executable-code budgets and historical fixtures are the release gates.
+
+## Dependency baseline
+
+The PHP 8.1 release intentionally updates the Google client dependency chain and related transitive packages:
+
+| Package | Accepted version |
 | --- | --- |
-| `tests/Support/PhpSourceScanner.php` | Correct counting of `T_CURLY_OPEN` and `T_DOLLAR_OPEN_CURLY_BRACES` in both scanners |
-| `tests/unit/Architecture/PublicApiCompatibilityTest.php` | Added a string-interpolation guard test + report found-counts in the failure message |
-| `tests/tools/run-u1-checks.cmd` | Version label only: R4 → R5 |
-| `tests/tools/README.md` | This guide |
+| `google/apiclient` | 2.19.0 |
+| `google/auth` | 1.44.0 |
+| `google/apiclient-services` | 0.459.0 |
+| `guzzlehttp/guzzle` | 7.9.3 |
+| `guzzlehttp/psr7` | 2.13.1 |
+| `firebase/php-jwt` | 6.11.1 |
+| `monolog/monolog` | 2.11.1 |
+| `phpseclib/phpseclib` | 3.0.57 |
 
-As a result, the test count rises from 17 to **18**; the eighteenth test locks the scanner itself so this class of error cannot silently return.
+Current dependency-file SHA-256 values:
 
-## Trusted PHAR identity (unchanged)
+```text
+composer.json  708119e1eb1f15b263a35366ff18116dcd828329f2481aa588efc49d81a33ad2
+composer.lock  c6d4c0da3da7483ad9499f8fdc5a137997cf57a55b1bbeee09f8210711a4c50f
+```
 
-| Item | Value |
-| --- | --- |
-| Official source | `https://phar.phpunit.de/phpunit-9.5.8.phar` |
-| Version | `PHPUnit 9.5.8` |
-| Size | `4,458,067 bytes` |
-| Official SHA-256 | `11f27cf3f9522241fe234e9bf5813667207a074ac92089aac26d502ffc5e9517` |
+The dependency fixture and historical verifier hashes must be updated together after any intentional Composer change. Do not silence a mismatch without reviewing the lock diff and rerunning the full suite.
 
-## Target version
+`colosa/pmdynaform` and `colosa/taskscheduler` are no longer Composer build-time requirements because their built public assets are committed under `workflow/public_html/lib/`. `colosa/pmui` and `colosa/michelangelofe` remain unchanged. Bitbucket access is not needed for the offline acceptance suite, but rebuilding those private Colosa packages would require restoring their repository/require entries and network access.
 
-- Target PHP: **8.1.x**; the owner's current environment is PHP 8.1.10 on Laragon.
-- Full backward compatibility is preserved for all processes and triggers.
-- `composer.lock` and the dependency fixture still record `phpunit/phpunit=9.5.0`; the PHAR is only the offline acceptance runner.
+The normalized accepted strftime oracle SHA-256 is:
 
-## Installing R5
+```text
+a1c1102d8b1780066e31a2b9f4ce21c5d683a46ffe27e2f12a95f124a3f04518
+```
 
-Use **only one** of the following methods:
+## Composer installation note
 
-1. On the exact U-1 R4 source, extract the R5 package and run `APPLY-R5.cmd` with the project root path (the hash of all four input and output files is verified).
-2. On the exact U-1 R4 source, apply the incremental patch `U1_R4_TO_R5_OFFLINE_ACCEPTANCE.patch`.
-3. On the vanilla ProcessMaker 3.8.3 source, apply the full patch `PROCESSMAKER_3.8.3_U1_R5_FULL.patch`.
-
-Do not combine the methods.
-
-## Sequential run with a single log
-
-Open the Laragon Terminal with PHP 8.1, go to the project root, and simply run:
+Production dependencies may be installed with:
 
 ```bat
-tests\tools\run-u1-checks.cmd
+composer install --no-dev
 ```
 
-All output is saved to a single file:
+Development packages, including PHPUnit, do not need to be installed into `vendor/` for acceptance because the suite uses its pinned PHAR. A PHPCS post-install warning under `--no-dev` is currently non-blocking, but all actual Composer install failures must be investigated.
 
-```text
-U1-ACCEPTANCE.log
+## Git and line endings
+
+The repository uses LF by default. Windows batch files must remain CRLF:
+
+```gitattributes
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.phar binary
 ```
 
-Execution order (fail-fast and fully offline):
+Do not normalize `.cmd` or `.bat` files to LF. The historical owner runners depend on Windows-compatible line endings.
 
-1. Record the PHP path and version;
-2. 27 preflight checks including PHP 8.1, PHPUnit extensions, `ext-phar`, the U-1 structure, and the PHAR file's SHA-256;
-3. Record Composer, `composer validate`, and `composer check-platform-reqs --lock --no-dev` without installing any packages;
-4. Record the PHAR version;
-5. Re-verify the SHA-256 immediately before the suite;
-6. Run the 18 PHPUnit 9.5.8 tests without a DB.
+## Failure triage
 
-A successful run must show all of these markers:
+1. Find the first non-zero `[EXIT]` line.
+2. Read the `[RUN]` and `[CMD]` lines immediately above it.
+3. Fix the first `[FAIL]`; later stages were not executed.
+4. Do not update a fixture or hash merely to make a test green. Confirm that the underlying change is intentional and reviewable.
+5. Rerun `run-u319-checks.cmd` from the beginning.
+6. Preserve and return the generated acceptance log unchanged.
 
-```text
-[SUMMARY] 27 preflight checks passed.
-PHPUnit 9.5.8 by Sebastian Bergmann and contributors.
-[SUMMARY] 3 PHPUnit PHAR integrity checks passed.
-OK (18 tests, ... assertions)
-U1_ACCEPTANCE=PASS
-```
+Common cases:
 
-Return the new `U1-ACCEPTANCE.log`. Take a look at it before sending; the script asks for no passwords or tokens and sends nothing from your environment.
+- A PHP-version failure means the terminal is using the wrong PHP executable. Run `where php` and `php -v`.
+- A PHAR hash failure means the bundled test runner changed or was corrupted.
+- A browser discovery failure means Edge, Chrome, or Chromium is unavailable from PATH and common installation locations.
+- A dependency hash failure requires synchronizing the reviewed Composer baseline across its fixture and historical guards.
+- An inventory drift failure means the live tree no longer matches the accepted source inventory.
 
-## If a gate stops
+## Manual smoke tests before release
 
-- A `Missing PHPUnit ... extensions` message means that extension must be enabled in the `php.ini` of that same PHP 8.1; then open a new terminal.
-- A SHA-256 error means the PHAR was copied incompletely; re-apply the R5 package.
-- Legacy warnings in `composer validate` are not a failure as long as `[EXIT] 0` is recorded.
-- If a test still goes red, the failure message now prints the found counts too; for example, "33 of 45" means a scanning problem, but "44 of 45" means an API really was removed.
-- No `composer install`, download, Packagist, or Bitbucket is needed for this gate.
+The offline suite does not replace application-level smoke testing. Before publishing the GitHub release, verify at least:
 
-## U-1's 18-test coverage
+1. login and logout;
+2. opening a process;
+3. Dynaform Designer load and save;
+4. starting and routing a simple case;
+5. Task Scheduler behavior;
+6. one Google API integration path, when credentials and network access are available;
+7. one email or external-service path used by the deployment.
 
-- Locks the public API of `Derivation`, `Cases`, `PMScript`, `WsBase`, and `ProcessMaker\Core\System`;
-- Locks 55 `PMF*` functions and the other global trigger functions;
-- A string-interpolation guard for the scanner itself (new in R5);
-- Locks the `composer.lock` identity and the four private dependencies;
-- A decreasing budget for legacy PHP APIs and `eval`;
-- Four behavioral tests for `ProcessMaker\Util\ArrayUtil`;
-- A bootstrap with no Laravel, Artisan, workspace, or DB.
+The `shared/` directory and database configuration are not tracked and must be configured separately for a runnable Laragon installation.
 
-## Acceptance boundary
+## Release checklist
 
-Static packaging checks are no substitute for a real Windows/PHPUnit run. That boundary belonged to the U-1 delivery; the current U-2.1 status appears in the next section. Stage 24 remains frozen.
+1. Confirm a clean working tree with `git status`.
+2. Run `tests\tools\run-u319-checks.cmd` on PHP 8.1.
+3. Confirm all 16 browser tests and all 604 PHPUnit tests pass.
+4. Complete the manual smoke tests.
+5. Commit this README and any reviewed baseline synchronization changes.
+6. Run the full suite again after the final documentation commit.
+7. Create `pm3infinity-3.8.3-php81.1` on the exact accepted commit.
+8. Build the release archive with `git archive`.
+9. Publish the archive, SHA-256 manifest, handoff, and unmodified acceptance log in the GitHub Release.
 
+## Starting PHP 8.2 work
 
-# U-2.1 — PHP 8 executable ledger and six low-risk fixes
-
-This is the first unit that changes engine production code, but its scope is deliberately kept small and reviewable:
-
-- Four legacy interpolations converted from the `${name}` form to the equivalent `{$name}` form;
-- Two uses of the removed `$php_errormsg` variable replaced with `error_get_last()` and an empty-string fallback;
-- The text of two Exceptions and the success behavior of the network-read path are untouched;
-- `composer.json`, `composer.lock`, dependencies, and the application's real bootstrap are unchanged.
-
-The new ledger counts only executable PHP and excludes comments, regex text, inline HTML, and JavaScript stored inside strings. The raw U-1 ledger is preserved unchanged.
-
-## Running U-2.1 acceptance on Windows/Laragon
+PHP 8.2 compatibility work must be isolated from the stable PHP 8.1 branch:
 
 ```bat
-cd /d "D:\laragon\www\PM3Infinity\pm3InfinityCore\processmaker"
-tests\tools\run-u2-checks.cmd
+git checkout -b compatibility/php82 pm3infinity-3.8.3-php81.1
+git push -u origin compatibility/php82
 ```
 
-The script is fail-fast, fully offline, and has 11 stages. All stdout/stderr is saved to `U2-ACCEPTANCE.log`. A successful run must show these markers:
+The first PHP 8.2 unit is U-4.1. It will inventory and ratchet dynamic-property deprecations, update the runtime-version gate in a dedicated runner, and preserve the complete PHP 8.1 acceptance baseline.
 
-```text
-[SUMMARY] 33 preflight checks passed.
-[SUMMARY] 53 U-2.1 preflight checks passed.
-PHPUnit 9.5.8 by Sebastian Bergmann and contributors.
-[SUMMARY] 3 PHPUnit PHAR integrity checks passed.
-OK (33 tests, ... assertions)
-U2_ACCEPTANCE=PASS
-```
-
-All eleven `[EXIT]` lines must also be `0`. Because it scans 1,798 PHP files, this run takes longer than U-1.
-
-## Next order and acceptance boundary
-
-- The real `ereg*` count was zero; that empty unit was removed.
-- After explicit acceptance: U-2.2 for `utf8_encode`/`utf8_decode`, then U-2.3 for `strftime`/`strptime`.
-- The 15 `mcrypt_*` and 9 `FILTER_SANITIZE_STRING` occurrences are deliberately deferred to separate higher-risk units.
-- U-2.1 closes only after a successful log containing `OK (33 tests, ...)` and `U2_ACCEPTANCE=PASS`, followed by the owner's explicit approval. Stage 24 is frozen.
-
-
-# U-2.2.1 — UTF-8 compatibility contract and oracle (no call-site migration)
-
-This unit only freezes the byte-level contract of legacy behavior and adds a pure-PHP compatibility helper. The helper is deliberately **not used** in this unit, and all 12 existing executable call sites (10 encode and 2 decode) remain unchanged. Changing call sites is only permitted in a separate unit and after explicit acceptance of U-2.2.1.
-
-## New files and their rationale
-
-- `workflow/engine/src/ProcessMaker/Util/LegacyUtf8.php`: an implementation independent of extensions and global state for the exact PHP 8.1 contract; has no production consumer.
-- `tests/fixtures/legacy-utf8-contract.json`: a hexadecimal oracle covering all 256 encode input bytes and 46 valid/invalid decode cases.
-- `tests/unit/Compatibility/LegacyUtf8ContractTest.php`: six DB-free tests including matching against the native oracle on PHP 8.1, round-trip, and no change to mbstring-related state.
-- `tests/tools/verify-u22.php`: an independent preflight for the fixture, the helper, unchanged dependencies, and the 12 unchanged call sites.
-- `tests/tools/run-u22-checks.cmd`: the owner's offline, fail-fast acceptance runner.
-
-`tests/tools/verify-u1.php` was updated only to recognize the new harness files and to raise the parse count from 14 to 16. This unit does not change `composer.json`, `composer.lock`, the schema, the public API, the application bootstrap, or any existing call site.
-
-## Running U-2.2.1 acceptance on Windows/Laragon
-
-From the accepted project root, run:
-
-```bat
-cd /d "D:\laragon\www\PM3Infinity\pm3InfinityCore\processmaker"
-tests\tools\run-u22-checks.cmd
-```
-
-The runner is fully offline, fail-fast, has 12 stages, and only writes `U22-ACCEPTANCE.log` at the project root. A successful run must show these markers:
-
-```text
-[SUMMARY] 37 preflight checks passed.
-[SUMMARY] 53 U-2.1 preflight checks passed.
-[SUMMARY] 35 U-2.2.1 preflight checks passed.
-[SUMMARY] 3 PHPUnit PHAR integrity checks passed.
-PHPUnit 9.5.8 by Sebastian Bergmann and contributors.
-OK (39 tests, ... assertions)
-U22_ACCEPTANCE=PASS
-```
-
-All 12 `[EXIT]` lines must be `0`. Return the `U22-ACCEPTANCE.log` unchanged. Until this log is reviewed and explicitly accepted by the owner, U-2.2.1 is not closed and U-2.2.2 must not begin.
-
-## Technical boundary of the contract
-
-- encode maps each of the 256 ISO-8859-1 bytes to its exact UTF-8 mapping.
-- decode converts only code points U+0000 through U+00FF back to bytes; larger code points and invalid sequences are replaced with `?` per the official PHP 8.1 advancement.
-- The helper uses no native converters, `mb_convert_encoding`, `iconv`, substitution settings, DB, network, or the application bootstrap.
-- Hits inside PMScript-generated strings and the date/locale unit remain separate risks and are unchanged in this unit.
-
+Do not weaken or overwrite the stable PHP 8.1 gates while developing PHP 8.2 compatibility.
