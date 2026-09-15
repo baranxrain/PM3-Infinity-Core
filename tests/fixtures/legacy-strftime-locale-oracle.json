@@ -1,0 +1,4403 @@
+{
+    "_note": "U-2.4.1 evidence only. Captured on the acceptance runtime; no test asserts these rendered values.",
+    "_scope": "Locale-dependent rendering of Configurations::getSystemDate(), the last two executable strftime() sites (Configurations.php:582 and :585).",
+    "runtime": {
+        "phpVersion": "8.1.10",
+        "phpOs": "Windows",
+        "uname": "Windows NT 10.0 AMD64",
+        "zendThreadSafe": true,
+        "timezoneUsed": "UTC",
+        "lcTimeAtStart": "C",
+        "intlLoaded": true,
+        "mbstringLoaded": true,
+        "generatedAtUtc": "2026-09-14T03:40:34+00:00"
+    },
+    "timestamps": {
+        "winter_morning": 1104537845,
+        "summer_noon": 1119873600,
+        "year_end": 1609459199
+    },
+    "dateFormats": {
+        "ID_DATE_FORMAT_1": "Y-m-d H:i:s",
+        "ID_DATE_FORMAT_2": "d/m/Y",
+        "ID_DATE_FORMAT_3": "m/d/Y",
+        "ID_DATE_FORMAT_4": "Y/d/m",
+        "ID_DATE_FORMAT_5": "Y/m/d",
+        "ID_DATE_FORMAT_6": "F j, Y, g:i a",
+        "ID_DATE_FORMAT_7": "m.d.y",
+        "ID_DATE_FORMAT_8": "j, n, Y",
+        "ID_DATE_FORMAT_9": "D M j G:i:s T Y",
+        "ID_DATE_FORMAT_15": "M d, Y",
+        "ID_DATE_FORMAT_16": "m D, Y",
+        "ID_DATE_FORMAT_10": "D d M, Y",
+        "ID_DATE_FORMAT_11": "D M, Y",
+        "ID_DATE_FORMAT_12": "d M, Y",
+        "ID_DATE_FORMAT_13": "d m, Y",
+        "ID_DATE_FORMAT_14": "d.m.Y",
+        "ID_DATE_FORMAT_17": "d \\d\\e F \\d\\e Y"
+    },
+    "translatedMasks": {
+        "ID_DATE_FORMAT_1": {
+            "dateFormat": "Y-m-d H:i:s",
+            "strftimeMask": "%Y-%m-%d %H:%M:%S"
+        },
+        "ID_DATE_FORMAT_2": {
+            "dateFormat": "d/m/Y",
+            "strftimeMask": "%d/%m/%Y"
+        },
+        "ID_DATE_FORMAT_3": {
+            "dateFormat": "m/d/Y",
+            "strftimeMask": "%m/%d/%Y"
+        },
+        "ID_DATE_FORMAT_4": {
+            "dateFormat": "Y/d/m",
+            "strftimeMask": "%Y/%d/%m"
+        },
+        "ID_DATE_FORMAT_5": {
+            "dateFormat": "Y/m/d",
+            "strftimeMask": "%Y/%m/%d"
+        },
+        "ID_DATE_FORMAT_6": {
+            "dateFormat": "F j, Y, g:i a",
+            "strftimeMask": "%B %d, %Y, %I:%M %p"
+        },
+        "ID_DATE_FORMAT_7": {
+            "dateFormat": "m.d.y",
+            "strftimeMask": "%m.%d.%g"
+        },
+        "ID_DATE_FORMAT_8": {
+            "dateFormat": "j, n, Y",
+            "strftimeMask": "%d, %m, %Y"
+        },
+        "ID_DATE_FORMAT_9": {
+            "dateFormat": "D M j G:i:s T Y",
+            "strftimeMask": "%A %B %d %H:%M:%S T %Y"
+        },
+        "ID_DATE_FORMAT_15": {
+            "dateFormat": "M d, Y",
+            "strftimeMask": "%B %d, %Y"
+        },
+        "ID_DATE_FORMAT_16": {
+            "dateFormat": "m D, Y",
+            "strftimeMask": "%m %A, %Y"
+        },
+        "ID_DATE_FORMAT_10": {
+            "dateFormat": "D d M, Y",
+            "strftimeMask": "%A %d %B, %Y"
+        },
+        "ID_DATE_FORMAT_11": {
+            "dateFormat": "D M, Y",
+            "strftimeMask": "%A %B, %Y"
+        },
+        "ID_DATE_FORMAT_12": {
+            "dateFormat": "d M, Y",
+            "strftimeMask": "%d %B, %Y"
+        },
+        "ID_DATE_FORMAT_13": {
+            "dateFormat": "d m, Y",
+            "strftimeMask": "%d %m, %Y"
+        },
+        "ID_DATE_FORMAT_14": {
+            "dateFormat": "d.m.Y",
+            "strftimeMask": "%d.%m.%Y"
+        },
+        "ID_DATE_FORMAT_17": {
+            "dateFormat": "d \\d\\e F \\d\\e Y",
+            "strftimeMask": "%d [xx] %B [xx] %Y"
+        }
+    },
+    "locales": {
+        "windows_en": {
+            "requested": "EST",
+            "applied": "Spanish_United States.1252",
+            "accepted": true,
+            "masks": {
+                "ID_DATE_FORMAT_1": {
+                    "winter_morning": {
+                        "hex": "323030352d30312d30312030303a30343a3035",
+                        "utf8": "2005-01-01 00:04:05",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352d30362d32372031323a30303a3030",
+                        "utf8": "2005-06-27 12:00:00",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302d31322d33312032333a35393a3539",
+                        "utf8": "2020-12-31 23:59:59",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_2": {
+                    "winter_morning": {
+                        "hex": "30312f30312f32303035",
+                        "utf8": "01/01/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372f30362f32303035",
+                        "utf8": "27/06/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312f31322f32303230",
+                        "utf8": "31/12/2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_3": {
+                    "winter_morning": {
+                        "hex": "30312f30312f32303035",
+                        "utf8": "01/01/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "30362f32372f32303035",
+                        "utf8": "06/27/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "31322f33312f32303230",
+                        "utf8": "12/31/2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_4": {
+                    "winter_morning": {
+                        "hex": "323030352f30312f3031",
+                        "utf8": "2005/01/01",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352f32372f3036",
+                        "utf8": "2005/27/06",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302f33312f3132",
+                        "utf8": "2020/31/12",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_5": {
+                    "winter_morning": {
+                        "hex": "323030352f30312f3031",
+                        "utf8": "2005/01/01",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352f30362f3237",
+                        "utf8": "2005/06/27",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302f31322f3331",
+                        "utf8": "2020/12/31",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_6": {
+                    "winter_morning": {
+                        "hex": "656e65726f2030312c20323030352c2031323a303420414d",
+                        "utf8": "enero 01, 2005, 12:04 AM",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6a756e696f2032372c20323030352c2031323a303020504d",
+                        "utf8": "junio 27, 2005, 12:00 PM",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "64696369656d6272652033312c20323032302c2031313a353920504d",
+                        "utf8": "diciembre 31, 2020, 11:59 PM",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_7": {
+                    "winter_morning": {
+                        "hex": "30312e30312e3034",
+                        "utf8": "01.01.04",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "30362e32372e3035",
+                        "utf8": "06.27.05",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "31322e33312e3230",
+                        "utf8": "12.31.20",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_8": {
+                    "winter_morning": {
+                        "hex": "30312c2030312c2032303035",
+                        "utf8": "01, 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372c2030362c2032303035",
+                        "utf8": "27, 06, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312c2031322c2032303230",
+                        "utf8": "31, 12, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_9": {
+                    "winter_morning": {
+                        "hex": "73e16261646f20656e65726f2030312030303a30343a303520542032303035",
+                        "utf8": "sábado enero 01 00:04:05 T 2005",
+                        "isUtf8": false,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6c756e6573206a756e696f2032372031323a30303a303020542032303035",
+                        "utf8": "lunes junio 27 12:00:00 T 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "6a75657665732064696369656d6272652033312032333a35393a353920542032303230",
+                        "utf8": "jueves diciembre 31 23:59:59 T 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_15": {
+                    "winter_morning": {
+                        "hex": "656e65726f2030312c2032303035",
+                        "utf8": "enero 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6a756e696f2032372c2032303035",
+                        "utf8": "junio 27, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "64696369656d6272652033312c2032303230",
+                        "utf8": "diciembre 31, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_16": {
+                    "winter_morning": {
+                        "hex": "30312073e16261646f2c2032303035",
+                        "utf8": "01 sábado, 2005",
+                        "isUtf8": false,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "3036206c756e65732c2032303035",
+                        "utf8": "06 lunes, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "3132206a75657665732c2032303230",
+                        "utf8": "12 jueves, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_10": {
+                    "winter_morning": {
+                        "hex": "73e16261646f20303120656e65726f2c2032303035",
+                        "utf8": "sábado 01 enero, 2005",
+                        "isUtf8": false,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6c756e6573203237206a756e696f2c2032303035",
+                        "utf8": "lunes 27 junio, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "6a75657665732033312064696369656d6272652c2032303230",
+                        "utf8": "jueves 31 diciembre, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_11": {
+                    "winter_morning": {
+                        "hex": "73e16261646f20656e65726f2c2032303035",
+                        "utf8": "sábado enero, 2005",
+                        "isUtf8": false,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6c756e6573206a756e696f2c2032303035",
+                        "utf8": "lunes junio, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "6a75657665732064696369656d6272652c2032303230",
+                        "utf8": "jueves diciembre, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_12": {
+                    "winter_morning": {
+                        "hex": "303120656e65726f2c2032303035",
+                        "utf8": "01 enero, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "3237206a756e696f2c2032303035",
+                        "utf8": "27 junio, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312064696369656d6272652c2032303230",
+                        "utf8": "31 diciembre, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_13": {
+                    "winter_morning": {
+                        "hex": "30312030312c2032303035",
+                        "utf8": "01 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372030362c2032303035",
+                        "utf8": "27 06, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312031322c2032303230",
+                        "utf8": "31 12, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_14": {
+                    "winter_morning": {
+                        "hex": "30312e30312e32303035",
+                        "utf8": "01.01.2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372e30362e32303035",
+                        "utf8": "27.06.2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312e31322e32303230",
+                        "utf8": "31.12.2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_17": {
+                    "winter_morning": {
+                        "hex": "3031205b78785d20656e65726f205b78785d2032303035",
+                        "utf8": "01 [xx] enero [xx] 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "3237205b78785d206a756e696f205b78785d2032303035",
+                        "utf8": "27 [xx] junio [xx] 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "3331205b78785d2064696369656d627265205b78785d2032303230",
+                        "utf8": "31 [xx] diciembre [xx] 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                }
+            },
+            "monthNames": {
+                "1": {
+                    "hex": "656e65726f7c656e65",
+                    "utf8": "enero|ene",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "2": {
+                    "hex": "6665627265726f7c666562",
+                    "utf8": "febrero|feb",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "3": {
+                    "hex": "6d61727a6f7c6d6172",
+                    "utf8": "marzo|mar",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "4": {
+                    "hex": "616272696c7c616272",
+                    "utf8": "abril|abr",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "5": {
+                    "hex": "6d61796f7c6d6179",
+                    "utf8": "mayo|may",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "6": {
+                    "hex": "6a756e696f7c6a756e",
+                    "utf8": "junio|jun",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "7": {
+                    "hex": "6a756c696f7c6a756c",
+                    "utf8": "julio|jul",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "8": {
+                    "hex": "61676f73746f7c61676f",
+                    "utf8": "agosto|ago",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "9": {
+                    "hex": "7365707469656d6272657c736570",
+                    "utf8": "septiembre|sep",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "10": {
+                    "hex": "6f6374756272657c6f6374",
+                    "utf8": "octubre|oct",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "11": {
+                    "hex": "6e6f7669656d6272657c6e6f76",
+                    "utf8": "noviembre|nov",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "12": {
+                    "hex": "64696369656d6272657c646963",
+                    "utf8": "diciembre|dic",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                }
+            },
+            "dayNames": [
+                {
+                    "hex": "646f6d696e676f7c646f6d",
+                    "utf8": "domingo|dom",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "6c756e65737c6c756e",
+                    "utf8": "lunes|lun",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "6d61727465737c6d6172",
+                    "utf8": "martes|mar",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "6d69e972636f6c65737c6d69e9",
+                    "utf8": "miércoles|mié",
+                    "isUtf8": false,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "6a75657665737c6a7565",
+                    "utf8": "jueves|jue",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "766965726e65737c766965",
+                    "utf8": "viernes|vie",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "73e16261646f7c73e162",
+                    "utf8": "sábado|sáb",
+                    "isUtf8": false,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                }
+            ]
+        },
+        "windows_es": {
+            "requested": "ESN",
+            "applied": "Spanish_Spain.1252",
+            "accepted": true,
+            "masks": {
+                "ID_DATE_FORMAT_1": {
+                    "winter_morning": {
+                        "hex": "323030352d30312d30312030303a30343a3035",
+                        "utf8": "2005-01-01 00:04:05",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352d30362d32372031323a30303a3030",
+                        "utf8": "2005-06-27 12:00:00",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302d31322d33312032333a35393a3539",
+                        "utf8": "2020-12-31 23:59:59",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_2": {
+                    "winter_morning": {
+                        "hex": "30312f30312f32303035",
+                        "utf8": "01/01/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372f30362f32303035",
+                        "utf8": "27/06/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312f31322f32303230",
+                        "utf8": "31/12/2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_3": {
+                    "winter_morning": {
+                        "hex": "30312f30312f32303035",
+                        "utf8": "01/01/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "30362f32372f32303035",
+                        "utf8": "06/27/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "31322f33312f32303230",
+                        "utf8": "12/31/2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_4": {
+                    "winter_morning": {
+                        "hex": "323030352f30312f3031",
+                        "utf8": "2005/01/01",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352f32372f3036",
+                        "utf8": "2005/27/06",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302f33312f3132",
+                        "utf8": "2020/31/12",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_5": {
+                    "winter_morning": {
+                        "hex": "323030352f30312f3031",
+                        "utf8": "2005/01/01",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352f30362f3237",
+                        "utf8": "2005/06/27",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302f31322f3331",
+                        "utf8": "2020/12/31",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_6": {
+                    "winter_morning": {
+                        "hex": "656e65726f2030312c20323030352c2031323a303420",
+                        "utf8": "enero 01, 2005, 12:04 ",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6a756e696f2032372c20323030352c2031323a303020",
+                        "utf8": "junio 27, 2005, 12:00 ",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "64696369656d6272652033312c20323032302c2031313a353920",
+                        "utf8": "diciembre 31, 2020, 11:59 ",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_7": {
+                    "winter_morning": {
+                        "hex": "30312e30312e3034",
+                        "utf8": "01.01.04",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "30362e32372e3035",
+                        "utf8": "06.27.05",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "31322e33312e3230",
+                        "utf8": "12.31.20",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_8": {
+                    "winter_morning": {
+                        "hex": "30312c2030312c2032303035",
+                        "utf8": "01, 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372c2030362c2032303035",
+                        "utf8": "27, 06, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312c2031322c2032303230",
+                        "utf8": "31, 12, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_9": {
+                    "winter_morning": {
+                        "hex": "73e16261646f20656e65726f2030312030303a30343a303520542032303035",
+                        "utf8": "sábado enero 01 00:04:05 T 2005",
+                        "isUtf8": false,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6c756e6573206a756e696f2032372031323a30303a303020542032303035",
+                        "utf8": "lunes junio 27 12:00:00 T 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "6a75657665732064696369656d6272652033312032333a35393a353920542032303230",
+                        "utf8": "jueves diciembre 31 23:59:59 T 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_15": {
+                    "winter_morning": {
+                        "hex": "656e65726f2030312c2032303035",
+                        "utf8": "enero 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6a756e696f2032372c2032303035",
+                        "utf8": "junio 27, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "64696369656d6272652033312c2032303230",
+                        "utf8": "diciembre 31, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_16": {
+                    "winter_morning": {
+                        "hex": "30312073e16261646f2c2032303035",
+                        "utf8": "01 sábado, 2005",
+                        "isUtf8": false,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "3036206c756e65732c2032303035",
+                        "utf8": "06 lunes, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "3132206a75657665732c2032303230",
+                        "utf8": "12 jueves, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_10": {
+                    "winter_morning": {
+                        "hex": "73e16261646f20303120656e65726f2c2032303035",
+                        "utf8": "sábado 01 enero, 2005",
+                        "isUtf8": false,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6c756e6573203237206a756e696f2c2032303035",
+                        "utf8": "lunes 27 junio, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "6a75657665732033312064696369656d6272652c2032303230",
+                        "utf8": "jueves 31 diciembre, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_11": {
+                    "winter_morning": {
+                        "hex": "73e16261646f20656e65726f2c2032303035",
+                        "utf8": "sábado enero, 2005",
+                        "isUtf8": false,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6c756e6573206a756e696f2c2032303035",
+                        "utf8": "lunes junio, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "6a75657665732064696369656d6272652c2032303230",
+                        "utf8": "jueves diciembre, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_12": {
+                    "winter_morning": {
+                        "hex": "303120656e65726f2c2032303035",
+                        "utf8": "01 enero, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "3237206a756e696f2c2032303035",
+                        "utf8": "27 junio, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312064696369656d6272652c2032303230",
+                        "utf8": "31 diciembre, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_13": {
+                    "winter_morning": {
+                        "hex": "30312030312c2032303035",
+                        "utf8": "01 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372030362c2032303035",
+                        "utf8": "27 06, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312031322c2032303230",
+                        "utf8": "31 12, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_14": {
+                    "winter_morning": {
+                        "hex": "30312e30312e32303035",
+                        "utf8": "01.01.2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372e30362e32303035",
+                        "utf8": "27.06.2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312e31322e32303230",
+                        "utf8": "31.12.2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_17": {
+                    "winter_morning": {
+                        "hex": "3031205b78785d20656e65726f205b78785d2032303035",
+                        "utf8": "01 [xx] enero [xx] 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "3237205b78785d206a756e696f205b78785d2032303035",
+                        "utf8": "27 [xx] junio [xx] 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "3331205b78785d2064696369656d627265205b78785d2032303230",
+                        "utf8": "31 [xx] diciembre [xx] 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                }
+            },
+            "monthNames": {
+                "1": {
+                    "hex": "656e65726f7c656e652e",
+                    "utf8": "enero|ene.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "2": {
+                    "hex": "6665627265726f7c6665622e",
+                    "utf8": "febrero|feb.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "3": {
+                    "hex": "6d61727a6f7c6d61722e",
+                    "utf8": "marzo|mar.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "4": {
+                    "hex": "616272696c7c6162722e",
+                    "utf8": "abril|abr.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "5": {
+                    "hex": "6d61796f7c6d61792e",
+                    "utf8": "mayo|may.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "6": {
+                    "hex": "6a756e696f7c6a756e2e",
+                    "utf8": "junio|jun.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "7": {
+                    "hex": "6a756c696f7c6a756c2e",
+                    "utf8": "julio|jul.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "8": {
+                    "hex": "61676f73746f7c61676f2e",
+                    "utf8": "agosto|ago.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "9": {
+                    "hex": "7365707469656d6272657c7365702e",
+                    "utf8": "septiembre|sep.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "10": {
+                    "hex": "6f6374756272657c6f63742e",
+                    "utf8": "octubre|oct.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "11": {
+                    "hex": "6e6f7669656d6272657c6e6f762e",
+                    "utf8": "noviembre|nov.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "12": {
+                    "hex": "64696369656d6272657c6469632e",
+                    "utf8": "diciembre|dic.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                }
+            },
+            "dayNames": [
+                {
+                    "hex": "646f6d696e676f7c646f2e",
+                    "utf8": "domingo|do.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "6c756e65737c6c752e",
+                    "utf8": "lunes|lu.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "6d61727465737c6d612e",
+                    "utf8": "martes|ma.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "6d69e972636f6c65737c6d692e",
+                    "utf8": "miércoles|mi.",
+                    "isUtf8": false,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "6a75657665737c6a752e",
+                    "utf8": "jueves|ju.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "766965726e65737c76692e",
+                    "utf8": "viernes|vi.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "73e16261646f7c73e12e",
+                    "utf8": "sábado|sá.",
+                    "isUtf8": false,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                }
+            ]
+        },
+        "windows_pt": {
+            "requested": "PTB",
+            "applied": "Portuguese_Brazil.1252",
+            "accepted": true,
+            "masks": {
+                "ID_DATE_FORMAT_1": {
+                    "winter_morning": {
+                        "hex": "323030352d30312d30312030303a30343a3035",
+                        "utf8": "2005-01-01 00:04:05",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352d30362d32372031323a30303a3030",
+                        "utf8": "2005-06-27 12:00:00",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302d31322d33312032333a35393a3539",
+                        "utf8": "2020-12-31 23:59:59",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_2": {
+                    "winter_morning": {
+                        "hex": "30312f30312f32303035",
+                        "utf8": "01/01/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372f30362f32303035",
+                        "utf8": "27/06/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312f31322f32303230",
+                        "utf8": "31/12/2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_3": {
+                    "winter_morning": {
+                        "hex": "30312f30312f32303035",
+                        "utf8": "01/01/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "30362f32372f32303035",
+                        "utf8": "06/27/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "31322f33312f32303230",
+                        "utf8": "12/31/2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_4": {
+                    "winter_morning": {
+                        "hex": "323030352f30312f3031",
+                        "utf8": "2005/01/01",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352f32372f3036",
+                        "utf8": "2005/27/06",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302f33312f3132",
+                        "utf8": "2020/31/12",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_5": {
+                    "winter_morning": {
+                        "hex": "323030352f30312f3031",
+                        "utf8": "2005/01/01",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352f30362f3237",
+                        "utf8": "2005/06/27",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302f31322f3331",
+                        "utf8": "2020/12/31",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_6": {
+                    "winter_morning": {
+                        "hex": "6a616e6569726f2030312c20323030352c2031323a303420",
+                        "utf8": "janeiro 01, 2005, 12:04 ",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6a756e686f2032372c20323030352c2031323a303020",
+                        "utf8": "junho 27, 2005, 12:00 ",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "64657a656d62726f2033312c20323032302c2031313a353920",
+                        "utf8": "dezembro 31, 2020, 11:59 ",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_7": {
+                    "winter_morning": {
+                        "hex": "30312e30312e3034",
+                        "utf8": "01.01.04",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "30362e32372e3035",
+                        "utf8": "06.27.05",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "31322e33312e3230",
+                        "utf8": "12.31.20",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_8": {
+                    "winter_morning": {
+                        "hex": "30312c2030312c2032303035",
+                        "utf8": "01, 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372c2030362c2032303035",
+                        "utf8": "27, 06, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312c2031322c2032303230",
+                        "utf8": "31, 12, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_9": {
+                    "winter_morning": {
+                        "hex": "73e16261646f206a616e6569726f2030312030303a30343a303520542032303035",
+                        "utf8": "sábado janeiro 01 00:04:05 T 2005",
+                        "isUtf8": false,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "736567756e64612d6665697261206a756e686f2032372031323a30303a303020542032303035",
+                        "utf8": "segunda-feira junho 27 12:00:00 T 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "7175696e74612d66656972612064657a656d62726f2033312032333a35393a353920542032303230",
+                        "utf8": "quinta-feira dezembro 31 23:59:59 T 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_15": {
+                    "winter_morning": {
+                        "hex": "6a616e6569726f2030312c2032303035",
+                        "utf8": "janeiro 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6a756e686f2032372c2032303035",
+                        "utf8": "junho 27, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "64657a656d62726f2033312c2032303230",
+                        "utf8": "dezembro 31, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_16": {
+                    "winter_morning": {
+                        "hex": "30312073e16261646f2c2032303035",
+                        "utf8": "01 sábado, 2005",
+                        "isUtf8": false,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "303620736567756e64612d66656972612c2032303035",
+                        "utf8": "06 segunda-feira, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "3132207175696e74612d66656972612c2032303230",
+                        "utf8": "12 quinta-feira, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_10": {
+                    "winter_morning": {
+                        "hex": "73e16261646f203031206a616e6569726f2c2032303035",
+                        "utf8": "sábado 01 janeiro, 2005",
+                        "isUtf8": false,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "736567756e64612d6665697261203237206a756e686f2c2032303035",
+                        "utf8": "segunda-feira 27 junho, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "7175696e74612d66656972612033312064657a656d62726f2c2032303230",
+                        "utf8": "quinta-feira 31 dezembro, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_11": {
+                    "winter_morning": {
+                        "hex": "73e16261646f206a616e6569726f2c2032303035",
+                        "utf8": "sábado janeiro, 2005",
+                        "isUtf8": false,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "736567756e64612d6665697261206a756e686f2c2032303035",
+                        "utf8": "segunda-feira junho, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "7175696e74612d66656972612064657a656d62726f2c2032303230",
+                        "utf8": "quinta-feira dezembro, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_12": {
+                    "winter_morning": {
+                        "hex": "3031206a616e6569726f2c2032303035",
+                        "utf8": "01 janeiro, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "3237206a756e686f2c2032303035",
+                        "utf8": "27 junho, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312064657a656d62726f2c2032303230",
+                        "utf8": "31 dezembro, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_13": {
+                    "winter_morning": {
+                        "hex": "30312030312c2032303035",
+                        "utf8": "01 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372030362c2032303035",
+                        "utf8": "27 06, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312031322c2032303230",
+                        "utf8": "31 12, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_14": {
+                    "winter_morning": {
+                        "hex": "30312e30312e32303035",
+                        "utf8": "01.01.2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372e30362e32303035",
+                        "utf8": "27.06.2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312e31322e32303230",
+                        "utf8": "31.12.2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_17": {
+                    "winter_morning": {
+                        "hex": "3031205b78785d206a616e6569726f205b78785d2032303035",
+                        "utf8": "01 [xx] janeiro [xx] 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "3237205b78785d206a756e686f205b78785d2032303035",
+                        "utf8": "27 [xx] junho [xx] 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "3331205b78785d2064657a656d62726f205b78785d2032303230",
+                        "utf8": "31 [xx] dezembro [xx] 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                }
+            },
+            "monthNames": {
+                "1": {
+                    "hex": "6a616e6569726f7c6a616e",
+                    "utf8": "janeiro|jan",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "2": {
+                    "hex": "66657665726569726f7c666576",
+                    "utf8": "fevereiro|fev",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "3": {
+                    "hex": "6d6172e76f7c6d6172",
+                    "utf8": "março|mar",
+                    "isUtf8": false,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "4": {
+                    "hex": "616272696c7c616272",
+                    "utf8": "abril|abr",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "5": {
+                    "hex": "6d61696f7c6d6169",
+                    "utf8": "maio|mai",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "6": {
+                    "hex": "6a756e686f7c6a756e",
+                    "utf8": "junho|jun",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "7": {
+                    "hex": "6a756c686f7c6a756c",
+                    "utf8": "julho|jul",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "8": {
+                    "hex": "61676f73746f7c61676f",
+                    "utf8": "agosto|ago",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "9": {
+                    "hex": "736574656d62726f7c736574",
+                    "utf8": "setembro|set",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "10": {
+                    "hex": "6f75747562726f7c6f7574",
+                    "utf8": "outubro|out",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "11": {
+                    "hex": "6e6f76656d62726f7c6e6f76",
+                    "utf8": "novembro|nov",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "12": {
+                    "hex": "64657a656d62726f7c64657a",
+                    "utf8": "dezembro|dez",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                }
+            },
+            "dayNames": [
+                {
+                    "hex": "646f6d696e676f7c646f6d",
+                    "utf8": "domingo|dom",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "736567756e64612d66656972617c736567",
+                    "utf8": "segunda-feira|seg",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "746572e7612d66656972617c746572",
+                    "utf8": "terça-feira|ter",
+                    "isUtf8": false,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "7175617274612d66656972617c717561",
+                    "utf8": "quarta-feira|qua",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "7175696e74612d66656972617c717569",
+                    "utf8": "quinta-feira|qui",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "73657874612d66656972617c736578",
+                    "utf8": "sexta-feira|sex",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "73e16261646f7c73e162",
+                    "utf8": "sábado|sáb",
+                    "isUtf8": false,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                }
+            ]
+        },
+        "windows_en_utf8": {
+            "requested": "EST.utf8",
+            "applied": "Spanish_United States.utf8",
+            "accepted": true,
+            "masks": {
+                "ID_DATE_FORMAT_1": {
+                    "winter_morning": {
+                        "hex": "323030352d30312d30312030303a30343a3035",
+                        "utf8": "2005-01-01 00:04:05",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352d30362d32372031323a30303a3030",
+                        "utf8": "2005-06-27 12:00:00",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302d31322d33312032333a35393a3539",
+                        "utf8": "2020-12-31 23:59:59",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_2": {
+                    "winter_morning": {
+                        "hex": "30312f30312f32303035",
+                        "utf8": "01/01/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372f30362f32303035",
+                        "utf8": "27/06/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312f31322f32303230",
+                        "utf8": "31/12/2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_3": {
+                    "winter_morning": {
+                        "hex": "30312f30312f32303035",
+                        "utf8": "01/01/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "30362f32372f32303035",
+                        "utf8": "06/27/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "31322f33312f32303230",
+                        "utf8": "12/31/2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_4": {
+                    "winter_morning": {
+                        "hex": "323030352f30312f3031",
+                        "utf8": "2005/01/01",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352f32372f3036",
+                        "utf8": "2005/27/06",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302f33312f3132",
+                        "utf8": "2020/31/12",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_5": {
+                    "winter_morning": {
+                        "hex": "323030352f30312f3031",
+                        "utf8": "2005/01/01",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352f30362f3237",
+                        "utf8": "2005/06/27",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302f31322f3331",
+                        "utf8": "2020/12/31",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_6": {
+                    "winter_morning": {
+                        "hex": "656e65726f2030312c20323030352c2031323a303420414d",
+                        "utf8": "enero 01, 2005, 12:04 AM",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6a756e696f2032372c20323030352c2031323a303020504d",
+                        "utf8": "junio 27, 2005, 12:00 PM",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "64696369656d6272652033312c20323032302c2031313a353920504d",
+                        "utf8": "diciembre 31, 2020, 11:59 PM",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_7": {
+                    "winter_morning": {
+                        "hex": "30312e30312e3034",
+                        "utf8": "01.01.04",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "30362e32372e3035",
+                        "utf8": "06.27.05",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "31322e33312e3230",
+                        "utf8": "12.31.20",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_8": {
+                    "winter_morning": {
+                        "hex": "30312c2030312c2032303035",
+                        "utf8": "01, 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372c2030362c2032303035",
+                        "utf8": "27, 06, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312c2031322c2032303230",
+                        "utf8": "31, 12, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_9": {
+                    "winter_morning": {
+                        "hex": "73c3a16261646f20656e65726f2030312030303a30343a303520542032303035",
+                        "utf8": "sÃ¡bado enero 01 00:04:05 T 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6c756e6573206a756e696f2032372031323a30303a303020542032303035",
+                        "utf8": "lunes junio 27 12:00:00 T 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "6a75657665732064696369656d6272652033312032333a35393a353920542032303230",
+                        "utf8": "jueves diciembre 31 23:59:59 T 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_15": {
+                    "winter_morning": {
+                        "hex": "656e65726f2030312c2032303035",
+                        "utf8": "enero 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6a756e696f2032372c2032303035",
+                        "utf8": "junio 27, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "64696369656d6272652033312c2032303230",
+                        "utf8": "diciembre 31, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_16": {
+                    "winter_morning": {
+                        "hex": "30312073c3a16261646f2c2032303035",
+                        "utf8": "01 sÃ¡bado, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "3036206c756e65732c2032303035",
+                        "utf8": "06 lunes, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "3132206a75657665732c2032303230",
+                        "utf8": "12 jueves, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_10": {
+                    "winter_morning": {
+                        "hex": "73c3a16261646f20303120656e65726f2c2032303035",
+                        "utf8": "sÃ¡bado 01 enero, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6c756e6573203237206a756e696f2c2032303035",
+                        "utf8": "lunes 27 junio, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "6a75657665732033312064696369656d6272652c2032303230",
+                        "utf8": "jueves 31 diciembre, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_11": {
+                    "winter_morning": {
+                        "hex": "73c3a16261646f20656e65726f2c2032303035",
+                        "utf8": "sÃ¡bado enero, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6c756e6573206a756e696f2c2032303035",
+                        "utf8": "lunes junio, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "6a75657665732064696369656d6272652c2032303230",
+                        "utf8": "jueves diciembre, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_12": {
+                    "winter_morning": {
+                        "hex": "303120656e65726f2c2032303035",
+                        "utf8": "01 enero, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "3237206a756e696f2c2032303035",
+                        "utf8": "27 junio, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312064696369656d6272652c2032303230",
+                        "utf8": "31 diciembre, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_13": {
+                    "winter_morning": {
+                        "hex": "30312030312c2032303035",
+                        "utf8": "01 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372030362c2032303035",
+                        "utf8": "27 06, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312031322c2032303230",
+                        "utf8": "31 12, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_14": {
+                    "winter_morning": {
+                        "hex": "30312e30312e32303035",
+                        "utf8": "01.01.2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372e30362e32303035",
+                        "utf8": "27.06.2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312e31322e32303230",
+                        "utf8": "31.12.2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_17": {
+                    "winter_morning": {
+                        "hex": "3031205b78785d20656e65726f205b78785d2032303035",
+                        "utf8": "01 [xx] enero [xx] 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "3237205b78785d206a756e696f205b78785d2032303035",
+                        "utf8": "27 [xx] junio [xx] 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "3331205b78785d2064696369656d627265205b78785d2032303230",
+                        "utf8": "31 [xx] diciembre [xx] 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                }
+            },
+            "monthNames": {
+                "1": {
+                    "hex": "656e65726f7c656e65",
+                    "utf8": "enero|ene",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "2": {
+                    "hex": "6665627265726f7c666562",
+                    "utf8": "febrero|feb",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "3": {
+                    "hex": "6d61727a6f7c6d6172",
+                    "utf8": "marzo|mar",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "4": {
+                    "hex": "616272696c7c616272",
+                    "utf8": "abril|abr",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "5": {
+                    "hex": "6d61796f7c6d6179",
+                    "utf8": "mayo|may",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "6": {
+                    "hex": "6a756e696f7c6a756e",
+                    "utf8": "junio|jun",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "7": {
+                    "hex": "6a756c696f7c6a756c",
+                    "utf8": "julio|jul",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "8": {
+                    "hex": "61676f73746f7c61676f",
+                    "utf8": "agosto|ago",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "9": {
+                    "hex": "7365707469656d6272657c736570",
+                    "utf8": "septiembre|sep",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "10": {
+                    "hex": "6f6374756272657c6f6374",
+                    "utf8": "octubre|oct",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "11": {
+                    "hex": "6e6f7669656d6272657c6e6f76",
+                    "utf8": "noviembre|nov",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "12": {
+                    "hex": "64696369656d6272657c646963",
+                    "utf8": "diciembre|dic",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                }
+            },
+            "dayNames": [
+                {
+                    "hex": "646f6d696e676f7c646f6d",
+                    "utf8": "domingo|dom",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "6c756e65737c6c756e",
+                    "utf8": "lunes|lun",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "6d61727465737c6d6172",
+                    "utf8": "martes|mar",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "6d69c3a972636f6c65737c6d69c3a9",
+                    "utf8": "miÃ©rcoles|miÃ©",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "6a75657665737c6a7565",
+                    "utf8": "jueves|jue",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "766965726e65737c766965",
+                    "utf8": "viernes|vie",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "73c3a16261646f7c73c3a162",
+                    "utf8": "sÃ¡bado|sÃ¡b",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                }
+            ]
+        },
+        "windows_es_utf8": {
+            "requested": "ESN.utf8",
+            "applied": "Spanish_Spain.utf8",
+            "accepted": true,
+            "masks": {
+                "ID_DATE_FORMAT_1": {
+                    "winter_morning": {
+                        "hex": "323030352d30312d30312030303a30343a3035",
+                        "utf8": "2005-01-01 00:04:05",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352d30362d32372031323a30303a3030",
+                        "utf8": "2005-06-27 12:00:00",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302d31322d33312032333a35393a3539",
+                        "utf8": "2020-12-31 23:59:59",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_2": {
+                    "winter_morning": {
+                        "hex": "30312f30312f32303035",
+                        "utf8": "01/01/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372f30362f32303035",
+                        "utf8": "27/06/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312f31322f32303230",
+                        "utf8": "31/12/2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_3": {
+                    "winter_morning": {
+                        "hex": "30312f30312f32303035",
+                        "utf8": "01/01/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "30362f32372f32303035",
+                        "utf8": "06/27/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "31322f33312f32303230",
+                        "utf8": "12/31/2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_4": {
+                    "winter_morning": {
+                        "hex": "323030352f30312f3031",
+                        "utf8": "2005/01/01",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352f32372f3036",
+                        "utf8": "2005/27/06",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302f33312f3132",
+                        "utf8": "2020/31/12",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_5": {
+                    "winter_morning": {
+                        "hex": "323030352f30312f3031",
+                        "utf8": "2005/01/01",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352f30362f3237",
+                        "utf8": "2005/06/27",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302f31322f3331",
+                        "utf8": "2020/12/31",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_6": {
+                    "winter_morning": {
+                        "hex": "656e65726f2030312c20323030352c2031323a303420",
+                        "utf8": "enero 01, 2005, 12:04 ",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6a756e696f2032372c20323030352c2031323a303020",
+                        "utf8": "junio 27, 2005, 12:00 ",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "64696369656d6272652033312c20323032302c2031313a353920",
+                        "utf8": "diciembre 31, 2020, 11:59 ",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_7": {
+                    "winter_morning": {
+                        "hex": "30312e30312e3034",
+                        "utf8": "01.01.04",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "30362e32372e3035",
+                        "utf8": "06.27.05",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "31322e33312e3230",
+                        "utf8": "12.31.20",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_8": {
+                    "winter_morning": {
+                        "hex": "30312c2030312c2032303035",
+                        "utf8": "01, 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372c2030362c2032303035",
+                        "utf8": "27, 06, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312c2031322c2032303230",
+                        "utf8": "31, 12, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_9": {
+                    "winter_morning": {
+                        "hex": "73c3a16261646f20656e65726f2030312030303a30343a303520542032303035",
+                        "utf8": "sÃ¡bado enero 01 00:04:05 T 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6c756e6573206a756e696f2032372031323a30303a303020542032303035",
+                        "utf8": "lunes junio 27 12:00:00 T 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "6a75657665732064696369656d6272652033312032333a35393a353920542032303230",
+                        "utf8": "jueves diciembre 31 23:59:59 T 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_15": {
+                    "winter_morning": {
+                        "hex": "656e65726f2030312c2032303035",
+                        "utf8": "enero 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6a756e696f2032372c2032303035",
+                        "utf8": "junio 27, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "64696369656d6272652033312c2032303230",
+                        "utf8": "diciembre 31, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_16": {
+                    "winter_morning": {
+                        "hex": "30312073c3a16261646f2c2032303035",
+                        "utf8": "01 sÃ¡bado, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "3036206c756e65732c2032303035",
+                        "utf8": "06 lunes, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "3132206a75657665732c2032303230",
+                        "utf8": "12 jueves, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_10": {
+                    "winter_morning": {
+                        "hex": "73c3a16261646f20303120656e65726f2c2032303035",
+                        "utf8": "sÃ¡bado 01 enero, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6c756e6573203237206a756e696f2c2032303035",
+                        "utf8": "lunes 27 junio, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "6a75657665732033312064696369656d6272652c2032303230",
+                        "utf8": "jueves 31 diciembre, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_11": {
+                    "winter_morning": {
+                        "hex": "73c3a16261646f20656e65726f2c2032303035",
+                        "utf8": "sÃ¡bado enero, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6c756e6573206a756e696f2c2032303035",
+                        "utf8": "lunes junio, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "6a75657665732064696369656d6272652c2032303230",
+                        "utf8": "jueves diciembre, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_12": {
+                    "winter_morning": {
+                        "hex": "303120656e65726f2c2032303035",
+                        "utf8": "01 enero, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "3237206a756e696f2c2032303035",
+                        "utf8": "27 junio, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312064696369656d6272652c2032303230",
+                        "utf8": "31 diciembre, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_13": {
+                    "winter_morning": {
+                        "hex": "30312030312c2032303035",
+                        "utf8": "01 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372030362c2032303035",
+                        "utf8": "27 06, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312031322c2032303230",
+                        "utf8": "31 12, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_14": {
+                    "winter_morning": {
+                        "hex": "30312e30312e32303035",
+                        "utf8": "01.01.2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372e30362e32303035",
+                        "utf8": "27.06.2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312e31322e32303230",
+                        "utf8": "31.12.2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_17": {
+                    "winter_morning": {
+                        "hex": "3031205b78785d20656e65726f205b78785d2032303035",
+                        "utf8": "01 [xx] enero [xx] 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "3237205b78785d206a756e696f205b78785d2032303035",
+                        "utf8": "27 [xx] junio [xx] 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "3331205b78785d2064696369656d627265205b78785d2032303230",
+                        "utf8": "31 [xx] diciembre [xx] 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                }
+            },
+            "monthNames": {
+                "1": {
+                    "hex": "656e65726f7c656e652e",
+                    "utf8": "enero|ene.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "2": {
+                    "hex": "6665627265726f7c6665622e",
+                    "utf8": "febrero|feb.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "3": {
+                    "hex": "6d61727a6f7c6d61722e",
+                    "utf8": "marzo|mar.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "4": {
+                    "hex": "616272696c7c6162722e",
+                    "utf8": "abril|abr.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "5": {
+                    "hex": "6d61796f7c6d61792e",
+                    "utf8": "mayo|may.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "6": {
+                    "hex": "6a756e696f7c6a756e2e",
+                    "utf8": "junio|jun.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "7": {
+                    "hex": "6a756c696f7c6a756c2e",
+                    "utf8": "julio|jul.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "8": {
+                    "hex": "61676f73746f7c61676f2e",
+                    "utf8": "agosto|ago.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "9": {
+                    "hex": "7365707469656d6272657c7365702e",
+                    "utf8": "septiembre|sep.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "10": {
+                    "hex": "6f6374756272657c6f63742e",
+                    "utf8": "octubre|oct.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "11": {
+                    "hex": "6e6f7669656d6272657c6e6f762e",
+                    "utf8": "noviembre|nov.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "12": {
+                    "hex": "64696369656d6272657c6469632e",
+                    "utf8": "diciembre|dic.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                }
+            },
+            "dayNames": [
+                {
+                    "hex": "646f6d696e676f7c646f2e",
+                    "utf8": "domingo|do.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "6c756e65737c6c752e",
+                    "utf8": "lunes|lu.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "6d61727465737c6d612e",
+                    "utf8": "martes|ma.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "6d69c3a972636f6c65737c6d692e",
+                    "utf8": "miÃ©rcoles|mi.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "6a75657665737c6a752e",
+                    "utf8": "jueves|ju.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "766965726e65737c76692e",
+                    "utf8": "viernes|vi.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "73c3a16261646f7c73c3a12e",
+                    "utf8": "sÃ¡bado|sÃ¡.",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                }
+            ]
+        },
+        "windows_pt_utf8": {
+            "requested": "PTB.utf8",
+            "applied": "Portuguese_Brazil.utf8",
+            "accepted": true,
+            "masks": {
+                "ID_DATE_FORMAT_1": {
+                    "winter_morning": {
+                        "hex": "323030352d30312d30312030303a30343a3035",
+                        "utf8": "2005-01-01 00:04:05",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352d30362d32372031323a30303a3030",
+                        "utf8": "2005-06-27 12:00:00",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302d31322d33312032333a35393a3539",
+                        "utf8": "2020-12-31 23:59:59",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_2": {
+                    "winter_morning": {
+                        "hex": "30312f30312f32303035",
+                        "utf8": "01/01/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372f30362f32303035",
+                        "utf8": "27/06/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312f31322f32303230",
+                        "utf8": "31/12/2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_3": {
+                    "winter_morning": {
+                        "hex": "30312f30312f32303035",
+                        "utf8": "01/01/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "30362f32372f32303035",
+                        "utf8": "06/27/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "31322f33312f32303230",
+                        "utf8": "12/31/2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_4": {
+                    "winter_morning": {
+                        "hex": "323030352f30312f3031",
+                        "utf8": "2005/01/01",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352f32372f3036",
+                        "utf8": "2005/27/06",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302f33312f3132",
+                        "utf8": "2020/31/12",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_5": {
+                    "winter_morning": {
+                        "hex": "323030352f30312f3031",
+                        "utf8": "2005/01/01",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352f30362f3237",
+                        "utf8": "2005/06/27",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302f31322f3331",
+                        "utf8": "2020/12/31",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_6": {
+                    "winter_morning": {
+                        "hex": "6a616e6569726f2030312c20323030352c2031323a303420",
+                        "utf8": "janeiro 01, 2005, 12:04 ",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6a756e686f2032372c20323030352c2031323a303020",
+                        "utf8": "junho 27, 2005, 12:00 ",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "64657a656d62726f2033312c20323032302c2031313a353920",
+                        "utf8": "dezembro 31, 2020, 11:59 ",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_7": {
+                    "winter_morning": {
+                        "hex": "30312e30312e3034",
+                        "utf8": "01.01.04",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "30362e32372e3035",
+                        "utf8": "06.27.05",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "31322e33312e3230",
+                        "utf8": "12.31.20",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_8": {
+                    "winter_morning": {
+                        "hex": "30312c2030312c2032303035",
+                        "utf8": "01, 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372c2030362c2032303035",
+                        "utf8": "27, 06, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312c2031322c2032303230",
+                        "utf8": "31, 12, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_9": {
+                    "winter_morning": {
+                        "hex": "73c3a16261646f206a616e6569726f2030312030303a30343a303520542032303035",
+                        "utf8": "sÃ¡bado janeiro 01 00:04:05 T 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "736567756e64612d6665697261206a756e686f2032372031323a30303a303020542032303035",
+                        "utf8": "segunda-feira junho 27 12:00:00 T 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "7175696e74612d66656972612064657a656d62726f2033312032333a35393a353920542032303230",
+                        "utf8": "quinta-feira dezembro 31 23:59:59 T 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_15": {
+                    "winter_morning": {
+                        "hex": "6a616e6569726f2030312c2032303035",
+                        "utf8": "janeiro 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "6a756e686f2032372c2032303035",
+                        "utf8": "junho 27, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "64657a656d62726f2033312c2032303230",
+                        "utf8": "dezembro 31, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_16": {
+                    "winter_morning": {
+                        "hex": "30312073c3a16261646f2c2032303035",
+                        "utf8": "01 sÃ¡bado, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "303620736567756e64612d66656972612c2032303035",
+                        "utf8": "06 segunda-feira, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "3132207175696e74612d66656972612c2032303230",
+                        "utf8": "12 quinta-feira, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_10": {
+                    "winter_morning": {
+                        "hex": "73c3a16261646f203031206a616e6569726f2c2032303035",
+                        "utf8": "sÃ¡bado 01 janeiro, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "736567756e64612d6665697261203237206a756e686f2c2032303035",
+                        "utf8": "segunda-feira 27 junho, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "7175696e74612d66656972612033312064657a656d62726f2c2032303230",
+                        "utf8": "quinta-feira 31 dezembro, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_11": {
+                    "winter_morning": {
+                        "hex": "73c3a16261646f206a616e6569726f2c2032303035",
+                        "utf8": "sÃ¡bado janeiro, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "736567756e64612d6665697261206a756e686f2c2032303035",
+                        "utf8": "segunda-feira junho, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "7175696e74612d66656972612064657a656d62726f2c2032303230",
+                        "utf8": "quinta-feira dezembro, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_12": {
+                    "winter_morning": {
+                        "hex": "3031206a616e6569726f2c2032303035",
+                        "utf8": "01 janeiro, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "3237206a756e686f2c2032303035",
+                        "utf8": "27 junho, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312064657a656d62726f2c2032303230",
+                        "utf8": "31 dezembro, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_13": {
+                    "winter_morning": {
+                        "hex": "30312030312c2032303035",
+                        "utf8": "01 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372030362c2032303035",
+                        "utf8": "27 06, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312031322c2032303230",
+                        "utf8": "31 12, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_14": {
+                    "winter_morning": {
+                        "hex": "30312e30312e32303035",
+                        "utf8": "01.01.2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372e30362e32303035",
+                        "utf8": "27.06.2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312e31322e32303230",
+                        "utf8": "31.12.2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_17": {
+                    "winter_morning": {
+                        "hex": "3031205b78785d206a616e6569726f205b78785d2032303035",
+                        "utf8": "01 [xx] janeiro [xx] 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "3237205b78785d206a756e686f205b78785d2032303035",
+                        "utf8": "27 [xx] junho [xx] 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "3331205b78785d2064657a656d62726f205b78785d2032303230",
+                        "utf8": "31 [xx] dezembro [xx] 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                }
+            },
+            "monthNames": {
+                "1": {
+                    "hex": "6a616e6569726f7c6a616e",
+                    "utf8": "janeiro|jan",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "2": {
+                    "hex": "66657665726569726f7c666576",
+                    "utf8": "fevereiro|fev",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "3": {
+                    "hex": "6d6172c3a76f7c6d6172",
+                    "utf8": "marÃ§o|mar",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "4": {
+                    "hex": "616272696c7c616272",
+                    "utf8": "abril|abr",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "5": {
+                    "hex": "6d61696f7c6d6169",
+                    "utf8": "maio|mai",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "6": {
+                    "hex": "6a756e686f7c6a756e",
+                    "utf8": "junho|jun",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "7": {
+                    "hex": "6a756c686f7c6a756c",
+                    "utf8": "julho|jul",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "8": {
+                    "hex": "61676f73746f7c61676f",
+                    "utf8": "agosto|ago",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "9": {
+                    "hex": "736574656d62726f7c736574",
+                    "utf8": "setembro|set",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "10": {
+                    "hex": "6f75747562726f7c6f7574",
+                    "utf8": "outubro|out",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "11": {
+                    "hex": "6e6f76656d62726f7c6e6f76",
+                    "utf8": "novembro|nov",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "12": {
+                    "hex": "64657a656d62726f7c64657a",
+                    "utf8": "dezembro|dez",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                }
+            },
+            "dayNames": [
+                {
+                    "hex": "646f6d696e676f7c646f6d",
+                    "utf8": "domingo|dom",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "736567756e64612d66656972617c736567",
+                    "utf8": "segunda-feira|seg",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "746572c3a7612d66656972617c746572",
+                    "utf8": "terÃ§a-feira|ter",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "7175617274612d66656972617c717561",
+                    "utf8": "quarta-feira|qua",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "7175696e74612d66656972617c717569",
+                    "utf8": "quinta-feira|qui",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "73657874612d66656972617c736578",
+                    "utf8": "sexta-feira|sex",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "73c3a16261646f7c73c3a162",
+                    "utf8": "sÃ¡bado|sÃ¡b",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                }
+            ]
+        },
+        "glibc_en": {
+            "requested": "en_US",
+            "applied": null,
+            "accepted": false,
+            "masks": [],
+            "monthNames": [],
+            "dayNames": []
+        },
+        "glibc_es": {
+            "requested": "es_ES",
+            "applied": null,
+            "accepted": false,
+            "masks": [],
+            "monthNames": [],
+            "dayNames": []
+        },
+        "glibc_pt": {
+            "requested": "pt_BR",
+            "applied": null,
+            "accepted": false,
+            "masks": [],
+            "monthNames": [],
+            "dayNames": []
+        },
+        "glibc_en_utf8": {
+            "requested": "en_US.utf8",
+            "applied": null,
+            "accepted": false,
+            "masks": [],
+            "monthNames": [],
+            "dayNames": []
+        },
+        "glibc_es_utf8": {
+            "requested": "es_ES.utf8",
+            "applied": null,
+            "accepted": false,
+            "masks": [],
+            "monthNames": [],
+            "dayNames": []
+        },
+        "glibc_pt_utf8": {
+            "requested": "pt_BR.utf8",
+            "applied": null,
+            "accepted": false,
+            "masks": [],
+            "monthNames": [],
+            "dayNames": []
+        },
+        "c_locale": {
+            "requested": "C",
+            "applied": "C",
+            "accepted": true,
+            "masks": {
+                "ID_DATE_FORMAT_1": {
+                    "winter_morning": {
+                        "hex": "323030352d30312d30312030303a30343a3035",
+                        "utf8": "2005-01-01 00:04:05",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352d30362d32372031323a30303a3030",
+                        "utf8": "2005-06-27 12:00:00",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302d31322d33312032333a35393a3539",
+                        "utf8": "2020-12-31 23:59:59",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_2": {
+                    "winter_morning": {
+                        "hex": "30312f30312f32303035",
+                        "utf8": "01/01/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372f30362f32303035",
+                        "utf8": "27/06/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312f31322f32303230",
+                        "utf8": "31/12/2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_3": {
+                    "winter_morning": {
+                        "hex": "30312f30312f32303035",
+                        "utf8": "01/01/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "30362f32372f32303035",
+                        "utf8": "06/27/2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "31322f33312f32303230",
+                        "utf8": "12/31/2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_4": {
+                    "winter_morning": {
+                        "hex": "323030352f30312f3031",
+                        "utf8": "2005/01/01",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352f32372f3036",
+                        "utf8": "2005/27/06",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302f33312f3132",
+                        "utf8": "2020/31/12",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_5": {
+                    "winter_morning": {
+                        "hex": "323030352f30312f3031",
+                        "utf8": "2005/01/01",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "323030352f30362f3237",
+                        "utf8": "2005/06/27",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "323032302f31322f3331",
+                        "utf8": "2020/12/31",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_6": {
+                    "winter_morning": {
+                        "hex": "4a616e756172792030312c20323030352c2031323a303420414d",
+                        "utf8": "January 01, 2005, 12:04 AM",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "4a756e652032372c20323030352c2031323a303020504d",
+                        "utf8": "June 27, 2005, 12:00 PM",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "446563656d6265722033312c20323032302c2031313a353920504d",
+                        "utf8": "December 31, 2020, 11:59 PM",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_7": {
+                    "winter_morning": {
+                        "hex": "30312e30312e3034",
+                        "utf8": "01.01.04",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "30362e32372e3035",
+                        "utf8": "06.27.05",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "31322e33312e3230",
+                        "utf8": "12.31.20",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_8": {
+                    "winter_morning": {
+                        "hex": "30312c2030312c2032303035",
+                        "utf8": "01, 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372c2030362c2032303035",
+                        "utf8": "27, 06, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312c2031322c2032303230",
+                        "utf8": "31, 12, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_9": {
+                    "winter_morning": {
+                        "hex": "5361747572646179204a616e756172792030312030303a30343a303520542032303035",
+                        "utf8": "Saturday January 01 00:04:05 T 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "4d6f6e646179204a756e652032372031323a30303a303020542032303035",
+                        "utf8": "Monday June 27 12:00:00 T 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "546875727364617920446563656d6265722033312032333a35393a353920542032303230",
+                        "utf8": "Thursday December 31 23:59:59 T 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_15": {
+                    "winter_morning": {
+                        "hex": "4a616e756172792030312c2032303035",
+                        "utf8": "January 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "4a756e652032372c2032303035",
+                        "utf8": "June 27, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "446563656d6265722033312c2032303230",
+                        "utf8": "December 31, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_16": {
+                    "winter_morning": {
+                        "hex": "30312053617475726461792c2032303035",
+                        "utf8": "01 Saturday, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "3036204d6f6e6461792c2032303035",
+                        "utf8": "06 Monday, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "31322054687572736461792c2032303230",
+                        "utf8": "12 Thursday, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_10": {
+                    "winter_morning": {
+                        "hex": "5361747572646179203031204a616e756172792c2032303035",
+                        "utf8": "Saturday 01 January, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "4d6f6e646179203237204a756e652c2032303035",
+                        "utf8": "Monday 27 June, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "546875727364617920333120446563656d6265722c2032303230",
+                        "utf8": "Thursday 31 December, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_11": {
+                    "winter_morning": {
+                        "hex": "5361747572646179204a616e756172792c2032303035",
+                        "utf8": "Saturday January, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "4d6f6e646179204a756e652c2032303035",
+                        "utf8": "Monday June, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "546875727364617920446563656d6265722c2032303230",
+                        "utf8": "Thursday December, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_12": {
+                    "winter_morning": {
+                        "hex": "3031204a616e756172792c2032303035",
+                        "utf8": "01 January, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "3237204a756e652c2032303035",
+                        "utf8": "27 June, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "333120446563656d6265722c2032303230",
+                        "utf8": "31 December, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_13": {
+                    "winter_morning": {
+                        "hex": "30312030312c2032303035",
+                        "utf8": "01 01, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372030362c2032303035",
+                        "utf8": "27 06, 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312031322c2032303230",
+                        "utf8": "31 12, 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_14": {
+                    "winter_morning": {
+                        "hex": "30312e30312e32303035",
+                        "utf8": "01.01.2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "32372e30362e32303035",
+                        "utf8": "27.06.2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "33312e31322e32303230",
+                        "utf8": "31.12.2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                },
+                "ID_DATE_FORMAT_17": {
+                    "winter_morning": {
+                        "hex": "3031205b78785d204a616e75617279205b78785d2032303035",
+                        "utf8": "01 [xx] January [xx] 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "summer_noon": {
+                        "hex": "3237205b78785d204a756e65205b78785d2032303035",
+                        "utf8": "27 [xx] June [xx] 2005",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    },
+                    "year_end": {
+                        "hex": "3331205b78785d20446563656d626572205b78785d2032303230",
+                        "utf8": "31 [xx] December [xx] 2020",
+                        "isUtf8": true,
+                        "notices": [
+                            "Function strftime() is deprecated"
+                        ]
+                    }
+                }
+            },
+            "monthNames": {
+                "1": {
+                    "hex": "4a616e756172797c4a616e",
+                    "utf8": "January|Jan",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "2": {
+                    "hex": "46656272756172797c466562",
+                    "utf8": "February|Feb",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "3": {
+                    "hex": "4d617263687c4d6172",
+                    "utf8": "March|Mar",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "4": {
+                    "hex": "417072696c7c417072",
+                    "utf8": "April|Apr",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "5": {
+                    "hex": "4d61797c4d6179",
+                    "utf8": "May|May",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "6": {
+                    "hex": "4a756e657c4a756e",
+                    "utf8": "June|Jun",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "7": {
+                    "hex": "4a756c797c4a756c",
+                    "utf8": "July|Jul",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "8": {
+                    "hex": "4175677573747c417567",
+                    "utf8": "August|Aug",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "9": {
+                    "hex": "53657074656d6265727c536570",
+                    "utf8": "September|Sep",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "10": {
+                    "hex": "4f63746f6265727c4f6374",
+                    "utf8": "October|Oct",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "11": {
+                    "hex": "4e6f76656d6265727c4e6f76",
+                    "utf8": "November|Nov",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                "12": {
+                    "hex": "446563656d6265727c446563",
+                    "utf8": "December|Dec",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                }
+            },
+            "dayNames": [
+                {
+                    "hex": "53756e6461797c53756e",
+                    "utf8": "Sunday|Sun",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "4d6f6e6461797c4d6f6e",
+                    "utf8": "Monday|Mon",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "547565736461797c547565",
+                    "utf8": "Tuesday|Tue",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "5765646e65736461797c576564",
+                    "utf8": "Wednesday|Wed",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "54687572736461797c546875",
+                    "utf8": "Thursday|Thu",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "4672696461797c467269",
+                    "utf8": "Friday|Fri",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                },
+                {
+                    "hex": "53617475726461797c536174",
+                    "utf8": "Saturday|Sat",
+                    "isUtf8": true,
+                    "notices": [
+                        "Function strftime() is deprecated"
+                    ]
+                }
+            ]
+        }
+    },
+    "acceptedLocales": [
+        "windows_en",
+        "windows_es",
+        "windows_pt",
+        "windows_en_utf8",
+        "windows_es_utf8",
+        "windows_pt_utf8",
+        "c_locale"
+    ]
+}

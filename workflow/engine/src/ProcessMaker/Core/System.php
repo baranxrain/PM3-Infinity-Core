@@ -594,7 +594,12 @@ class System
         while (($sObject = $oDirectory->read())) {
             if (is_dir(PATH_DB . $sObject) && substr($sObject, 0, 1) != '.') {
                 if (file_exists(PATH_DB . $sObject . PATH_SEP . 'db.php')) {
-                    eval($this->getDatabaseCredentials(PATH_DB . $sObject . PATH_SEP . 'db.php'));
+                    $databaseCredentials = $this->getDatabaseCredentials(PATH_DB . $sObject . PATH_SEP . 'db.php');
+                    foreach ($databaseCredentials as $credentialName => $credentialValue) {
+                        if (preg_match('/^DB_(?:ADAPTER|HOST|NAME|USER|PASS|RBAC_(?:HOST|NAME|USER|PASS)|REPORT_(?:HOST|NAME|USER|PASS))$/', $credentialName)) {
+                            ${$credentialName} = $credentialValue;
+                        }
+                    }
                 }
                 $aEnvironmentsUpdated[] = $sObject;
                 $aEnvironmentsDiff[] = $sObject;
@@ -683,19 +688,18 @@ class System
      * @name getDatabaseCredentials
      *
      * @param string $dbFile
-     * @return string $sContent
+     * @return array
      */
     public function getDatabaseCredentials($dbFile)
     {
         $sContent = file_get_contents($dbFile);
-        $sContent = str_replace('<?php', '', $sContent);
-        $sContent = str_replace('<?', '', $sContent);
-        $sContent = str_replace('?>', '', $sContent);
-        $sContent = str_replace('define', '', $sContent);
-        $sContent = str_replace("('", '$', $sContent);
-        $sContent = str_replace("',", '=', $sContent);
-        $sContent = str_replace(");", ';', $sContent);
-        return $sContent;
+        $credentials = [];
+        if (preg_match_all('/define\s*\(\s*[\x22\x27]([^"\']+)[\x22\x27]\s*,\s*([\x22\x27])((?:\\\\.|(?!\2).)*)\2\s*\)\s*;/i', $sContent, $matches, PREG_SET_ORDER)) {
+            foreach ($matches as $match) {
+                $credentials[$match[1]] = stripcslashes($match[3]);
+            }
+        }
+        return $credentials;
     }
 
     /**
@@ -1744,14 +1748,13 @@ class System
 
         $pathsInstalled = getcwd() . "/workflow/engine/config/paths_installed.php";
         if (file_exists($pathsInstalled)) {
-            $script = "require_once '{$pathsInstalled}';"
-                    . "return ["
-                    . "'pathData' => PATH_DATA,"
-                    . "'pathCompiled' => PATH_C,"
-                    . "'hashInstallation' => HASH_INSTALLATION,"
-                    . "'systemHash' => SYSTEM_HASH,"
-                    . "];";
-            $result = eval($script);
+            require_once $pathsInstalled;
+            $result = [
+                'pathData' => PATH_DATA,
+                'pathCompiled' => PATH_C,
+                'hashInstallation' => HASH_INSTALLATION,
+                'systemHash' => SYSTEM_HASH,
+            ];
         }
         return (object) $result;
     }

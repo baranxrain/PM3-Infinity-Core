@@ -255,15 +255,15 @@ class headPublisher
                 $jslabel = '/jscore/labels/en.js';
             }
         }
-        $head = '';
+        $head = "var processMakerExecuteScriptSource=function(source){var script=document.createElement('script');script.type='text/javascript';script.text=source;var parent=document.head||document.getElementsByTagName('head')[0];parent.appendChild(script);parent.removeChild(script);};\n";
         //$head .= "<script language='javascript'>\n";
         foreach ($this->scriptFiles as $file) {
             if (($file != "/js/maborak/core/maborak.js") && ($file != $jslabel)) {
-                $head = $head . "  eval(ajax_function(\"" . G::browserCacheFilesUrl($file) . "\", \"\", \"\"));\n";
+                $head = $head . "  processMakerExecuteScriptSource(ajax_function(\"" . G::browserCacheFilesUrl($file) . "\", \"\", \"\"));\n";
             }
         }
         foreach ($this->leimnudLoad as $file) {
-            $head .= "  eval(ajax_function('" . $file . "','',''));\n";
+            $head .= "  processMakerExecuteScriptSource(ajax_function('" . $file . "','',''));\n";
         }
         //Adapts the add events on load to simple javascript sentences.
         $this->headerScript = preg_replace('/\s*leimnud.event.add\s*\(\s*window\s*,\s*(?:\'|")load(?:\'|")\s*,\s*function\(\)\{(.+)\}\s*\)\s*;?/', '$1', $this->headerScript);

@@ -306,7 +306,7 @@ class Ajax
       });
 
       oRPC.make();
-      var response = eval(\'(\' + oRPC.xmlhttp.responseText + \')\');
+      var response = JSON.parse(oRPC.xmlhttp.responseText);
 
       for (var i in response){
         if (i==\'task\'){
@@ -913,11 +913,21 @@ class Ajax
                     http_request.onreadystatechange = function() {
                         if (http_request.readyState == 4) {
                             if (http_request.status == 200) {
+                                var callbackOwner = window;
+                                var callback = window;
+                                var callbackParts = callback_function.match(/[^.]+/g) || [];
+                                for (var callbackIndex = 0; callbackIndex < callbackParts.length; callbackIndex++) {
+                                    callbackOwner = callback;
+                                    callback = callback[callbackParts[callbackIndex]];
+                                }
+                                if (typeof callback !== 'function') {
+                                    throw new Error('Unknown AJAX callback: ' + callback_function);
+                                }
                                 if (return_xml) {
-                                    eval(callback_function + '(http_request.responseXML)');
+                                    callback.call(callbackOwner, http_request.responseXML);
                                 }
                                 else {
-                                    eval(callback_function + '(http_request.responseText, \'' + id + '\')');
+                                    callback.call(callbackOwner, http_request.responseText, id);
                                 }
                             }
                             else {

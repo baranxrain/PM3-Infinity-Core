@@ -42,7 +42,7 @@ $holidays = $ses->execute( 'SELECT LEX_VALUE FROM LEXICO WHERE LEX_TOPIC ="HOLID
 $funcion = strtolower( get_ajax_value( 'function' ) );
 $funcions = get_defined_functions();
 if (in_array( $funcion, $funcions['user'] ))
-    eval( $funcion . '();' );
+    call_user_func( $funcion );
 
 function setDays ()
 {

@@ -178,9 +178,9 @@ class ReportTable
             require_once(PATH_WORKSPACE . 'classes' . PATH_SEP . $additionalTableClassName . '.php');
 
             if (!empty($row)) {
-                eval('$con = \\Propel::getConnection(' . $additionalTableClassPeerName . '::DATABASE_NAME);');
+                $con = \Propel::getConnection(constant($additionalTableClassPeerName . '::DATABASE_NAME'));
 
-                eval('$obj = new \\' . $additionalTableClassName . '();');
+                $obj = new $additionalTableClassName();
                 $obj->fromArray($row, \BasePeer::TYPE_FIELDNAME);
 
                 if ($obj->validate()) {

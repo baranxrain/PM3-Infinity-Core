@@ -180,25 +180,25 @@ class pagedTable
         } else {
             if (defined('DB_' . $this->sqlConnection . '_USER')) {
                 if (defined('DB_' . $this->sqlConnection . '_HOST')) {
-                    eval('$res[\'DBC_SERVER\'] = DB_' . $this->sqlConnection . '_HOST;');
+                    $res['DBC_SERVER'] = constant('DB_' . $this->sqlConnection . '_HOST');
                 } else {
                     $res['DBC_SERVER'] = DB_HOST;
                 }
                 if (defined('DB_' . $this->sqlConnection . '_USER')) {
-                    eval('$res[\'DBC_USERNAME\'] = DB_' . $this->sqlConnection . '_USER;');
+                    $res['DBC_USERNAME'] = constant('DB_' . $this->sqlConnection . '_USER');
                 }
                 if (defined('DB_' . $this->sqlConnection . '_PASS')) {
-                    eval('$res[\'DBC_PASSWORD\'] = DB_' . $this->sqlConnection . '_PASS;');
+                    $res['DBC_PASSWORD'] = constant('DB_' . $this->sqlConnection . '_PASS');
                 } else {
                     $res['DBC_PASSWORD'] = DB_PASS;
                 }
                 if (defined('DB_' . $this->sqlConnection . '_NAME')) {
-                    eval('$res[\'DBC_DATABASE\'] = DB_' . $this->sqlConnection . '_NAME;');
+                    $res['DBC_DATABASE'] = constant('DB_' . $this->sqlConnection . '_NAME');
                 } else {
                     $res['DBC_DATABASE'] = DB_NAME;
                 }
                 if (defined('DB_' . $this->sqlConnection . '_TYPE')) {
-                    eval('$res[\'DBC_TYPE\'] = DB_' . $this->sqlConnection . '_TYPE;');
+                    $res['DBC_TYPE'] = constant('DB_' . $this->sqlConnection . '_TYPE');
                 } else {
                     $res['DBC_TYPE'] = defined('DB_TYPE') ? DB_TYPE : 'mysql';
                 }
@@ -340,9 +340,9 @@ class pagedTable
         $myAttributes = get_class_vars(get_class($this));
         foreach ($this->xmlForm->xmlform->tree->attribute as $atrib => $value) {
             if (is_array($myAttributes) && array_key_exists($atrib, $myAttributes)) {
-                eval('settype($value,gettype($this->' . $atrib . '));');
+                settype($value, gettype($this->{$atrib}));
                 if ($value !== '') {
-                    eval('$this->' . $atrib . '=$value;');
+                    $this->{$atrib} = $value;
                 }
             }
         }
@@ -614,7 +614,7 @@ class pagedTable
     {
         global $G_DATE_FORMAT;
         //BEGIN: Special content: __sqlEdit__,__sqlDelete__
-        $result['sqlDelete__'] = "pagedTable.event='Delete';pagedTable_DoIt=true;if (pagedTable.onDeleteField) pagedTable_DoIt=eval(pagedTable.onDeleteField);if (pagedTable_DoIt) document.getElementById('pagedTable').outerHTML=ajax_function('{$this->ajaxServer}','delete','field='+encodeURIComponent('" . ($this->fieldDataList) . "'));if (pagedTable.afterDeleteField) return eval(pagedTable.afterDeleteField); else return false;";
+        $result['sqlDelete__'] = "pagedTable.event='Delete';pagedTable_DoIt=true;if(pagedTable.onDeleteField){var beforeDelete=(typeof pagedTable.onDeleteField==='function')?pagedTable.onDeleteField:window[pagedTable.onDeleteField];pagedTable_DoIt=(typeof beforeDelete==='function')?beforeDelete.call(pagedTable):false;}if(pagedTable_DoIt)document.getElementById('pagedTable').outerHTML=ajax_function('{$this->ajaxServer}','delete','field='+encodeURIComponent('" . ($this->fieldDataList) . "'));if(pagedTable.afterDeleteField){var afterDelete=(typeof pagedTable.afterDeleteField==='function')?pagedTable.afterDeleteField:window[pagedTable.afterDeleteField];if(typeof afterDelete==='function')return afterDelete.call(pagedTable);}return false;";
         $result['sqlEdit__'] = "pagedTable.event='Update';pagedTable.field=encodeURIComponent('" . $this->fieldDataList . "');pagedTable.updateField(pagedTable.field);return false;";
         $result['pagedTableField__'] = "'" . $this->fieldDataList . "'";
         $result['row__'] = $row;

@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/class.xmlformSafeExpressionEvaluator.php';
+
 /**
  *
  * @package gulliver.system
@@ -40,7 +42,7 @@ class XmlFormFieldCellMark extends XmlFormField
     public function tdStyle($values, $owner)
     {
         $value = G::replaceDataField($this->condition, $owner->values);
-        $value = @eval('return (' . $value . ');');
+        $value = XmlFormSafeExpressionEvaluator::evaluate($value);
         $row = $values['row__'];
         $style = ((($row % 2) == 0) && ($this->styleAlt != 0)) ? $this->styleAlt : $this->style;
         return ($value) ? $style : '';
@@ -57,7 +59,7 @@ class XmlFormFieldCellMark extends XmlFormField
     public function tdClass($values, $owner)
     {
         $value = G::replaceDataField($this->condition, $owner->values);
-        $value = @eval('return (' . $value . ');');
+        $value = XmlFormSafeExpressionEvaluator::evaluate($value);
         $row = $values['row__'];
         $style = (($row % 2) == 0) ? $this->classNameAlt : $this->className;
         return ($value) ? $style : '';

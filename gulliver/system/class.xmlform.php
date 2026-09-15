@@ -95,7 +95,7 @@ class XmlFormField
         foreach ($xmlNode->attributes as $k => $v) {
             $key = array_search(strtoupper($k), $myAttributes);
             if ($key) {
-                eval('$this->' . $key . '=$v;');
+                $this->{$key} = $v;
             }
         }
         //Loads the main attributes
@@ -158,25 +158,25 @@ class XmlFormField
         } else {
             if (defined('DB_' . $this->sqlConnection . '_USER')) {
                 if (defined('DB_' . $this->sqlConnection . '_HOST')) {
-                    eval('$res[\'DBC_SERVER\'] = DB_' . $this->sqlConnection . '_HOST;');
+                    $res['DBC_SERVER'] = constant('DB_' . $this->sqlConnection . '_HOST');
                 } else {
                     $res['DBC_SERVER'] = DB_HOST;
                 }
                 if (defined('DB_' . $this->sqlConnection . '_USER')) {
-                    eval('$res[\'DBC_USERNAME\'] = DB_' . $this->sqlConnection . '_USER;');
+                    $res['DBC_USERNAME'] = constant('DB_' . $this->sqlConnection . '_USER');
                 }
                 if (defined('DB_' . $this->sqlConnection . '_PASS')) {
-                    eval('$res[\'DBC_PASSWORD\'] = DB_' . $this->sqlConnection . '_PASS;');
+                    $res['DBC_PASSWORD'] = constant('DB_' . $this->sqlConnection . '_PASS');
                 } else {
                     $res['DBC_PASSWORD'] = DB_PASS;
                 }
                 if (defined('DB_' . $this->sqlConnection . '_NAME')) {
-                    eval('$res[\'DBC_DATABASE\'] = DB_' . $this->sqlConnection . '_NAME;');
+                    $res['DBC_DATABASE'] = constant('DB_' . $this->sqlConnection . '_NAME');
                 } else {
                     $res['DBC_DATABASE'] = DB_NAME;
                 }
                 if (defined('DB_' . $this->sqlConnection . '_TYPE')) {
-                    eval('$res[\'DBC_TYPE\'] = DB_' . $this->sqlConnection . '_TYPE;');
+                    $res['DBC_TYPE'] = constant('DB_' . $this->sqlConnection . '_TYPE');
                 } else {
                     $res['DBC_TYPE'] = defined('DB_TYPE') ? DB_TYPE : 'mysql';
                 }
@@ -1435,7 +1435,7 @@ class XmlFormFieldSuggest extends XmlFormFieldSimpleText
 
                 $sOptions .= 'if (response.substr(0,1) === \'[\') { ';
                 $sOptions .= '  var newcont; ';
-                $sOptions .= '  eval(\'newcont=\' + response + \';\'); ';
+                $sOptions .= '  newcont = JSON.parse(response); ';
                 $sOptions .= '  for(var i = 0; i<newcont.length; i++) { ';
                 //$sOptions .= '    var j = getField(newcont[i].name); ';
                 $sOptions .= '    getField(newcont[i].name).value = newcont[i].value; ';
@@ -1620,7 +1620,7 @@ class XmlFormFieldSuggest extends XmlFormFieldSimpleText
                 $sOptions .= '';
                 $sOptions .= 'if (response.substr(0,1) === \'[\') { ';
                 $sOptions .= '  var newcont; ';
-                $sOptions .= '  eval(\'newcont=\' + response + \';\'); ';
+                $sOptions .= '  newcont = JSON.parse(response); ';
                 $sOptions .= '';
                 $sOptions .= '  for(var i = 0; i<newcont.length; i++) { ';
                 $sOptions .= '    var depField = "' . $rowIdField . '[" + newcont[i].name; ';
@@ -4308,7 +4308,7 @@ class XmlFormFieldJavaScript extends XmlFormField
         foreach ($xmlNode->attributes as $k => $v) {
             $key = array_search(strtoupper($k), $myAttributes);
             if ($key) {
-                eval('$this->' . $key . '=$v;');
+                $this->{$key} = $v;
             }
         }
         //Loads the main attributes
@@ -4796,7 +4796,7 @@ class XmlFormFieldDate extends XmlFormFieldSimpleText
     {
         $schedule = $dvalue;
         $schedule_format = str_replace(array('Y', 'y', 'm', 'B', 'b', 'd', 'e', 'H', 'I', 'k', 'l', 'M', 'S'), array('%Y', '%y', '%m', '%B', '%b', '%d', '%e', '%H', '%I', '%k', '%l', '%M', '%S'), $dformat);
-        $ugly = strptime($schedule, $schedule_format);
+        $ugly = pmStrptimeCompat($schedule, $schedule_format);
         $ymd = sprintf(
             '%04d-%02d-%02d %02d:%02d:%02d',
             $ugly['tm_year'] + 1900,
@@ -5764,8 +5764,8 @@ function masktophp($mask, $value)
     return $value;
 }
 
-if (!function_exists('strptime')) {
-    function strptime($date, $format)
+if (!function_exists('pmStrptimeCompat')) {
+    function pmStrptimeCompat($date, $format)
     {
         $masks = array(
             '%d' => '(?P<d>[0-9]{2})',

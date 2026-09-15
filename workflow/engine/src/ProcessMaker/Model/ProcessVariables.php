@@ -154,7 +154,7 @@ class ProcessVariables extends Model
         }
         // search a specific variable name
         if (!empty($search)) {
-            $query->where('VAR_NAME', 'LIKE', "${search}%");
+            $query->where('VAR_NAME', 'LIKE', "{$search}%");
         }
         // order by varNane
         $query->orderBy('VAR_NAME', 'ASC');

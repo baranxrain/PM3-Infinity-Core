@@ -211,9 +211,9 @@ class PropelTable
         $myAttributes = get_class_vars(get_class($this));
         foreach ($this->xmlForm->xmlform->tree->attribute as $atrib => $value) {
             if (is_array($myAttributes) && array_key_exists($atrib, $myAttributes)) {
-                eval('settype($value, gettype($this->' . $atrib . '));');
+                settype($value, gettype($this->{$atrib}));
                 if ($value !== '') {
-                    eval('$this->' . $atrib . '=$value;');
+                    $this->{$atrib} = $value;
                 }
             }
         }

@@ -152,10 +152,8 @@ class FieldCondition extends BaseFieldCondition
             foreach ($aRows as $aRow) {
                 $hashCond = G::encryptOld( $aRow['FCD_UID'] );
                 $sCondition = $this->parseCondition( $aRow['FCD_CONDITION'] );
-                $sCondition = addslashes( $sCondition );
-
                 $sCode .= "function __condition__$hashCond() { ";
-                $sCode .= "if( eval(\"{$sCondition}\") ) { ";
+                $sCode .= "if( {$sCondition} ) { ";
 
                 $aFields = explode( ',', $aRow['FCD_FIELDS'] );
 

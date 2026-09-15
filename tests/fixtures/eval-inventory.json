@@ -1,0 +1,53 @@
+{
+  "_note": "Current eval inventory after U-3.18 closed both executable and non-executable/client-side eval debt.",
+  "scope": [
+    "workflow/engine/classes",
+    "workflow/engine/src",
+    "workflow/engine/methods",
+    "workflow/engine/controllers",
+    "workflow/engine/includes",
+    "gulliver/system",
+    "rbac/engine",
+    "app",
+    "framework/src"
+  ],
+  "pattern": "(?<![\\w$>-])eval\\s*\\(",
+  "summary": {
+    "textual": 0,
+    "executable": 0,
+    "nonExecutable": 0,
+    "executableFiles": 0
+  },
+  "categories": {
+    "trigger_script_eval": {
+      "count": 0,
+      "description": "Legacy trigger source is isolated behind the temporary include bridge; no executable eval remains."
+    },
+    "dynamic_model_or_criteria": {
+      "count": 0,
+      "description": "Dynamic model/criteria expression execution is closed."
+    },
+    "gulliver_dynamic_runtime": {
+      "count": 0,
+      "description": "Legacy Gulliver dynamic forms, templates, publishers, resources and bootstrap translation code."
+    },
+    "engine_method_dynamic_runtime": {
+      "count": 0,
+      "description": "Method endpoints executing dynamic setup or page-initialisation code."
+    },
+    "core_bootstrap_dynamic_runtime": {
+      "count": 0,
+      "description": "Core/system/bootstrap dynamic PHP fragments."
+    },
+    "legacy_engine_dynamic_runtime": {
+      "count": 0,
+      "description": "Other legacy engine dynamic include, dashlet or translation runtime code."
+    },
+    "non_executable": {
+      "count": 0,
+      "description": "No raw eval token remains in PHP, strings, comments, JavaScript or inline HTML."
+    }
+  },
+  "perFileExecutable": {},
+  "executableSites": []
+}

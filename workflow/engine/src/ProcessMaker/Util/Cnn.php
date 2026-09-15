@@ -55,49 +55,70 @@ class Cnn
      */
     private function prepareDataSources()
     {
-        $phpCode = preg_replace(
-            '/define\s*\(\s*[\x22\x27](.*)[\x22\x27]\s*,\s*(\x22.*\x22|\x27.*\x27)\s*\)\s*;/i',
-            '$$1 = $2;',
-            $this->dbFile
-        );
-        $phpCode = str_replace(['<?php', '<?', '?>'], '', $phpCode);
-
-        eval($phpCode);
+        $credentials = $this->parseDatabaseDefinitions($this->dbFile);
 
         $dataSources = [];
         $dataSources['datasources'] = array(
             'workflow' => array(
                 'connection' => $this->buildDsnString(
-                    $DB_ADAPTER,
-                    $DB_HOST,
-                    $DB_NAME,
-                    $DB_USER,
-                    urlencode($DB_PASS)
+                    $this->databaseDefinition($credentials, 'DB_ADAPTER'),
+                    $this->databaseDefinition($credentials, 'DB_HOST'),
+                    $this->databaseDefinition($credentials, 'DB_NAME'),
+                    $this->databaseDefinition($credentials, 'DB_USER'),
+                    urlencode($this->databaseDefinition($credentials, 'DB_PASS'))
                 ),
                 'adapter' => "mysql"
             ),
             'rbac' => array(
                 'connection' => $this->buildDsnString(
-                    $DB_ADAPTER,
-                    $DB_RBAC_HOST,
-                    $DB_RBAC_NAME,
-                    $DB_RBAC_USER,
-                    urlencode($DB_RBAC_PASS)
+                    $this->databaseDefinition($credentials, 'DB_ADAPTER'),
+                    $this->databaseDefinition($credentials, 'DB_RBAC_HOST'),
+                    $this->databaseDefinition($credentials, 'DB_RBAC_NAME'),
+                    $this->databaseDefinition($credentials, 'DB_RBAC_USER'),
+                    urlencode($this->databaseDefinition($credentials, 'DB_RBAC_PASS'))
                 ),
                 'adapter' => "mysql"
             ),
             'report' => array(
                 'connection' => $this->buildDsnString(
-                    $DB_ADAPTER,
-                    $DB_REPORT_HOST,
-                    $DB_REPORT_NAME,
-                    $DB_REPORT_USER,
-                    urlencode($DB_REPORT_PASS)
+                    $this->databaseDefinition($credentials, 'DB_ADAPTER'),
+                    $this->databaseDefinition($credentials, 'DB_REPORT_HOST'),
+                    $this->databaseDefinition($credentials, 'DB_REPORT_NAME'),
+                    $this->databaseDefinition($credentials, 'DB_REPORT_USER'),
+                    urlencode($this->databaseDefinition($credentials, 'DB_REPORT_PASS'))
                 ),
                 'adapter' => "mysql"
             )
         );
         return $dataSources;
+    }
+
+    /**
+     * Parses the workspace db.php define() statements without executing the
+     * file as PHP.
+     *
+     * @param string $dbFile
+     * @return array
+     */
+    private function parseDatabaseDefinitions($dbFile)
+    {
+        $credentials = [];
+        if (preg_match_all('/define\s*\(\s*[\x22\x27]([^"\']+)[\x22\x27]\s*,\s*([\x22\x27])((?:\\\\.|(?!\2).)*)\2\s*\)\s*;/i', $dbFile, $matches, PREG_SET_ORDER)) {
+            foreach ($matches as $match) {
+                $credentials[$match[1]] = stripcslashes($match[3]);
+            }
+        }
+        return $credentials;
+    }
+
+    /**
+     * @param array $credentials
+     * @param string $name
+     * @return string
+     */
+    private function databaseDefinition(array $credentials, $name)
+    {
+        return isset($credentials[$name]) ? $credentials[$name] : '';
     }
 
     /**

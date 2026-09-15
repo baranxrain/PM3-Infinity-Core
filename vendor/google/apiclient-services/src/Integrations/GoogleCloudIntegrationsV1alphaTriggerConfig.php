@@ -22,10 +22,16 @@ class GoogleCloudIntegrationsV1alphaTriggerConfig extends \Google\Collection
   protected $collection_key = 'startTasks';
   protected $alertConfigType = GoogleCloudIntegrationsV1alphaIntegrationAlertConfig::class;
   protected $alertConfigDataType = 'array';
+  protected $cloudSchedulerConfigType = GoogleCloudIntegrationsV1alphaCloudSchedulerConfig::class;
+  protected $cloudSchedulerConfigDataType = '';
   /**
    * @var string
    */
   public $description;
+  /**
+   * @var string
+   */
+  public $errorCatcherId;
   /**
    * @var string
    */
@@ -34,6 +40,8 @@ class GoogleCloudIntegrationsV1alphaTriggerConfig extends \Google\Collection
    * @var string
    */
   public $nextTasksExecutionPolicy;
+  protected $positionType = GoogleCloudIntegrationsV1alphaCoordinate::class;
+  protected $positionDataType = '';
   /**
    * @var string[]
    */
@@ -68,6 +76,20 @@ class GoogleCloudIntegrationsV1alphaTriggerConfig extends \Google\Collection
     return $this->alertConfig;
   }
   /**
+   * @param GoogleCloudIntegrationsV1alphaCloudSchedulerConfig
+   */
+  public function setCloudSchedulerConfig(GoogleCloudIntegrationsV1alphaCloudSchedulerConfig $cloudSchedulerConfig)
+  {
+    $this->cloudSchedulerConfig = $cloudSchedulerConfig;
+  }
+  /**
+   * @return GoogleCloudIntegrationsV1alphaCloudSchedulerConfig
+   */
+  public function getCloudSchedulerConfig()
+  {
+    return $this->cloudSchedulerConfig;
+  }
+  /**
    * @param string
    */
   public function setDescription($description)
@@ -80,6 +102,20 @@ class GoogleCloudIntegrationsV1alphaTriggerConfig extends \Google\Collection
   public function getDescription()
   {
     return $this->description;
+  }
+  /**
+   * @param string
+   */
+  public function setErrorCatcherId($errorCatcherId)
+  {
+    $this->errorCatcherId = $errorCatcherId;
+  }
+  /**
+   * @return string
+   */
+  public function getErrorCatcherId()
+  {
+    return $this->errorCatcherId;
   }
   /**
    * @param string
@@ -108,6 +144,20 @@ class GoogleCloudIntegrationsV1alphaTriggerConfig extends \Google\Collection
   public function getNextTasksExecutionPolicy()
   {
     return $this->nextTasksExecutionPolicy;
+  }
+  /**
+   * @param GoogleCloudIntegrationsV1alphaCoordinate
+   */
+  public function setPosition(GoogleCloudIntegrationsV1alphaCoordinate $position)
+  {
+    $this->position = $position;
+  }
+  /**
+   * @return GoogleCloudIntegrationsV1alphaCoordinate
+   */
+  public function getPosition()
+  {
+    return $this->position;
   }
   /**
    * @param string[]

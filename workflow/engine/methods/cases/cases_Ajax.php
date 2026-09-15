@@ -119,7 +119,7 @@ switch (($_POST['action']) ? $_POST['action'] : $_REQUEST['action']) {
 
             // make the ajax call
             oRPC.make();
-            var response = eval(\'(\' + oRPC.xmlhttp.responseText + \')\');
+            var response = JSON.parse(oRPC.xmlhttp.responseText);
             //alert(response);
 
             for (var i in response) {

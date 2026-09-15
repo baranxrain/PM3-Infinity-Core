@@ -50,6 +50,7 @@ class Baremetalsolution extends \Google\Service
   public $projects_locations_sshKeys;
   public $projects_locations_volumes;
   public $projects_locations_volumes_luns;
+  public $projects_locations_volumes_snapshots;
 
   /**
    * Constructs the internal representation of the Baremetalsolution service.
@@ -221,6 +222,16 @@ class Baremetalsolution extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'rename' => [
+              'path' => 'v2/{+name}:rename',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'reset' => [
               'path' => 'v2/{+name}:reset',
               'httpMethod' => 'POST',
@@ -317,6 +328,16 @@ class Baremetalsolution extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'rename' => [
+              'path' => 'v2/{+name}:rename',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],
           ]
         ]
@@ -391,6 +412,16 @@ class Baremetalsolution extends \Google\Service
                 'updateMask' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+              ],
+            ],'rename' => [
+              'path' => 'v2/{+name}:rename',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
                 ],
               ],
             ],
@@ -565,7 +596,17 @@ class Baremetalsolution extends \Google\Service
         'volumes',
         [
           'methods' => [
-            'get' => [
+            'evict' => [
+              'path' => 'v2/{+name}:evict',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
               'path' => 'v2/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
@@ -611,6 +652,16 @@ class Baremetalsolution extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'rename' => [
+              'path' => 'v2/{+name}:rename',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'resize' => [
               'path' => 'v2/{+volume}:resize',
               'httpMethod' => 'POST',
@@ -631,7 +682,17 @@ class Baremetalsolution extends \Google\Service
         'luns',
         [
           'methods' => [
-            'get' => [
+            'evict' => [
+              'path' => 'v2/{+name}:evict',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
               'path' => 'v2/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
@@ -657,6 +718,74 @@ class Baremetalsolution extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_volumes_snapshots = new Baremetalsolution\Resource\ProjectsLocationsVolumesSnapshots(
+        $this,
+        $this->serviceName,
+        'snapshots',
+        [
+          'methods' => [
+            'create' => [
+              'path' => 'v2/{+parent}/snapshots',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'v2/{+name}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v2/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v2/{+parent}/snapshots',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'restoreVolumeSnapshot' => [
+              'path' => 'v2/{+volumeSnapshot}:restoreVolumeSnapshot',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'volumeSnapshot' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
                 ],
               ],
             ],

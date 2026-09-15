@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/XMLWhereExpressionEvaluator.php';
+
 class XMLConnection
 {
     public $phptype = 'myxml';
@@ -69,6 +71,7 @@ class XMLConnection
             }
             /* Start Block: WHERE*/
             if ($sqlWhere !== '') {
+                $sqlWhereExpression = $sqlWhere;
                 /*Start Block: Replace the operator */
                 $blocks = preg_split('/("(?:(?:[^"]|"")*)"|\'(?:(?:[^\']|\'\')*)\')/im', $sqlWhere, - 1, PREG_SPLIT_DELIM_CAPTURE);
                 $sqlWhere = '';
@@ -93,8 +96,7 @@ class XMLConnection
                 ), $sqlWhere);
                 $newRes = array();
                 for ($r = 0; $r < sizeof($res); $r ++) {
-                    $evalWhere = false;
-                    @eval('$evalWhere = ' . $sqlWhere . ';');
+                    $evalWhere = XMLWhereExpressionEvaluator::evaluate($sqlWhereExpression, $res[$r]);
                     if ($evalWhere) {
                         $newRes[] = $res[$r];
                     }
@@ -135,6 +137,7 @@ class XMLConnection
         } elseif (1 === preg_match('/^\s*DELETE\s+FROM\s+`?([^`]+?)`?(?:\s+WHERE\s+([\w\W]+?))?\s*$/im', $sql, $matches)) {
             $sqlFrom = isset($matches[1]) ? $matches[1] : '';
             $sqlWhere = isset($matches[2]) ? $matches[2] : '1';
+            $sqlWhereExpression = $sqlWhere;
             /* Start Block: WHERE*/
             /*Start Block: Replace the operator */
             $blocks = preg_split('/("(?:(?:[^"]|"")*)"|\'(?:(?:[^\']|\'\')*)\')/im', $sqlWhere, - 1, PREG_SPLIT_DELIM_CAPTURE);
@@ -171,8 +174,7 @@ class XMLConnection
             }
             $newRes = array();
             for ($r = 0; $r < sizeof($res); $r ++) {
-                $evalWhere = false;
-                @eval('$evalWhere = ' . $sqlWhere . ';');
+                $evalWhere = XMLWhereExpressionEvaluator::evaluate($sqlWhereExpression, $res[$r]);
                 if ($evalWhere) {
                     unset($node->children[$r]);
                     $newRes[] = $res[$r];
@@ -225,6 +227,7 @@ class XMLConnection
             $sqlFrom = isset($matches[1]) ? $matches[1] : '';
             $sqlColumns = isset($matches[2]) ? $matches[2] : '';
             $sqlWhere = isset($matches[3]) ? $matches[3] : '1';
+            $sqlWhereExpression = $sqlWhere;
             $count = preg_match_all('/([a-z][\w\.]*)\s*=\s*("(?:(?:[^"]|"")*)"|\'(?:(?:[^\']|\'\')*)\'|\d+)/im', $sqlColumns, $match, PREG_PATTERN_ORDER | PREG_OFFSET_CAPTURE);
             $fieldsValues = array();
             for ($r = 0; $r < $count; $r ++) {
@@ -275,8 +278,7 @@ class XMLConnection
             }
             $newRes = array();
             for ($r = 0; $r < sizeof($res); $r ++) {
-                $evalWhere = false;
-                @eval('$evalWhere = ' . $sqlWhere . ';');
+                $evalWhere = XMLWhereExpressionEvaluator::evaluate($sqlWhereExpression, $res[$r]);
                 if ($evalWhere) {
                     $this->updateRow($node->children[$r], $fieldsValues);
                     $newRes[] = array_merge($res[$r], $fieldsValues);

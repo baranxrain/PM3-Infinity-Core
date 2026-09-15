@@ -25,6 +25,10 @@ class CloudsupportCase extends \Google\Collection
   /**
    * @var string
    */
+  public $contactEmail;
+  /**
+   * @var string
+   */
   public $createTime;
   protected $creatorType = Actor::class;
   protected $creatorDataType = '';
@@ -40,6 +44,10 @@ class CloudsupportCase extends \Google\Collection
    * @var bool
    */
   public $escalated;
+  /**
+   * @var string
+   */
+  public $languageCode;
   /**
    * @var string
    */
@@ -86,6 +94,20 @@ class CloudsupportCase extends \Google\Collection
   public function getClassification()
   {
     return $this->classification;
+  }
+  /**
+   * @param string
+   */
+  public function setContactEmail($contactEmail)
+  {
+    $this->contactEmail = $contactEmail;
+  }
+  /**
+   * @return string
+   */
+  public function getContactEmail()
+  {
+    return $this->contactEmail;
   }
   /**
    * @param string
@@ -156,6 +178,20 @@ class CloudsupportCase extends \Google\Collection
   public function getEscalated()
   {
     return $this->escalated;
+  }
+  /**
+   * @param string
+   */
+  public function setLanguageCode($languageCode)
+  {
+    $this->languageCode = $languageCode;
+  }
+  /**
+   * @return string
+   */
+  public function getLanguageCode()
+  {
+    return $this->languageCode;
   }
   /**
    * @param string

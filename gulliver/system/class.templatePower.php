@@ -245,7 +245,21 @@ class TemplatePowerParser
                                         exit();
                                     }
                                 } else {
-                                    eval("?>" . $include_file);
+                                    $temporaryScript = tmpfile();
+                                    if ($temporaryScript === false) {
+                                        $this->errorAlert('TemplatePower Error: Couldn\'t create a temporary include script!');
+                                        exit();
+                                    }
+                                    $temporaryScriptMetadata = stream_get_meta_data($temporaryScript);
+                                    try {
+                                        if (fwrite($temporaryScript, $include_file) === false || !fflush($temporaryScript)) {
+                                            $this->errorAlert('TemplatePower Error: Couldn\'t write a temporary include script!');
+                                            exit();
+                                        }
+                                        include $temporaryScriptMetadata['uri'];
+                                    } finally {
+                                        fclose($temporaryScript);
+                                    }
                                 }
                                 $this->defBlock[$blockname]["_C:$coderow"] = ob_get_contents();
                                 $coderow++;

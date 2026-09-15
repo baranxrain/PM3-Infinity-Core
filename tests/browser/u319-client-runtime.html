@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>U-3.19 browser runtime acceptance</title></head>
+<body><pre id="result">U319_BROWSER_ACCEPTANCE=RUNNING</pre><script>
+(function () {
+  'use strict';
+  var passed = 0, failed = 0, messages = [];
+  function checkCase(name, body) { try { body(); passed++; messages.push('[PASS] ' + name); } catch (error) { failed++; messages.push('[FAIL] ' + name + ': ' + error.message); } }
+  function same(actual, expected, message) { if (actual !== expected) { throw new Error(message + ' (actual=' + actual + ', expected=' + expected + ')'); } }
+  function resolveCallback(root, callbackName) {
+    var owner = root, callback = root, parts = callbackName.match(/[^.]+/g) || [];
+    for (var index = 0; index < parts.length; index++) { owner = callback; callback = callback[parts[index]]; }
+    if (typeof callback !== 'function') { throw new Error('Unknown AJAX callback: ' + callbackName); }
+    return { owner: owner, callback: callback };
+  }
+  function invokeCallback(root, callbackName, args) { var found = resolveCallback(root, callbackName); return found.callback.apply(found.owner, args); }
+  function resolveTableHook(root, hook) { if (typeof hook === 'function') { return hook; } if (typeof hook === 'string' && typeof root[hook] === 'function') { return root[hook]; } return null; }
+  function executeScriptSource(source) { var script = document.createElement('script'); script.type = 'text/javascript'; script.text = source; var parent = document.head || document.getElementsByTagName('head')[0]; parent.appendChild(script); parent.removeChild(script); }
+  checkCase('JSON array response', function () { var value = JSON.parse('[{"name":"a","value":7}]'); same(value[0].value, 7, 'array payload'); });
+  checkCase('JSON nested response', function () { var value = JSON.parse('{"task":{"position":{"x":11}}}'); same(value.task.position.x, 11, 'nested payload'); });
+  checkCase('Malformed JSON fails closed', function () { var threw = false; try { JSON.parse('{bad'); } catch (error) { threw = true; } same(threw, true, 'malformed JSON must throw'); });
+  checkCase('Simple callback path', function () { var root = { cb: function () { return 'ok'; } }; same(invokeCallback(root, 'cb', []), 'ok', 'simple callback'); });
+  checkCase('Dotted callback preserves owner', function () { var root = { box: { value: 9, cb: function () { return this.value; } } }; same(invokeCallback(root, 'box.cb', []), 9, 'receiver'); });
+  checkCase('Callback preserves arguments', function () { var root = { box: { cb: function (text, id) { return text + ':' + id; } } }; same(invokeCallback(root, 'box.cb', ['body', '42']), 'body:42', 'arguments'); });
+  checkCase('Unknown callback fails closed', function () { var threw = false; try { invokeCallback({}, 'missing.cb', []); } catch (error) { threw = true; } same(threw, true, 'unknown callback'); });
+  checkCase('Empty callback fails closed', function () { var threw = false; try { invokeCallback({}, '', []); } catch (error) { threw = true; } same(threw, true, 'empty callback'); });
+  checkCase('Function table hook', function () { var hook = resolveTableHook({}, function () { return this.value; }); same(hook.call({value: 3}), 3, 'function hook'); });
+  checkCase('Named table hook', function () { var root = { allowDelete: function () { return true; } }; same(resolveTableHook(root, 'allowDelete').call(root), true, 'named hook'); });
+  checkCase('Unknown table hook fails closed', function () { same(resolveTableHook({}, 'missing'), null, 'unknown hook'); });
+  checkCase('After hook return value', function () { var root = { afterDelete: function () { return 'done'; } }; same(resolveTableHook(root, 'afterDelete').call(root), 'done', 'after result'); });
+  checkCase('DOM script source executes', function () { window.__u319Execution = 0; executeScriptSource('window.__u319Execution = 17;'); same(window.__u319Execution, 17, 'script source'); });
+  checkCase('DOM script order is synchronous', function () { window.__u319Order = []; executeScriptSource("window.__u319Order.push('a');"); executeScriptSource("window.__u319Order.push('b');"); same(window.__u319Order.join(','), 'a,b', 'script order'); });
+  checkCase('DOM script node is removed', function () { var before = document.head.getElementsByTagName('script').length; executeScriptSource('window.__u319Cleanup = true;'); var after = document.head.getElementsByTagName('script').length; same(after, before, 'script cleanup'); });
+  checkCase('Direct generated condition behavior', function () { var field = { value: 'OPEN' }; function condition() { if (field.value === 'OPEN') { return true; } return false; } same(condition(), true, 'true condition'); field.value = 'CLOSED'; same(condition(), false, 'false condition'); });
+  var status = failed === 0 ? 'PASS' : 'FAIL';
+  document.getElementById('result').textContent = messages.join('\n') + '\nBrowser tests: ' + (passed + failed) + ', Passed: ' + passed + ', Failures: ' + failed + '\nU319_BROWSER_ACCEPTANCE=' + status;
+  document.body.setAttribute('data-u319-status', status);
+}());
+</script></body></html>

@@ -1,0 +1,377 @@
+{
+    "_note": "Contract fixture for ProcessMaker\\Util\\LegacyStrftime, introduced by U-2.3.2a. Every expected value here was captured by tests/tools/generate-strftime-oracle.php on the acceptance runtime (Windows, PHP 8.1.10 ZTS, LC_TIME=C, PHP timezone UTC) from the native strftime() this helper replaces. The helper must reproduce these bytes exactly. U-2.3.2a migrates no call site: strftime stays at 278 textual / 138 executable.",
+    "_noteRefused": "Native strftime() returned false for %k, %l, %P and %s on that runtime, so the helper returns false too. %z and %Z are refused for a different reason: native output was the operating system zone ('+0100', 'W. Europe Standard Time') for every timestamp, identical in winter and summer and while PHP itself ran in UTC. That is neither portable nor internally consistent, so the helper refuses instead of inventing a value; a zone-dependent call site must be migrated explicitly.",
+    "oracle": {
+        "file": "tests/fixtures/legacy-strftime-oracle.json",
+        "sha256": "5c9db0711f9be95f436ebc072b06f9d9a57df8ecee22e4449872f4f4b1ee1c5b",
+        "runtime": {
+            "phpVersion": "8.1.10",
+            "phpOs": "Windows",
+            "uname": "Windows NT 10.0 AMD64",
+            "zendThreadSafe": true,
+            "timezoneUsed": "UTC",
+            "lcTime": "C",
+            "intlLoaded": true,
+            "generatedAtUtc": "2026-09-10T22:59:14+00:00"
+        }
+    },
+    "timestamps": {
+        "epoch": 0,
+        "winter_morning": 1104537845,
+        "summer_noon": 1119873600,
+        "leap_day": 1583020800,
+        "year_end": 1609459199,
+        "iso_week_edge": 1546214400
+    },
+    "refusedSpecifiers": [
+        "%k",
+        "%l",
+        "%P",
+        "%s",
+        "%z",
+        "%Z"
+    ],
+    "nativeFalseSpecifiers": [
+        "%k",
+        "%l",
+        "%P",
+        "%s"
+    ],
+    "specifiers": {
+        "%%": {
+            "epoch": "%",
+            "winter_morning": "%",
+            "summer_noon": "%",
+            "leap_day": "%",
+            "year_end": "%",
+            "iso_week_edge": "%"
+        },
+        "%A": {
+            "epoch": "Thursday",
+            "winter_morning": "Saturday",
+            "summer_noon": "Monday",
+            "leap_day": "Sunday",
+            "year_end": "Thursday",
+            "iso_week_edge": "Monday"
+        },
+        "%B": {
+            "epoch": "January",
+            "winter_morning": "January",
+            "summer_noon": "June",
+            "leap_day": "March",
+            "year_end": "December",
+            "iso_week_edge": "December"
+        },
+        "%C": {
+            "epoch": "19",
+            "winter_morning": "20",
+            "summer_noon": "20",
+            "leap_day": "20",
+            "year_end": "20",
+            "iso_week_edge": "20"
+        },
+        "%D": {
+            "epoch": "01/01/70",
+            "winter_morning": "01/01/05",
+            "summer_noon": "06/27/05",
+            "leap_day": "03/01/20",
+            "year_end": "12/31/20",
+            "iso_week_edge": "12/31/18"
+        },
+        "%F": {
+            "epoch": "1970-01-01",
+            "winter_morning": "2005-01-01",
+            "summer_noon": "2005-06-27",
+            "leap_day": "2020-03-01",
+            "year_end": "2020-12-31",
+            "iso_week_edge": "2018-12-31"
+        },
+        "%G": {
+            "epoch": "1970",
+            "winter_morning": "2004",
+            "summer_noon": "2005",
+            "leap_day": "2020",
+            "year_end": "2020",
+            "iso_week_edge": "2019"
+        },
+        "%H": {
+            "epoch": "00",
+            "winter_morning": "00",
+            "summer_noon": "12",
+            "leap_day": "00",
+            "year_end": "23",
+            "iso_week_edge": "00"
+        },
+        "%I": {
+            "epoch": "12",
+            "winter_morning": "12",
+            "summer_noon": "12",
+            "leap_day": "12",
+            "year_end": "11",
+            "iso_week_edge": "12"
+        },
+        "%M": {
+            "epoch": "00",
+            "winter_morning": "04",
+            "summer_noon": "00",
+            "leap_day": "00",
+            "year_end": "59",
+            "iso_week_edge": "00"
+        },
+        "%R": {
+            "epoch": "00:00",
+            "winter_morning": "00:04",
+            "summer_noon": "12:00",
+            "leap_day": "00:00",
+            "year_end": "23:59",
+            "iso_week_edge": "00:00"
+        },
+        "%S": {
+            "epoch": "00",
+            "winter_morning": "05",
+            "summer_noon": "00",
+            "leap_day": "00",
+            "year_end": "59",
+            "iso_week_edge": "00"
+        },
+        "%T": {
+            "epoch": "00:00:00",
+            "winter_morning": "00:04:05",
+            "summer_noon": "12:00:00",
+            "leap_day": "00:00:00",
+            "year_end": "23:59:59",
+            "iso_week_edge": "00:00:00"
+        },
+        "%U": {
+            "epoch": "00",
+            "winter_morning": "00",
+            "summer_noon": "26",
+            "leap_day": "09",
+            "year_end": "52",
+            "iso_week_edge": "52"
+        },
+        "%V": {
+            "epoch": "01",
+            "winter_morning": "53",
+            "summer_noon": "26",
+            "leap_day": "09",
+            "year_end": "53",
+            "iso_week_edge": "01"
+        },
+        "%W": {
+            "epoch": "00",
+            "winter_morning": "00",
+            "summer_noon": "26",
+            "leap_day": "08",
+            "year_end": "52",
+            "iso_week_edge": "53"
+        },
+        "%X": {
+            "epoch": "00:00:00",
+            "winter_morning": "00:04:05",
+            "summer_noon": "12:00:00",
+            "leap_day": "00:00:00",
+            "year_end": "23:59:59",
+            "iso_week_edge": "00:00:00"
+        },
+        "%Y": {
+            "epoch": "1970",
+            "winter_morning": "2005",
+            "summer_noon": "2005",
+            "leap_day": "2020",
+            "year_end": "2020",
+            "iso_week_edge": "2018"
+        },
+        "%a": {
+            "epoch": "Thu",
+            "winter_morning": "Sat",
+            "summer_noon": "Mon",
+            "leap_day": "Sun",
+            "year_end": "Thu",
+            "iso_week_edge": "Mon"
+        },
+        "%b": {
+            "epoch": "Jan",
+            "winter_morning": "Jan",
+            "summer_noon": "Jun",
+            "leap_day": "Mar",
+            "year_end": "Dec",
+            "iso_week_edge": "Dec"
+        },
+        "%c": {
+            "epoch": "Thu Jan  1 00:00:00 1970",
+            "winter_morning": "Sat Jan  1 00:04:05 2005",
+            "summer_noon": "Mon Jun 27 12:00:00 2005",
+            "leap_day": "Sun Mar  1 00:00:00 2020",
+            "year_end": "Thu Dec 31 23:59:59 2020",
+            "iso_week_edge": "Mon Dec 31 00:00:00 2018"
+        },
+        "%d": {
+            "epoch": "01",
+            "winter_morning": "01",
+            "summer_noon": "27",
+            "leap_day": "01",
+            "year_end": "31",
+            "iso_week_edge": "31"
+        },
+        "%e": {
+            "epoch": " 1",
+            "winter_morning": " 1",
+            "summer_noon": "27",
+            "leap_day": " 1",
+            "year_end": "31",
+            "iso_week_edge": "31"
+        },
+        "%g": {
+            "epoch": "70",
+            "winter_morning": "04",
+            "summer_noon": "05",
+            "leap_day": "20",
+            "year_end": "20",
+            "iso_week_edge": "19"
+        },
+        "%h": {
+            "epoch": "Jan",
+            "winter_morning": "Jan",
+            "summer_noon": "Jun",
+            "leap_day": "Mar",
+            "year_end": "Dec",
+            "iso_week_edge": "Dec"
+        },
+        "%j": {
+            "epoch": "001",
+            "winter_morning": "001",
+            "summer_noon": "178",
+            "leap_day": "061",
+            "year_end": "366",
+            "iso_week_edge": "365"
+        },
+        "%m": {
+            "epoch": "01",
+            "winter_morning": "01",
+            "summer_noon": "06",
+            "leap_day": "03",
+            "year_end": "12",
+            "iso_week_edge": "12"
+        },
+        "%n": {
+            "epoch": "\n",
+            "winter_morning": "\n",
+            "summer_noon": "\n",
+            "leap_day": "\n",
+            "year_end": "\n",
+            "iso_week_edge": "\n"
+        },
+        "%p": {
+            "epoch": "AM",
+            "winter_morning": "AM",
+            "summer_noon": "PM",
+            "leap_day": "AM",
+            "year_end": "PM",
+            "iso_week_edge": "AM"
+        },
+        "%r": {
+            "epoch": "12:00:00 AM",
+            "winter_morning": "12:04:05 AM",
+            "summer_noon": "12:00:00 PM",
+            "leap_day": "12:00:00 AM",
+            "year_end": "11:59:59 PM",
+            "iso_week_edge": "12:00:00 AM"
+        },
+        "%t": {
+            "epoch": "\t",
+            "winter_morning": "\t",
+            "summer_noon": "\t",
+            "leap_day": "\t",
+            "year_end": "\t",
+            "iso_week_edge": "\t"
+        },
+        "%u": {
+            "epoch": "4",
+            "winter_morning": "6",
+            "summer_noon": "1",
+            "leap_day": "7",
+            "year_end": "4",
+            "iso_week_edge": "1"
+        },
+        "%w": {
+            "epoch": "4",
+            "winter_morning": "6",
+            "summer_noon": "1",
+            "leap_day": "0",
+            "year_end": "4",
+            "iso_week_edge": "1"
+        },
+        "%x": {
+            "epoch": "01/01/70",
+            "winter_morning": "01/01/05",
+            "summer_noon": "06/27/05",
+            "leap_day": "03/01/20",
+            "year_end": "12/31/20",
+            "iso_week_edge": "12/31/18"
+        },
+        "%y": {
+            "epoch": "70",
+            "winter_morning": "05",
+            "summer_noon": "05",
+            "leap_day": "20",
+            "year_end": "20",
+            "iso_week_edge": "18"
+        }
+    },
+    "masks": {
+        "%Y-%m-%d": {
+            "epoch": "1970-01-01",
+            "winter_morning": "2005-01-01",
+            "summer_noon": "2005-06-27",
+            "leap_day": "2020-03-01",
+            "year_end": "2020-12-31",
+            "iso_week_edge": "2018-12-31"
+        },
+        "%d/%m/%Y": {
+            "epoch": "01/01/1970",
+            "winter_morning": "01/01/2005",
+            "summer_noon": "27/06/2005",
+            "leap_day": "01/03/2020",
+            "year_end": "31/12/2020",
+            "iso_week_edge": "31/12/2018"
+        },
+        "%m/%d/%Y %H:%M": {
+            "epoch": "01/01/1970 00:00",
+            "winter_morning": "01/01/2005 00:04",
+            "summer_noon": "06/27/2005 12:00",
+            "leap_day": "03/01/2020 00:00",
+            "year_end": "12/31/2020 23:59",
+            "iso_week_edge": "12/31/2018 00:00"
+        },
+        "%B %d, %Y": {
+            "epoch": "January 01, 1970",
+            "winter_morning": "January 01, 2005",
+            "summer_noon": "June 27, 2005",
+            "leap_day": "March 01, 2020",
+            "year_end": "December 31, 2020",
+            "iso_week_edge": "December 31, 2018"
+        },
+        "%a %d %b %Y %H:%M:%S": {
+            "epoch": "Thu 01 Jan 1970 00:00:00",
+            "winter_morning": "Sat 01 Jan 2005 00:04:05",
+            "summer_noon": "Mon 27 Jun 2005 12:00:00",
+            "leap_day": "Sun 01 Mar 2020 00:00:00",
+            "year_end": "Thu 31 Dec 2020 23:59:59",
+            "iso_week_edge": "Mon 31 Dec 2018 00:00:00"
+        },
+        "%H:%M:%S": {
+            "epoch": "00:00:00",
+            "winter_morning": "00:04:05",
+            "summer_noon": "12:00:00",
+            "leap_day": "00:00:00",
+            "year_end": "23:59:59",
+            "iso_week_edge": "00:00:00"
+        }
+    },
+    "helper": {
+        "file": "workflow/engine/src/ProcessMaker/Util/LegacyStrftime.php",
+        "class": "ProcessMaker\\Util\\LegacyStrftime",
+        "consumersExpected": 136
+    }
+}

@@ -30,11 +30,17 @@ class NetworkConfig extends \Google\Model
   /**
    * @var bool
    */
+  public $enableFqdnNetworkPolicy;
+  /**
+   * @var bool
+   */
   public $enableIntraNodeVisibility;
   /**
    * @var bool
    */
   public $enableL4ilbSubsetting;
+  protected $gatewayApiConfigType = GatewayAPIConfig::class;
+  protected $gatewayApiConfigDataType = '';
   /**
    * @var string
    */
@@ -95,6 +101,20 @@ class NetworkConfig extends \Google\Model
   /**
    * @param bool
    */
+  public function setEnableFqdnNetworkPolicy($enableFqdnNetworkPolicy)
+  {
+    $this->enableFqdnNetworkPolicy = $enableFqdnNetworkPolicy;
+  }
+  /**
+   * @return bool
+   */
+  public function getEnableFqdnNetworkPolicy()
+  {
+    return $this->enableFqdnNetworkPolicy;
+  }
+  /**
+   * @param bool
+   */
   public function setEnableIntraNodeVisibility($enableIntraNodeVisibility)
   {
     $this->enableIntraNodeVisibility = $enableIntraNodeVisibility;
@@ -119,6 +139,20 @@ class NetworkConfig extends \Google\Model
   public function getEnableL4ilbSubsetting()
   {
     return $this->enableL4ilbSubsetting;
+  }
+  /**
+   * @param GatewayAPIConfig
+   */
+  public function setGatewayApiConfig(GatewayAPIConfig $gatewayApiConfig)
+  {
+    $this->gatewayApiConfig = $gatewayApiConfig;
+  }
+  /**
+   * @return GatewayAPIConfig
+   */
+  public function getGatewayApiConfig()
+  {
+    return $this->gatewayApiConfig;
   }
   /**
    * @param string

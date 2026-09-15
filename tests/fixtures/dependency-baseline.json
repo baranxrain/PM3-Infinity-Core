@@ -1,0 +1,72 @@
+{
+  "contentHash": "e02836395d01dfeff9d1ca2fff52c81d",
+  "counts": {
+    "packages": 106,
+    "packagesDev": 41
+  },
+  "phpConstraint": ">=7.4",
+  "phpunit": "9.5.0",
+  "platform": {
+    "php": ">=7.4"
+  },
+  "privatePackages": {
+    "colosa/MichelangeloFE": {
+      "reference": "01abeb68fdec5844191911a2f48937b51e768164",
+      "version": "dev-release/3.8.0"
+    },
+    "colosa/pmDynaform": {
+      "reference": "0f68aac5747a4d7f7b20c06ca2eccd9870442094",
+      "version": "dev-release/3.8.0"
+    },
+    "colosa/pmUI": {
+      "reference": "bd462bc978530dfdc05289f624c36194107660f3",
+      "version": "dev-release/3.8.0"
+    },
+    "colosa/taskscheduler": {
+      "reference": "d757b2baf1c00c93009ce8c9da0bf1ade920e698",
+      "version": "dev-release/1.0.3"
+    }
+  },
+  "watchedPins": {
+    "aws/aws-sdk-php": {
+      "reference": "bff1f1ade00c758ea27f498baee1fa16901e5bfd",
+      "version": "3.236.0"
+    },
+    "google/apiclient": {
+      "reference": "2fa15d9db4ce653dbb128bd6b08eff9e6c0702ae",
+      "version": "v2.9.0"
+    },
+    "laravel/framework": {
+      "reference": "a684da6197ae77eee090637ae4411b2f321adfc7",
+      "version": "v8.83.24"
+    },
+    "luracast/restler": {
+      "reference": "e82d5622f5a1798c3c208867184a469fb4fd445c",
+      "version": "3.0.0"
+    },
+    "monolog/monolog": {
+      "reference": "720488632c590286b88b80e62aa3d3d551ad4a50",
+      "version": "2.8.0"
+    },
+    "nikic/php-parser": {
+      "reference": "34bea19b6e03d8153165d8f30bba4c3be86184c1",
+      "version": "v4.14.0"
+    },
+    "phpmailer/phpmailer": {
+      "reference": "a94fdebaea6bd17f51be0c2373ab80d3d681269b",
+      "version": "v6.6.4"
+    },
+    "predis/predis": {
+      "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1",
+      "version": "v1.1.1"
+    },
+    "smarty/smarty": {
+      "reference": "4ab9757b492f08a38f68123a6e7c1df7110bbc49",
+      "version": "v2.6.31"
+    },
+    "tecnickcom/tcpdf": {
+      "reference": "42cd0f9786af7e5db4fcedaa66f717b0d0032320",
+      "version": "6.4.4"
+    }
+  }
+}

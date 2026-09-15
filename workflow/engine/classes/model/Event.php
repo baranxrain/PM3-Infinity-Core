@@ -1,4 +1,7 @@
 <?php
+
+require_once dirname(__DIR__, 4) . '/gulliver/system/class.xmlformSafeExpressionEvaluator.php';
+
 /**
  * Event.php
  *
@@ -713,10 +716,7 @@ class Event extends BaseEvent
 
                 $sCondition = G::replaceDataField( $conditionContents, $Fields );
 
-                $evalConditionResult = false;
-
-                $sCond = 'try{ $evalConditionResult=(' . $sCondition . ')? true: false; } catch(Exception $e){$evalConditionResult=false;}';
-                @eval( $sCond );
+                $evalConditionResult = XmlFormSafeExpressionEvaluator::evaluate($sCondition);
 
                 if (! $evalConditionResult) {
                     continue;

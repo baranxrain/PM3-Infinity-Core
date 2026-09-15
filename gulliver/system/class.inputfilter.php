@@ -291,11 +291,11 @@ class InputFilter
         $source = html_entity_decode($source, ENT_QUOTES, "ISO-8859-1");
         // convert decimal
         $source = preg_replace_callback('/&#(\d+);/m', function ($matches) {
-            return utf8_encode(chr($matches[1]));
+            return \ProcessMaker\Util\LegacyUtf8::encode(chr($matches[1]));
         }, $source);// decimal notation
         // convert hex
         $source = preg_replace_callback('/&#x([a-f0-9]+);/mi', function ($matches) {
-            return utf8_encode(chr('0x' . $matches[1]));
+            return \ProcessMaker\Util\LegacyUtf8::encode(chr('0x' . $matches[1]));
         }, $source);// hex notation
         return $source;
     }
@@ -373,6 +373,31 @@ class InputFilter
     }
 
     /**
+     * Legacy string sanitizer without PHP 8.1 deprecated filter constants.
+     * It keeps the behaviour this class relied on: remove tags, encode quotes,
+     * and optionally strip low/high byte ranges.
+     *
+     * @param mixed $value
+     * @param bool $stripLow
+     * @param bool $stripHigh
+     * @return string
+     */
+    private function sanitizeLegacyString($value, $stripLow = false, $stripHigh = false)
+    {
+        $value = strip_tags((string)$value);
+        $value = str_replace(array('"', "'"), array('&#34;', '&#39;'), $value);
+
+        if ($stripLow) {
+            $value = preg_replace('/[\x00-\x1F]/', '', $value);
+        }
+        if ($stripHigh) {
+            $value = preg_replace('/[\x7F-\xFF]/', '', $value);
+        }
+
+        return $value;
+    }
+
+    /**
      * Internal method removes tags/special characters
      * @author Marcelo Cuiza
      * @access protected
@@ -390,9 +415,9 @@ class InputFilter
                     } else {
                         if (!empty($val)) {
                             if ($type != "url") {
-                                $inputFiltered = addslashes(htmlspecialchars(filter_var($val, FILTER_SANITIZE_STRING), ENT_COMPAT, 'UTF-8'));
+                                $inputFiltered = addslashes(htmlspecialchars($this->sanitizeLegacyString($val), ENT_COMPAT, 'UTF-8'));
                             } else {
-                                $inputFiltered = filter_var($val, FILTER_SANITIZE_STRING);
+                                $inputFiltered = $this->sanitizeLegacyString($val);
                             }
                         } else {
                             $inputFiltered = "";
@@ -407,9 +432,9 @@ class InputFilter
                 return '';
             } else {
                 if ($type != "url") {
-                    return addslashes(htmlspecialchars(filter_var($input, FILTER_SANITIZE_STRING), ENT_COMPAT, 'UTF-8'));
+                    return addslashes(htmlspecialchars($this->sanitizeLegacyString($input), ENT_COMPAT, 'UTF-8'));
                 } else {
-                    return filter_var($input, FILTER_SANITIZE_STRING);
+                    return $this->sanitizeLegacyString($input);
                 }
             }
         }
@@ -602,13 +627,13 @@ class InputFilter
                 }
                 break;
             case 'nosql':
-                $value = (string)filter_var($value, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH);
+                $value = $this->sanitizeLegacyString($value, true, true);
                 if (preg_match('/\b(or|and|xor|drop|insert|update|delete|select)\b/i', $value, $matches, PREG_OFFSET_CAPTURE)) {
                     $value = substr($value, 0, $matches[0][1]);
                 }
                 break;
             default:
-                $value = (string)filter_var($value, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW);
+                $value = $this->sanitizeLegacyString($value, true);
         }
 
         return $value;

@@ -540,7 +540,7 @@ class ListParticipatedLast extends BaseListParticipatedLast implements ListInter
         //Update - SET
         $criteriaSet = new Criteria('workflow');
         foreach ($set as $k => $v) {
-            eval('$criteriaSet->add( ListParticipatedLastPeer::' . $k . ',$v, Criteria::EQUAL);');
+            $criteriaSet->add(constant('ListParticipatedLastPeer::' . $k), $v, Criteria::EQUAL);
         }
         BasePeer::doUpdate($criteriaWhere, $criteriaSet, $con);
     }

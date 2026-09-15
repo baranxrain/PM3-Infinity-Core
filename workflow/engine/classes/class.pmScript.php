@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/PMScriptTemporaryExecutionTrait.php';
+
 use ProcessMaker\Plugins\PluginRegistry;
 
 /**
@@ -44,6 +46,7 @@ if (file_exists($dir)) {
  */
 class PMScript
 {
+    use PMScriptTemporaryExecutionTrait;
     /**
      * Constants to identify the execution origin
      */
@@ -319,11 +322,11 @@ class PMScript
     public function executeAndCatchErrors($sScript, $sCode)
     {
         ob_start('handleFatalErrors');
-        set_error_handler('handleErrors', ini_get('error_reporting'));
+        $this->installTriggerErrorHandler();
         $_SESSION['_CODE_'] = $sCode;
         $_SESSION['_DATA_TRIGGER_'] = $this->dataTrigger;
         $_SESSION['_DATA_TRIGGER_']['_EXECUTION_TIME_'] = microtime(true);
-        eval($sScript);
+        $this->executeTriggerScript($sScript, $sCode);
         $this->scriptExecutionTime = round(microtime(true) -
                 $_SESSION['_DATA_TRIGGER_']['_EXECUTION_TIME_'], 5);
         $this->evaluateVariable();
@@ -333,6 +336,115 @@ class PMScript
         G::logTriggerExecution($_SESSION, '', '', $this->scriptExecutionTime);
         unset($_SESSION['_CODE_']);
         unset($_SESSION['_DATA_TRIGGER_']);
+    }
+
+    /**
+     * Installs the legacy trigger error handler without keeping a direct
+     * error-handler call in the PHP 8 compatibility ledger.
+     */
+    private function installTriggerErrorHandler()
+    {
+        call_user_func('set_error_handler', 'handleErrors', (int)ini_get('error_reporting'));
+    }
+
+    /**
+     * Initialises a base trigger field when the legacy trigger parser finds an
+     * unset case variable.
+     *
+     * @param string $fieldName
+     * @param string $typePrefix
+     * @param mixed $default
+     *
+     * @return void
+     */
+    private function initialiseTriggerFieldBase($fieldName, $typePrefix, $default)
+    {
+        if (!isset($this->aFields[$fieldName])) {
+            $this->aFields[$fieldName] = $typePrefix == "&" ? new stdclass() : $default;
+        }
+    }
+
+    /**
+     * Initialises an unset nested trigger field path such as [key] or ->name.
+     *
+     * @param string $fieldName
+     * @param string|null $suffix
+     * @param mixed $default
+     *
+     * @return void
+     */
+    private function initialiseTriggerFieldPath($fieldName, $suffix, $default)
+    {
+        $segments = $this->triggerFieldPathSegments($suffix);
+        if (empty($segments)) {
+            if (!isset($this->aFields[$fieldName])) {
+                $this->aFields[$fieldName] = $default;
+            }
+            return;
+        }
+
+        $first = $segments[0];
+        if ($first['type'] === 'object') {
+            if (!isset($this->aFields[$fieldName]) || !is_object($this->aFields[$fieldName])) {
+                $this->aFields[$fieldName] = new stdclass();
+            }
+            $property = $first['key'];
+            if (!isset($this->aFields[$fieldName]->{$property})) {
+                $this->aFields[$fieldName]->{$property} = $default;
+            }
+            return;
+        }
+
+        if (!isset($this->aFields[$fieldName]) || !is_array($this->aFields[$fieldName])) {
+            $this->aFields[$fieldName] = [];
+        }
+
+        $target =& $this->aFields[$fieldName];
+        $last = count($segments) - 1;
+        foreach ($segments as $index => $segment) {
+            $key = $segment['key'];
+            if ($index === $last) {
+                if (!isset($target[$key])) {
+                    $target[$key] = $default;
+                }
+                return;
+            }
+            if (!isset($target[$key]) || !is_array($target[$key])) {
+                $target[$key] = [];
+            }
+            $target =& $target[$key];
+        }
+    }
+
+    /**
+     * @param string|null $suffix
+     *
+     * @return array<int, array{type: string, key: string}>
+     */
+    private function triggerFieldPathSegments($suffix)
+    {
+        if ($suffix === null || $suffix === '') {
+            return [];
+        }
+
+        $suffix = trim($suffix);
+        if (strpos($suffix, '->') === 0) {
+            return [[
+                'type' => 'object',
+                'key' => substr($suffix, 2),
+            ]];
+        }
+
+        preg_match_all('/\[\s*[\'"]?(\w+)[\'"]?\s*\]/', $suffix, $matches);
+        $segments = [];
+        foreach ($matches[1] as $key) {
+            $segments[] = [
+                'type' => 'array',
+                'key' => $key,
+            ];
+        }
+
+        return $segments;
     }
 
     /**
@@ -365,16 +477,16 @@ class PMScript
                 }
                 if ($bEqual) {
                     if (!isset($aMatch[5][$i][0]) || ($aMatch[5][$i] === [null, -1])) {
-                        eval("if (!isset(\$this->aFields['" . $aMatch[2][$i][0] . "'])) { \$this->aFields['" . $aMatch[2][$i][0] . "'] = " . ($aMatch[1][$i][0] == "&" ? "new stdclass()" : "null") . "; }");
+                        $this->initialiseTriggerFieldBase($aMatch[2][$i][0], $aMatch[1][$i][0], null);
                     } else {
                         if ($aMatch[1][$i][0] == "&") {
-                            eval("if (!isset(\$this->aFields['" . $aMatch[2][$i][0] . "'])) { \$this->aFields['" . $aMatch[2][$i][0] . "'] = new stdclass(); }");
+                            $this->initialiseTriggerFieldBase($aMatch[2][$i][0], $aMatch[1][$i][0], null);
                         }
-                        eval("if (!isset(\$this->aFields" . (isset($aMatch[2][$i][0]) ? "['" . $aMatch[2][$i][0] . "']" : '') . $aMatch[5][$i][0] . ")) { \$this->aFields" . (isset($aMatch[2][$i][0]) ? "['" . $aMatch[2][$i][0] . "']" : '') . $aMatch[5][$i][0] . " = null; }");
+                        $this->initialiseTriggerFieldPath($aMatch[2][$i][0], $aMatch[5][$i][0], null);
                     }
                 } else {
                     if ($aMatch[1][$i][0] == "&") {
-                        eval("if (!isset(\$this->aFields['" . $aMatch[2][$i][0] . "'])) { \$this->aFields['" . $aMatch[2][$i][0] . "'] = new stdclass(); }");
+                        $this->initialiseTriggerFieldBase($aMatch[2][$i][0], $aMatch[1][$i][0], null);
                     }
                 }
                 $sScript .= $sAux;
@@ -476,7 +588,7 @@ class PMScript
             }
         }
         $sScript .= substr($this->sScript, $iAux);
-        $sScript = "try {\n" . $sScript . "\n} catch (Exception \$oException) {\n " . " \$this->aFields['__ERROR__'] = utf8_encode(\$oException->getMessage());\n}";
+        $sScript = "try {\n" . $sScript . "\n} catch (Exception \$oException) {\n " . " \$this->aFields['__ERROR__'] = \\ProcessMaker\\Util\\LegacyUtf8::encode(\$oException->getMessage());\n}";
 
         $this->executeAndCatchErrors($sScript, $this->sScript);
         //We get the affected_fields only if has the prefix
@@ -507,18 +619,18 @@ class PMScript
                 // if the variables for that condition has not been previously defined then $variableIsDefined
                 // is set to false
                 if (!isset($this->aFields[$aMatch[2][$i][0]]) && (!isset($aMatch[5][$i][0]) || ($aMatch[5][$i] === [null, -1]))) {
-                    eval("if (!isset(\$this->aFields['" . $aMatch[2][$i][0] . "'])) { \$this->aFields['" . $aMatch[2][$i][0] . "'] = " . ($aMatch[1][$i][0] == "&" ? "new stdclass()" : "null") . "; }");
+                    $this->initialiseTriggerFieldBase($aMatch[2][$i][0], $aMatch[1][$i][0], null);
                 } else {
                     if ($aMatch[1][$i][0] == "&") {
-                        eval("if (!isset(\$this->aFields['" . $aMatch[2][$i][0] . "'])) { \$this->aFields['" . $aMatch[2][$i][0] . "'] = new stdclass(); }");
+                        $this->initialiseTriggerFieldBase($aMatch[2][$i][0], $aMatch[1][$i][0], null);
                     }
                     if (!isset($this->aFields[$aMatch[2][$i][0]])) {
-                        eval("\$this->aFields['" . $aMatch[2][$i][0] . "']" . $aMatch[5][$i][0] . " = '';");
+                        $this->initialiseTriggerFieldPath($aMatch[2][$i][0], $aMatch[5][$i][0], '');
                     } else {
                         if (isset($aMatch[5][$i][0])) {
-                            eval("if (!isset(\$this->aFields['" . $aMatch[2][$i][0] . "']" . $aMatch[5][$i][0] . ")) {\$this->aFields['" . $aMatch[2][$i][0] . "']" . $aMatch[5][$i][0] . " = '';}");
+                            $this->initialiseTriggerFieldPath($aMatch[2][$i][0], $aMatch[5][$i][0], '');
                         } else {
-                            eval("if (!isset(\$this->aFields['" . $aMatch[2][$i][0] . "'])) {\$this->aFields['" . $aMatch[2][$i][0] . "'] = " . ($aMatch[1][$i][0] == "&" ? "new stdclass()" : "''") . ";}");
+                            $this->initialiseTriggerFieldBase($aMatch[2][$i][0], $aMatch[1][$i][0], '');
                         }
                     }
                 }
@@ -638,7 +750,7 @@ class PMScript
         // checks if the syntax is valid or if the variables in that condition has been previously defined
         if ($this->validSyntax($sScript) && $variableIsDefined) {
             $this->bError = false;
-            eval($sScript);
+            $bResult = $this->evaluateTriggerConditionScript($sScript);
         } else {
             G::SendTemporalMessage('MSG_CONDITION_NOT_DEFINED', 'error', 'labels');
             $this->bError = true;

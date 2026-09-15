@@ -23,6 +23,7 @@ use Google\Service\Cloudchannel\GoogleCloudChannelV1ListCustomersResponse;
 use Google\Service\Cloudchannel\GoogleCloudChannelV1ListPurchasableOffersResponse;
 use Google\Service\Cloudchannel\GoogleCloudChannelV1ListPurchasableSkusResponse;
 use Google\Service\Cloudchannel\GoogleCloudChannelV1ProvisionCloudIdentityRequest;
+use Google\Service\Cloudchannel\GoogleCloudChannelV1QueryEligibleBillingAccountsResponse;
 use Google\Service\Cloudchannel\GoogleCloudChannelV1TransferEntitlementsRequest;
 use Google\Service\Cloudchannel\GoogleCloudChannelV1TransferEntitlementsToGoogleRequest;
 use Google\Service\Cloudchannel\GoogleLongrunningOperation;
@@ -33,7 +34,7 @@ use Google\Service\Cloudchannel\GoogleProtobufEmpty;
  * Typical usage is:
  *  <code>
  *   $cloudchannelService = new Google\Service\Cloudchannel(...);
- *   $customers = $cloudchannelService->customers;
+ *   $customers = $cloudchannelService->accounts_customers;
  *  </code>
  */
 class AccountsCustomers extends \Google\Service\Resource
@@ -160,12 +161,21 @@ class AccountsCustomers extends \Google\Service\Resource
    * Offers for. Format: accounts/{account_id}/customers/{customer_id}.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string changeOfferPurchase.billingAccount Optional. Resource name
+   * of the new target Billing Account. Provide this Billing Account when setting
+   * up billing for a trial subscription. Format:
+   * accounts/{account_id}/billing_accounts/{billing_account_id}. This field is
+   * only relevant for multi-currency accounts. It should be left empty for single
+   * currency accounts.
    * @opt_param string changeOfferPurchase.entitlement Required. Resource name of
    * the entitlement. Format:
    * accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
    * @opt_param string changeOfferPurchase.newSku Optional. Resource name of the
    * new target SKU. Provide this SKU when upgrading or downgrading an
    * entitlement. Format: products/{product_id}/skus/{sku_id}
+   * @opt_param string createEntitlementPurchase.billingAccount Optional. Billing
+   * account that the result should be restricted to. Format:
+   * accounts/{account_id}/billing_accounts/{billing_account_id}.
    * @opt_param string createEntitlementPurchase.sku Required. SKU that the result
    * should be restricted to. Format: products/{product_id}/skus/{sku_id}.
    * @opt_param string languageCode Optional. The BCP-47 language code. For
@@ -268,6 +278,31 @@ class AccountsCustomers extends \Google\Service\Resource
     $params = ['customer' => $customer, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('provisionCloudIdentity', [$params], GoogleLongrunningOperation::class);
+  }
+  /**
+   * Lists the billing accounts that are eligible to purchase particular SKUs for
+   * a given customer. Possible error codes: * PERMISSION_DENIED: The customer
+   * doesn't belong to the reseller. * INVALID_ARGUMENT: Required request
+   * parameters are missing or invalid. Return value: Based on the provided list
+   * of SKUs, returns a list of SKU groups that must be purchased using the same
+   * billing account and the billing accounts eligible to purchase each SKU group.
+   * (customers.queryEligibleBillingAccounts)
+   *
+   * @param string $customer Required. The resource name of the customer to list
+   * eligible billing accounts for. Format:
+   * accounts/{account_id}/customers/{customer_id}.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string skus Required. List of SKUs to list eligible billing
+   * accounts for. At least one SKU is required. Format:
+   * products/{product_id}/skus/{sku_id}.
+   * @return GoogleCloudChannelV1QueryEligibleBillingAccountsResponse
+   */
+  public function queryEligibleBillingAccounts($customer, $optParams = [])
+  {
+    $params = ['customer' => $customer];
+    $params = array_merge($params, $optParams);
+    return $this->call('queryEligibleBillingAccounts', [$params], GoogleCloudChannelV1QueryEligibleBillingAccountsResponse::class);
   }
   /**
    * Transfers customer entitlements to new reseller. Possible error codes: *

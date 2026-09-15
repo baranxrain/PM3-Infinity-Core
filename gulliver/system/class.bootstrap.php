@@ -519,6 +519,7 @@ class Bootstrap
         foreach ($listPluginsActive['_aPluginDetails'] as $key => $value) {
             $namePlugin = trim($key);
             $translation = array();
+            $translationVariable = 'translation' . $namePlugin;
 
             if (!file_exists(PATH_LANGUAGECONT . $namePlugin . '.en')) {
                 Translation::generateFileTranslationPlugin($namePlugin, 'en');
@@ -529,11 +530,11 @@ class Bootstrap
             }
 
             if (file_exists(PATH_LANGUAGECONT . $namePlugin . '.' . $lang)) {
-                eval('global $translation'.$namePlugin.';');
+                global ${$translationVariable};
                 require_once(PATH_LANGUAGECONT . $namePlugin . '.' . $lang);
             } else {
                 if (file_exists(PATH_LANGUAGECONT . $namePlugin . '.en')) {
-                    eval('global $translation'.$namePlugin.';');
+                    global ${$translationVariable};
                     require_once(PATH_LANGUAGECONT . $namePlugin . '.en');
                 }
             }
@@ -788,7 +789,8 @@ class Bootstrap
             if (file_exists(PATH_LANGUAGECONT . $newName)) {
                 require_once(PATH_LANGUAGECONT . $newName);
                 $return = '';
-                eval('$return = "var TRANSLATIONS_" . strtoupper($typeName) . " = " . Bootstrap::json_encode($translation' . $typeName . ') . ";";');
+                $translationVariable = 'translation' . $typeName;
+                $return = "var TRANSLATIONS_" . strtoupper($typeName) . " = " . Bootstrap::json_encode(${$translationVariable}) . ";";
                 return $return;
             }
             return;

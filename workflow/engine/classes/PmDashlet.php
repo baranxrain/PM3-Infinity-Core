@@ -78,7 +78,7 @@ class PmDashlet extends DashletInstance implements DashletInterface
             } else {
                 $className = G::nameClass($className);
             }
-            eval("\$additionalFields = $className::getAdditionalFields(\$className);");
+            $additionalFields = call_user_func([$className, 'getAdditionalFields'], $className);
             return $additionalFields;
         } catch (Exception $error) {
             throw $error;
@@ -171,7 +171,8 @@ class PmDashlet extends DashletInstance implements DashletInterface
                         continue;
                     }
                 }
-                eval("\$row['DAS_VERSION'] = defined('" . $row['DAS_CLASS'] . "::version') ? " . $row['DAS_CLASS'] . "::version : \$row['DAS_VERSION'];");
+                $versionConstant = $row['DAS_CLASS'] . '::version';
+                $row['DAS_VERSION'] = defined($versionConstant) ? constant($versionConstant) : $row['DAS_VERSION'];
 
                 switch ($row['DAS_INS_OWNER_TYPE']) {
                     case 'EVERYBODY':
@@ -410,7 +411,7 @@ class PmDashlet extends DashletInstance implements DashletInterface
                 $className = G::nameClass($className);
             }
 
-            eval("\$additionalFields = $className::getXTemplate(\$className);");
+            $additionalFields = call_user_func([$className, 'getXTemplate'], $className);
             return $additionalFields;
         } catch (Exception $error) {
             throw $error;

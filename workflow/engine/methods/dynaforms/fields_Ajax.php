@@ -44,7 +44,15 @@ if (($RBAC_Response = $RBAC->userCanAccess( "PM_FACTORY" )) != 1) {
 }
     /*NEXT LINE: Runs any configuration defined to be executed before dependent fields recalc*/
 if (isset( $_SESSION['CURRENT_PAGE_INITILIZATION'] )) {
-    eval( $_SESSION['CURRENT_PAGE_INITILIZATION'] );
+    $currentPageInitialization = tempnam(sys_get_temp_dir(), 'pm_page_init_');
+    if ($currentPageInitialization !== false) {
+        try {
+            file_put_contents($currentPageInitialization, "<?php\n" . $_SESSION['CURRENT_PAGE_INITILIZATION']);
+            include $currentPageInitialization;
+        } finally {
+            @unlink($currentPageInitialization);
+        }
+    }
 }
 
 $G_FORM = new Form( G::getUIDName( urlDecode( $_POST['form'] ) ) );

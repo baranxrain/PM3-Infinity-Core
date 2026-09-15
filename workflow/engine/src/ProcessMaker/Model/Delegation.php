@@ -1280,7 +1280,7 @@ class Delegation extends Model
                     'INTERMEDIATE-THROW',
                 ]);
             if ($filterBy == 'TAS_TITLE' && $search) {
-                $join->where('TASK.TAS_TITLE', 'LIKE', "%${search}%");
+                $join->where('TASK.TAS_TITLE', 'LIKE', "%{$search}%");
             }
         });
 
@@ -1303,7 +1303,7 @@ class Delegation extends Model
                     $join->whereRaw("MATCH(APP_DELEGATION.DEL_TITLE) AGAINST('{$search}' IN BOOLEAN MODE)");
                 } else {
                     // Searching using "like" operator
-                    $join->where('APP_DELEGATION.DEL_TITLE', 'LIKE', "%${search}%");
+                    $join->where('APP_DELEGATION.DEL_TITLE', 'LIKE', "%{$search}%");
                 }
             }
             // Based on the below, we can further limit the join so that we have a smaller data set based on join criteria
@@ -1451,7 +1451,7 @@ class Delegation extends Model
 
             // Merge in desired application data
             if ($item['APP_STATUS']) {
-                $item['APP_STATUS_LABEL'] = G::LoadTranslation("ID_${item['APP_STATUS']}");
+                $item['APP_STATUS_LABEL'] = G::LoadTranslation("ID_{$item['APP_STATUS']}");
             } else {
                 $item['APP_STATUS_LABEL'] = $item['APP_STATUS'];
             }

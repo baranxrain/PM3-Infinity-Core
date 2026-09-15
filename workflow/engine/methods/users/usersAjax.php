@@ -447,7 +447,7 @@ try {
             $criteria = new Criteria();
             $criteria->addSelectColumn(UsersPeer::USR_USERNAME);
 
-            $criteria->add(UsersPeer::USR_USERNAME, utf8_encode($_POST['NEW_USERNAME']));
+            $criteria->add(UsersPeer::USR_USERNAME, \ProcessMaker\Util\LegacyUtf8::encode($_POST['NEW_USERNAME']));
             if ($usrUid != '') {
                 $criteria->add(UsersPeer::USR_UID, [$_POST['USR_UID']], Criteria::NOT_IN);
             }

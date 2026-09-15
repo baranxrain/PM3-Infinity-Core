@@ -17,7 +17,7 @@ $workspaces = $upgradeData['workspaces'];
 if (is_array($workspaces) && count($workspaces) > 0) {
     $workspace = array_shift($upgradeData['workspaces']);
 
-    eval(getDatabaseCredentials(PATH_DB . $workspace . PATH_SEP . 'db.php'));
+    setDatabaseCredentials(getDatabaseCredentials(PATH_DB . $workspace . PATH_SEP . 'db.php'));
     $database = new database($DB_ADAPTER, $DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
     $database->iFetchType = MYSQLI_NUM;
 
@@ -50,14 +50,28 @@ die();
 function getDatabaseCredentials($dbFile)
 {
     $sContent = file_get_contents($dbFile);
-    $sContent = str_replace('<?php', '', $sContent);
-    $sContent = str_replace('<?', '', $sContent);
-    $sContent = str_replace('?>', '', $sContent);
-    $sContent = str_replace('define', '', $sContent);
-    $sContent = str_replace("('", '$', $sContent);
-    $sContent = str_replace("',", '=', $sContent);
-    $sContent = str_replace(");", ';', $sContent);
-    return $sContent;
+    $credentials = array();
+    if (preg_match_all("/define\s*\(\s*'([^']+)'\s*,\s*'((?:\\\\.|[^'])*)'\s*\)\s*;/", $sContent, $matches, PREG_SET_ORDER)) {
+        foreach ($matches as $match) {
+            $credentials[$match[1]] = stripcslashes($match[2]);
+        }
+    }
+    return $credentials;
+}
+
+function setDatabaseCredentials($credentials)
+{
+    global $DB_ADAPTER;
+    global $DB_HOST;
+    global $DB_USER;
+    global $DB_PASS;
+    global $DB_NAME;
+
+    $DB_ADAPTER = isset($credentials['DB_ADAPTER']) ? $credentials['DB_ADAPTER'] : null;
+    $DB_HOST = isset($credentials['DB_HOST']) ? $credentials['DB_HOST'] : null;
+    $DB_USER = isset($credentials['DB_USER']) ? $credentials['DB_USER'] : null;
+    $DB_PASS = isset($credentials['DB_PASS']) ? $credentials['DB_PASS'] : null;
+    $DB_NAME = isset($credentials['DB_NAME']) ? $credentials['DB_NAME'] : null;
 }
 
 function processMasterSchemaFile($schemaFile)

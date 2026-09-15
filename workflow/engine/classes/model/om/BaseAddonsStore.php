@@ -141,7 +141,7 @@ abstract class BaseAddonsStore extends BaseObject implements Persistent
         if ($format === null) {
             return $ts;
         } elseif (strpos($format, '%') !== false) {
-            return strftime($format, $ts);
+            return \ProcessMaker\Util\LegacyStrftime::format($format, $ts);
         } else {
             return date($format, $ts);
         }

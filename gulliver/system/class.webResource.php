@@ -58,22 +58,15 @@ class WebResource
             header('Content-Type: text/json');
             //$parameters=G::json_decode((urldecode($post['parameters']))); //for %AC
             $parameters = G::json_decode(($post['parameters']));
-            $paramsRef = array();
-            foreach ($parameters as $key => $value) {
-                if (is_string($key)) {
-                    $paramsRef[] = "\$parameters['" . addcslashes($key, '\\\'') . "']";
-                } else {
-                    $paramsRef[] = '$parameters[' . $key . ']';
-                }
+            $arguments = array();
+            foreach (array_keys($parameters) as $key) {
+                $arguments[] = &$parameters[$key];
             }
-
-            $paramsRef = implode(',', $paramsRef);
 
             $filter = new InputFilter();
             $post['function'] = $filter->validateInput($post['function']);
-            $paramsRef = $filter->validateInput($paramsRef);
 
-            $res = eval('return ($this->' . $post['function'] . '(' . $paramsRef . '));');
+            $res = call_user_func_array(array($this, $post['function']), $arguments);
             $res = G::json_encode($res);
             print ($res);
         } else {

@@ -226,7 +226,7 @@ abstract class BaseUserExtendedAttributes extends BaseObject implements Persiste
         if ($format === null) {
             return $ts;
         } elseif (strpos($format, '%') !== false) {
-            return strftime($format, $ts);
+            return \ProcessMaker\Util\LegacyStrftime::format($format, $ts);
         } else {
             return date($format, $ts);
         }

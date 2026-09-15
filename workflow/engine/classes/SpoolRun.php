@@ -603,7 +603,7 @@ class SpoolRun
                             }
 
                             //From
-                            $phpMailer->SetFrom($this->fileData['from_email'], utf8_decode($this->fileData['from_name']));
+                            $phpMailer->SetFrom($this->fileData['from_email'], \ProcessMaker\Util\LegacyUtf8::decode($this->fileData['from_name']));
                             //Reply to
                             if (isset($this->fileData['reply_to'])) {
                                 if ($this->fileData['reply_to'] != '') {
@@ -613,13 +613,13 @@ class SpoolRun
                             //Subject
                             $msSubject = $this->fileData['subject'];
                             if (!(mb_detect_encoding($msSubject, "UTF-8") == "UTF-8")) {
-                                $msSubject = utf8_encode($msSubject);
+                                $msSubject = \ProcessMaker\Util\LegacyUtf8::encode($msSubject);
                             }
                             $phpMailer->Subject = $msSubject;
                             //Body
                             $msBody = $this->fileData['body'];
                             if (!(mb_detect_encoding($msBody, "UTF-8") == "UTF-8")) {
-                                $msBody = utf8_encode($msBody);
+                                $msBody = \ProcessMaker\Util\LegacyUtf8::encode($msBody);
                             }
                             $phpMailer->Body = $msBody;
                             //Attachments

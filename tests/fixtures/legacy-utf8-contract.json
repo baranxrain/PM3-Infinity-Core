@@ -1,0 +1,1313 @@
+{
+  "schemaVersion": 1,
+  "contract": "PHP 8.1 legacy ISO-8859-1 and UTF-8 byte conversion oracle",
+  "reference": [
+    "php-src PHP-8.1 ext/standard/string.c",
+    "php-src PHP-8.1 ext/standard/html.c (UTR #36 strategy 2)"
+  ],
+  "encoding": "lowercase hexadecimal bytes",
+  "singleByteEncodeCases": [
+    {
+      "inputHex": "00",
+      "expectedHex": "00"
+    },
+    {
+      "inputHex": "01",
+      "expectedHex": "01"
+    },
+    {
+      "inputHex": "02",
+      "expectedHex": "02"
+    },
+    {
+      "inputHex": "03",
+      "expectedHex": "03"
+    },
+    {
+      "inputHex": "04",
+      "expectedHex": "04"
+    },
+    {
+      "inputHex": "05",
+      "expectedHex": "05"
+    },
+    {
+      "inputHex": "06",
+      "expectedHex": "06"
+    },
+    {
+      "inputHex": "07",
+      "expectedHex": "07"
+    },
+    {
+      "inputHex": "08",
+      "expectedHex": "08"
+    },
+    {
+      "inputHex": "09",
+      "expectedHex": "09"
+    },
+    {
+      "inputHex": "0a",
+      "expectedHex": "0a"
+    },
+    {
+      "inputHex": "0b",
+      "expectedHex": "0b"
+    },
+    {
+      "inputHex": "0c",
+      "expectedHex": "0c"
+    },
+    {
+      "inputHex": "0d",
+      "expectedHex": "0d"
+    },
+    {
+      "inputHex": "0e",
+      "expectedHex": "0e"
+    },
+    {
+      "inputHex": "0f",
+      "expectedHex": "0f"
+    },
+    {
+      "inputHex": "10",
+      "expectedHex": "10"
+    },
+    {
+      "inputHex": "11",
+      "expectedHex": "11"
+    },
+    {
+      "inputHex": "12",
+      "expectedHex": "12"
+    },
+    {
+      "inputHex": "13",
+      "expectedHex": "13"
+    },
+    {
+      "inputHex": "14",
+      "expectedHex": "14"
+    },
+    {
+      "inputHex": "15",
+      "expectedHex": "15"
+    },
+    {
+      "inputHex": "16",
+      "expectedHex": "16"
+    },
+    {
+      "inputHex": "17",
+      "expectedHex": "17"
+    },
+    {
+      "inputHex": "18",
+      "expectedHex": "18"
+    },
+    {
+      "inputHex": "19",
+      "expectedHex": "19"
+    },
+    {
+      "inputHex": "1a",
+      "expectedHex": "1a"
+    },
+    {
+      "inputHex": "1b",
+      "expectedHex": "1b"
+    },
+    {
+      "inputHex": "1c",
+      "expectedHex": "1c"
+    },
+    {
+      "inputHex": "1d",
+      "expectedHex": "1d"
+    },
+    {
+      "inputHex": "1e",
+      "expectedHex": "1e"
+    },
+    {
+      "inputHex": "1f",
+      "expectedHex": "1f"
+    },
+    {
+      "inputHex": "20",
+      "expectedHex": "20"
+    },
+    {
+      "inputHex": "21",
+      "expectedHex": "21"
+    },
+    {
+      "inputHex": "22",
+      "expectedHex": "22"
+    },
+    {
+      "inputHex": "23",
+      "expectedHex": "23"
+    },
+    {
+      "inputHex": "24",
+      "expectedHex": "24"
+    },
+    {
+      "inputHex": "25",
+      "expectedHex": "25"
+    },
+    {
+      "inputHex": "26",
+      "expectedHex": "26"
+    },
+    {
+      "inputHex": "27",
+      "expectedHex": "27"
+    },
+    {
+      "inputHex": "28",
+      "expectedHex": "28"
+    },
+    {
+      "inputHex": "29",
+      "expectedHex": "29"
+    },
+    {
+      "inputHex": "2a",
+      "expectedHex": "2a"
+    },
+    {
+      "inputHex": "2b",
+      "expectedHex": "2b"
+    },
+    {
+      "inputHex": "2c",
+      "expectedHex": "2c"
+    },
+    {
+      "inputHex": "2d",
+      "expectedHex": "2d"
+    },
+    {
+      "inputHex": "2e",
+      "expectedHex": "2e"
+    },
+    {
+      "inputHex": "2f",
+      "expectedHex": "2f"
+    },
+    {
+      "inputHex": "30",
+      "expectedHex": "30"
+    },
+    {
+      "inputHex": "31",
+      "expectedHex": "31"
+    },
+    {
+      "inputHex": "32",
+      "expectedHex": "32"
+    },
+    {
+      "inputHex": "33",
+      "expectedHex": "33"
+    },
+    {
+      "inputHex": "34",
+      "expectedHex": "34"
+    },
+    {
+      "inputHex": "35",
+      "expectedHex": "35"
+    },
+    {
+      "inputHex": "36",
+      "expectedHex": "36"
+    },
+    {
+      "inputHex": "37",
+      "expectedHex": "37"
+    },
+    {
+      "inputHex": "38",
+      "expectedHex": "38"
+    },
+    {
+      "inputHex": "39",
+      "expectedHex": "39"
+    },
+    {
+      "inputHex": "3a",
+      "expectedHex": "3a"
+    },
+    {
+      "inputHex": "3b",
+      "expectedHex": "3b"
+    },
+    {
+      "inputHex": "3c",
+      "expectedHex": "3c"
+    },
+    {
+      "inputHex": "3d",
+      "expectedHex": "3d"
+    },
+    {
+      "inputHex": "3e",
+      "expectedHex": "3e"
+    },
+    {
+      "inputHex": "3f",
+      "expectedHex": "3f"
+    },
+    {
+      "inputHex": "40",
+      "expectedHex": "40"
+    },
+    {
+      "inputHex": "41",
+      "expectedHex": "41"
+    },
+    {
+      "inputHex": "42",
+      "expectedHex": "42"
+    },
+    {
+      "inputHex": "43",
+      "expectedHex": "43"
+    },
+    {
+      "inputHex": "44",
+      "expectedHex": "44"
+    },
+    {
+      "inputHex": "45",
+      "expectedHex": "45"
+    },
+    {
+      "inputHex": "46",
+      "expectedHex": "46"
+    },
+    {
+      "inputHex": "47",
+      "expectedHex": "47"
+    },
+    {
+      "inputHex": "48",
+      "expectedHex": "48"
+    },
+    {
+      "inputHex": "49",
+      "expectedHex": "49"
+    },
+    {
+      "inputHex": "4a",
+      "expectedHex": "4a"
+    },
+    {
+      "inputHex": "4b",
+      "expectedHex": "4b"
+    },
+    {
+      "inputHex": "4c",
+      "expectedHex": "4c"
+    },
+    {
+      "inputHex": "4d",
+      "expectedHex": "4d"
+    },
+    {
+      "inputHex": "4e",
+      "expectedHex": "4e"
+    },
+    {
+      "inputHex": "4f",
+      "expectedHex": "4f"
+    },
+    {
+      "inputHex": "50",
+      "expectedHex": "50"
+    },
+    {
+      "inputHex": "51",
+      "expectedHex": "51"
+    },
+    {
+      "inputHex": "52",
+      "expectedHex": "52"
+    },
+    {
+      "inputHex": "53",
+      "expectedHex": "53"
+    },
+    {
+      "inputHex": "54",
+      "expectedHex": "54"
+    },
+    {
+      "inputHex": "55",
+      "expectedHex": "55"
+    },
+    {
+      "inputHex": "56",
+      "expectedHex": "56"
+    },
+    {
+      "inputHex": "57",
+      "expectedHex": "57"
+    },
+    {
+      "inputHex": "58",
+      "expectedHex": "58"
+    },
+    {
+      "inputHex": "59",
+      "expectedHex": "59"
+    },
+    {
+      "inputHex": "5a",
+      "expectedHex": "5a"
+    },
+    {
+      "inputHex": "5b",
+      "expectedHex": "5b"
+    },
+    {
+      "inputHex": "5c",
+      "expectedHex": "5c"
+    },
+    {
+      "inputHex": "5d",
+      "expectedHex": "5d"
+    },
+    {
+      "inputHex": "5e",
+      "expectedHex": "5e"
+    },
+    {
+      "inputHex": "5f",
+      "expectedHex": "5f"
+    },
+    {
+      "inputHex": "60",
+      "expectedHex": "60"
+    },
+    {
+      "inputHex": "61",
+      "expectedHex": "61"
+    },
+    {
+      "inputHex": "62",
+      "expectedHex": "62"
+    },
+    {
+      "inputHex": "63",
+      "expectedHex": "63"
+    },
+    {
+      "inputHex": "64",
+      "expectedHex": "64"
+    },
+    {
+      "inputHex": "65",
+      "expectedHex": "65"
+    },
+    {
+      "inputHex": "66",
+      "expectedHex": "66"
+    },
+    {
+      "inputHex": "67",
+      "expectedHex": "67"
+    },
+    {
+      "inputHex": "68",
+      "expectedHex": "68"
+    },
+    {
+      "inputHex": "69",
+      "expectedHex": "69"
+    },
+    {
+      "inputHex": "6a",
+      "expectedHex": "6a"
+    },
+    {
+      "inputHex": "6b",
+      "expectedHex": "6b"
+    },
+    {
+      "inputHex": "6c",
+      "expectedHex": "6c"
+    },
+    {
+      "inputHex": "6d",
+      "expectedHex": "6d"
+    },
+    {
+      "inputHex": "6e",
+      "expectedHex": "6e"
+    },
+    {
+      "inputHex": "6f",
+      "expectedHex": "6f"
+    },
+    {
+      "inputHex": "70",
+      "expectedHex": "70"
+    },
+    {
+      "inputHex": "71",
+      "expectedHex": "71"
+    },
+    {
+      "inputHex": "72",
+      "expectedHex": "72"
+    },
+    {
+      "inputHex": "73",
+      "expectedHex": "73"
+    },
+    {
+      "inputHex": "74",
+      "expectedHex": "74"
+    },
+    {
+      "inputHex": "75",
+      "expectedHex": "75"
+    },
+    {
+      "inputHex": "76",
+      "expectedHex": "76"
+    },
+    {
+      "inputHex": "77",
+      "expectedHex": "77"
+    },
+    {
+      "inputHex": "78",
+      "expectedHex": "78"
+    },
+    {
+      "inputHex": "79",
+      "expectedHex": "79"
+    },
+    {
+      "inputHex": "7a",
+      "expectedHex": "7a"
+    },
+    {
+      "inputHex": "7b",
+      "expectedHex": "7b"
+    },
+    {
+      "inputHex": "7c",
+      "expectedHex": "7c"
+    },
+    {
+      "inputHex": "7d",
+      "expectedHex": "7d"
+    },
+    {
+      "inputHex": "7e",
+      "expectedHex": "7e"
+    },
+    {
+      "inputHex": "7f",
+      "expectedHex": "7f"
+    },
+    {
+      "inputHex": "80",
+      "expectedHex": "c280"
+    },
+    {
+      "inputHex": "81",
+      "expectedHex": "c281"
+    },
+    {
+      "inputHex": "82",
+      "expectedHex": "c282"
+    },
+    {
+      "inputHex": "83",
+      "expectedHex": "c283"
+    },
+    {
+      "inputHex": "84",
+      "expectedHex": "c284"
+    },
+    {
+      "inputHex": "85",
+      "expectedHex": "c285"
+    },
+    {
+      "inputHex": "86",
+      "expectedHex": "c286"
+    },
+    {
+      "inputHex": "87",
+      "expectedHex": "c287"
+    },
+    {
+      "inputHex": "88",
+      "expectedHex": "c288"
+    },
+    {
+      "inputHex": "89",
+      "expectedHex": "c289"
+    },
+    {
+      "inputHex": "8a",
+      "expectedHex": "c28a"
+    },
+    {
+      "inputHex": "8b",
+      "expectedHex": "c28b"
+    },
+    {
+      "inputHex": "8c",
+      "expectedHex": "c28c"
+    },
+    {
+      "inputHex": "8d",
+      "expectedHex": "c28d"
+    },
+    {
+      "inputHex": "8e",
+      "expectedHex": "c28e"
+    },
+    {
+      "inputHex": "8f",
+      "expectedHex": "c28f"
+    },
+    {
+      "inputHex": "90",
+      "expectedHex": "c290"
+    },
+    {
+      "inputHex": "91",
+      "expectedHex": "c291"
+    },
+    {
+      "inputHex": "92",
+      "expectedHex": "c292"
+    },
+    {
+      "inputHex": "93",
+      "expectedHex": "c293"
+    },
+    {
+      "inputHex": "94",
+      "expectedHex": "c294"
+    },
+    {
+      "inputHex": "95",
+      "expectedHex": "c295"
+    },
+    {
+      "inputHex": "96",
+      "expectedHex": "c296"
+    },
+    {
+      "inputHex": "97",
+      "expectedHex": "c297"
+    },
+    {
+      "inputHex": "98",
+      "expectedHex": "c298"
+    },
+    {
+      "inputHex": "99",
+      "expectedHex": "c299"
+    },
+    {
+      "inputHex": "9a",
+      "expectedHex": "c29a"
+    },
+    {
+      "inputHex": "9b",
+      "expectedHex": "c29b"
+    },
+    {
+      "inputHex": "9c",
+      "expectedHex": "c29c"
+    },
+    {
+      "inputHex": "9d",
+      "expectedHex": "c29d"
+    },
+    {
+      "inputHex": "9e",
+      "expectedHex": "c29e"
+    },
+    {
+      "inputHex": "9f",
+      "expectedHex": "c29f"
+    },
+    {
+      "inputHex": "a0",
+      "expectedHex": "c2a0"
+    },
+    {
+      "inputHex": "a1",
+      "expectedHex": "c2a1"
+    },
+    {
+      "inputHex": "a2",
+      "expectedHex": "c2a2"
+    },
+    {
+      "inputHex": "a3",
+      "expectedHex": "c2a3"
+    },
+    {
+      "inputHex": "a4",
+      "expectedHex": "c2a4"
+    },
+    {
+      "inputHex": "a5",
+      "expectedHex": "c2a5"
+    },
+    {
+      "inputHex": "a6",
+      "expectedHex": "c2a6"
+    },
+    {
+      "inputHex": "a7",
+      "expectedHex": "c2a7"
+    },
+    {
+      "inputHex": "a8",
+      "expectedHex": "c2a8"
+    },
+    {
+      "inputHex": "a9",
+      "expectedHex": "c2a9"
+    },
+    {
+      "inputHex": "aa",
+      "expectedHex": "c2aa"
+    },
+    {
+      "inputHex": "ab",
+      "expectedHex": "c2ab"
+    },
+    {
+      "inputHex": "ac",
+      "expectedHex": "c2ac"
+    },
+    {
+      "inputHex": "ad",
+      "expectedHex": "c2ad"
+    },
+    {
+      "inputHex": "ae",
+      "expectedHex": "c2ae"
+    },
+    {
+      "inputHex": "af",
+      "expectedHex": "c2af"
+    },
+    {
+      "inputHex": "b0",
+      "expectedHex": "c2b0"
+    },
+    {
+      "inputHex": "b1",
+      "expectedHex": "c2b1"
+    },
+    {
+      "inputHex": "b2",
+      "expectedHex": "c2b2"
+    },
+    {
+      "inputHex": "b3",
+      "expectedHex": "c2b3"
+    },
+    {
+      "inputHex": "b4",
+      "expectedHex": "c2b4"
+    },
+    {
+      "inputHex": "b5",
+      "expectedHex": "c2b5"
+    },
+    {
+      "inputHex": "b6",
+      "expectedHex": "c2b6"
+    },
+    {
+      "inputHex": "b7",
+      "expectedHex": "c2b7"
+    },
+    {
+      "inputHex": "b8",
+      "expectedHex": "c2b8"
+    },
+    {
+      "inputHex": "b9",
+      "expectedHex": "c2b9"
+    },
+    {
+      "inputHex": "ba",
+      "expectedHex": "c2ba"
+    },
+    {
+      "inputHex": "bb",
+      "expectedHex": "c2bb"
+    },
+    {
+      "inputHex": "bc",
+      "expectedHex": "c2bc"
+    },
+    {
+      "inputHex": "bd",
+      "expectedHex": "c2bd"
+    },
+    {
+      "inputHex": "be",
+      "expectedHex": "c2be"
+    },
+    {
+      "inputHex": "bf",
+      "expectedHex": "c2bf"
+    },
+    {
+      "inputHex": "c0",
+      "expectedHex": "c380"
+    },
+    {
+      "inputHex": "c1",
+      "expectedHex": "c381"
+    },
+    {
+      "inputHex": "c2",
+      "expectedHex": "c382"
+    },
+    {
+      "inputHex": "c3",
+      "expectedHex": "c383"
+    },
+    {
+      "inputHex": "c4",
+      "expectedHex": "c384"
+    },
+    {
+      "inputHex": "c5",
+      "expectedHex": "c385"
+    },
+    {
+      "inputHex": "c6",
+      "expectedHex": "c386"
+    },
+    {
+      "inputHex": "c7",
+      "expectedHex": "c387"
+    },
+    {
+      "inputHex": "c8",
+      "expectedHex": "c388"
+    },
+    {
+      "inputHex": "c9",
+      "expectedHex": "c389"
+    },
+    {
+      "inputHex": "ca",
+      "expectedHex": "c38a"
+    },
+    {
+      "inputHex": "cb",
+      "expectedHex": "c38b"
+    },
+    {
+      "inputHex": "cc",
+      "expectedHex": "c38c"
+    },
+    {
+      "inputHex": "cd",
+      "expectedHex": "c38d"
+    },
+    {
+      "inputHex": "ce",
+      "expectedHex": "c38e"
+    },
+    {
+      "inputHex": "cf",
+      "expectedHex": "c38f"
+    },
+    {
+      "inputHex": "d0",
+      "expectedHex": "c390"
+    },
+    {
+      "inputHex": "d1",
+      "expectedHex": "c391"
+    },
+    {
+      "inputHex": "d2",
+      "expectedHex": "c392"
+    },
+    {
+      "inputHex": "d3",
+      "expectedHex": "c393"
+    },
+    {
+      "inputHex": "d4",
+      "expectedHex": "c394"
+    },
+    {
+      "inputHex": "d5",
+      "expectedHex": "c395"
+    },
+    {
+      "inputHex": "d6",
+      "expectedHex": "c396"
+    },
+    {
+      "inputHex": "d7",
+      "expectedHex": "c397"
+    },
+    {
+      "inputHex": "d8",
+      "expectedHex": "c398"
+    },
+    {
+      "inputHex": "d9",
+      "expectedHex": "c399"
+    },
+    {
+      "inputHex": "da",
+      "expectedHex": "c39a"
+    },
+    {
+      "inputHex": "db",
+      "expectedHex": "c39b"
+    },
+    {
+      "inputHex": "dc",
+      "expectedHex": "c39c"
+    },
+    {
+      "inputHex": "dd",
+      "expectedHex": "c39d"
+    },
+    {
+      "inputHex": "de",
+      "expectedHex": "c39e"
+    },
+    {
+      "inputHex": "df",
+      "expectedHex": "c39f"
+    },
+    {
+      "inputHex": "e0",
+      "expectedHex": "c3a0"
+    },
+    {
+      "inputHex": "e1",
+      "expectedHex": "c3a1"
+    },
+    {
+      "inputHex": "e2",
+      "expectedHex": "c3a2"
+    },
+    {
+      "inputHex": "e3",
+      "expectedHex": "c3a3"
+    },
+    {
+      "inputHex": "e4",
+      "expectedHex": "c3a4"
+    },
+    {
+      "inputHex": "e5",
+      "expectedHex": "c3a5"
+    },
+    {
+      "inputHex": "e6",
+      "expectedHex": "c3a6"
+    },
+    {
+      "inputHex": "e7",
+      "expectedHex": "c3a7"
+    },
+    {
+      "inputHex": "e8",
+      "expectedHex": "c3a8"
+    },
+    {
+      "inputHex": "e9",
+      "expectedHex": "c3a9"
+    },
+    {
+      "inputHex": "ea",
+      "expectedHex": "c3aa"
+    },
+    {
+      "inputHex": "eb",
+      "expectedHex": "c3ab"
+    },
+    {
+      "inputHex": "ec",
+      "expectedHex": "c3ac"
+    },
+    {
+      "inputHex": "ed",
+      "expectedHex": "c3ad"
+    },
+    {
+      "inputHex": "ee",
+      "expectedHex": "c3ae"
+    },
+    {
+      "inputHex": "ef",
+      "expectedHex": "c3af"
+    },
+    {
+      "inputHex": "f0",
+      "expectedHex": "c3b0"
+    },
+    {
+      "inputHex": "f1",
+      "expectedHex": "c3b1"
+    },
+    {
+      "inputHex": "f2",
+      "expectedHex": "c3b2"
+    },
+    {
+      "inputHex": "f3",
+      "expectedHex": "c3b3"
+    },
+    {
+      "inputHex": "f4",
+      "expectedHex": "c3b4"
+    },
+    {
+      "inputHex": "f5",
+      "expectedHex": "c3b5"
+    },
+    {
+      "inputHex": "f6",
+      "expectedHex": "c3b6"
+    },
+    {
+      "inputHex": "f7",
+      "expectedHex": "c3b7"
+    },
+    {
+      "inputHex": "f8",
+      "expectedHex": "c3b8"
+    },
+    {
+      "inputHex": "f9",
+      "expectedHex": "c3b9"
+    },
+    {
+      "inputHex": "fa",
+      "expectedHex": "c3ba"
+    },
+    {
+      "inputHex": "fb",
+      "expectedHex": "c3bb"
+    },
+    {
+      "inputHex": "fc",
+      "expectedHex": "c3bc"
+    },
+    {
+      "inputHex": "fd",
+      "expectedHex": "c3bd"
+    },
+    {
+      "inputHex": "fe",
+      "expectedHex": "c3be"
+    },
+    {
+      "inputHex": "ff",
+      "expectedHex": "c3bf"
+    }
+  ],
+  "decodeCases": [
+    {
+      "name": "empty",
+      "category": "valid-latin1",
+      "inputHex": "",
+      "expectedHex": ""
+    },
+    {
+      "name": "ascii-boundaries",
+      "category": "valid-latin1",
+      "inputHex": "00417f",
+      "expectedHex": "00417f"
+    },
+    {
+      "name": "latin1-u0080",
+      "category": "valid-latin1",
+      "inputHex": "c280",
+      "expectedHex": "80"
+    },
+    {
+      "name": "latin1-u00a3",
+      "category": "valid-latin1",
+      "inputHex": "c2a3",
+      "expectedHex": "a3"
+    },
+    {
+      "name": "latin1-u00ff",
+      "category": "valid-latin1",
+      "inputHex": "c3bf",
+      "expectedHex": "ff"
+    },
+    {
+      "name": "mixed-ascii-latin1",
+      "category": "valid-latin1",
+      "inputHex": "41c3a942",
+      "expectedHex": "41e942"
+    },
+    {
+      "name": "u0100",
+      "category": "unmappable",
+      "inputHex": "c480",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "euro",
+      "category": "unmappable",
+      "inputHex": "e282ac",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "persian-salaam",
+      "category": "unmappable",
+      "inputHex": "d8b3d984d8a7d985",
+      "expectedHex": "3f3f3f3f"
+    },
+    {
+      "name": "emoji-slight-smile",
+      "category": "unmappable",
+      "inputHex": "f09f9982",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "highest-valid-code-point",
+      "category": "unmappable",
+      "inputHex": "f48fbfbf",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "truncated-two-byte",
+      "category": "truncated",
+      "inputHex": "c2",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "truncated-three-byte-one",
+      "category": "truncated",
+      "inputHex": "e2",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "truncated-three-byte-two",
+      "category": "truncated",
+      "inputHex": "e282",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "truncated-four-byte-one",
+      "category": "truncated",
+      "inputHex": "f0",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "truncated-four-byte-two",
+      "category": "truncated",
+      "inputHex": "f09f",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "truncated-four-byte-three",
+      "category": "truncated",
+      "inputHex": "f09f92",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "stray-continuations",
+      "category": "stray-continuation",
+      "inputHex": "80bf",
+      "expectedHex": "3f3f"
+    },
+    {
+      "name": "two-byte-ascii-restart",
+      "category": "invalid-continuation",
+      "inputHex": "c241",
+      "expectedHex": "3f41"
+    },
+    {
+      "name": "two-byte-valid-lead-restart",
+      "category": "invalid-continuation",
+      "inputHex": "c2c2a2",
+      "expectedHex": "3fa2"
+    },
+    {
+      "name": "two-byte-invalid-ff-consumed",
+      "category": "invalid-continuation",
+      "inputHex": "c2ff",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "two-byte-invalid-c0-consumed",
+      "category": "invalid-continuation",
+      "inputHex": "c2c0",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "three-byte-first-ascii-restart",
+      "category": "invalid-continuation",
+      "inputHex": "e241a1",
+      "expectedHex": "3f413f"
+    },
+    {
+      "name": "three-byte-second-ascii-restart",
+      "category": "invalid-continuation",
+      "inputHex": "e28241",
+      "expectedHex": "3f41"
+    },
+    {
+      "name": "three-byte-first-valid-lead-restart",
+      "category": "invalid-continuation",
+      "inputHex": "e2c2a2",
+      "expectedHex": "3fa2"
+    },
+    {
+      "name": "three-byte-second-valid-lead-restart",
+      "category": "invalid-continuation",
+      "inputHex": "e282c2a2",
+      "expectedHex": "3fa2"
+    },
+    {
+      "name": "three-byte-invalid-ff-consumed",
+      "category": "invalid-continuation",
+      "inputHex": "e282ff",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "three-byte-invalid-c0-consumed",
+      "category": "invalid-continuation",
+      "inputHex": "e282c0",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "overlong-three-byte",
+      "category": "overlong",
+      "inputHex": "e08080",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "overlong-three-byte-upper-edge",
+      "category": "overlong",
+      "inputHex": "e09f80",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "surrogate-low-edge",
+      "category": "surrogate",
+      "inputHex": "eda080",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "surrogate-high-edge",
+      "category": "surrogate",
+      "inputHex": "edbfbf",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "four-byte-first-ascii-restart",
+      "category": "invalid-continuation",
+      "inputHex": "f0418080",
+      "expectedHex": "3f413f3f"
+    },
+    {
+      "name": "four-byte-second-ascii-restart",
+      "category": "invalid-continuation",
+      "inputHex": "f09f4180",
+      "expectedHex": "3f413f"
+    },
+    {
+      "name": "four-byte-third-ascii-restart",
+      "category": "invalid-continuation",
+      "inputHex": "f09f9241",
+      "expectedHex": "3f41"
+    },
+    {
+      "name": "four-byte-first-valid-lead-restart",
+      "category": "invalid-continuation",
+      "inputHex": "f0c2a28080",
+      "expectedHex": "3fa23f3f"
+    },
+    {
+      "name": "four-byte-second-valid-lead-restart",
+      "category": "invalid-continuation",
+      "inputHex": "f09fc2a2",
+      "expectedHex": "3fa2"
+    },
+    {
+      "name": "four-byte-third-valid-lead-restart",
+      "category": "invalid-continuation",
+      "inputHex": "f09f92c2a2",
+      "expectedHex": "3fa2"
+    },
+    {
+      "name": "four-byte-invalid-ff-consumed",
+      "category": "invalid-continuation",
+      "inputHex": "f09f92ff",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "four-byte-invalid-c0-consumed",
+      "category": "invalid-continuation",
+      "inputHex": "f09f92c0",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "overlong-four-byte",
+      "category": "overlong",
+      "inputHex": "f0808080",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "overlong-four-byte-upper-edge",
+      "category": "overlong",
+      "inputHex": "f08fbfbf",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "above-unicode-range",
+      "category": "out-of-range",
+      "inputHex": "f4908080",
+      "expectedHex": "3f"
+    },
+    {
+      "name": "invalid-f5-and-continuations",
+      "category": "out-of-range",
+      "inputHex": "f5808080",
+      "expectedHex": "3f3f3f3f"
+    },
+    {
+      "name": "invalid-ff-then-ascii",
+      "category": "out-of-range",
+      "inputHex": "ff41",
+      "expectedHex": "3f41"
+    },
+    {
+      "name": "overlong-two-byte",
+      "category": "overlong",
+      "inputHex": "c0af",
+      "expectedHex": "3f3f"
+    }
+  ]
+}

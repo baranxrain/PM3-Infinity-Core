@@ -1,0 +1,43 @@
+{
+    "_note": "U-2.3.1 inventory. Read-only classification of every strftime()/gmstrftime() occurrence in the nine ledger directories. No call site was migrated by U-2.3.1. Regenerate with tests/tools/generate-strftime-inventory.php.",
+    "_noteLines": "textual counts raw file bytes; executable counts the same pattern after tests/Support/PhpSourceScanner.php blanks comments, inline HTML, string literals and heredoc bodies. filesScanned is deliberately not recorded here because it is an environment-dependent number.",
+    "pattern": "(?<![\\w$>-])(?:strftime|gmstrftime)\\s*\\(",
+    "scope": [
+        "workflow/engine/classes",
+        "workflow/engine/src",
+        "workflow/engine/methods",
+        "workflow/engine/controllers",
+        "workflow/engine/includes",
+        "gulliver/system",
+        "rbac/engine",
+        "app",
+        "framework/src"
+    ],
+    "summary": {
+        "textual": 140,
+        "executable": 0,
+        "nonExecutable": 140,
+        "gmstrftimeTextual": 0,
+        "executableFiles": 0
+    },
+    "categories": {
+        "generated_propel_getter": {
+            "count": 0,
+            "files": 0,
+            "exactLine": "return strftime($format, $ts);",
+            "plan": "Propel om base getters receive the format from their caller. U-2.3.2 must migrate them mechanically behind one compatibility helper, with the generator template treated as the source of truth."
+        },
+        "handwritten_locale_date": {
+            "count": 0,
+            "files": 0,
+            "plan": "Migrated by U-2.4.2 onto ProcessMaker\\Util\\LegacyLocaleDate::format(), which carries the locale-dependent specifiers the native call took from the C library."
+        },
+        "non_executable": {
+            "count": 140,
+            "plan": "Comments, doc blocks and string literals only. Zero-lock, never migrated."
+        }
+    },
+    "perFileExecutable": {},
+    "executableSites": [],
+    "_noteU242": "U-2.4.2 migrated the last two executable sites, so this inventory now records zero executable strftime() call sites. The textual total drops from 142 to 140 because those two lines were raw-text occurrences too, and the replacement helper never spells the token strftime followed by an open parenthesis."
+}

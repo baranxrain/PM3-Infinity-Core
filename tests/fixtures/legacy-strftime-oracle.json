@@ -1,0 +1,2099 @@
+{
+    "_note": "U-2.3.1 evidence only. Generated on the acceptance runtime; no test asserts these values.",
+    "runtime": {
+        "phpVersion": "8.1.10",
+        "phpOs": "Windows",
+        "uname": "Windows NT 10.0 AMD64",
+        "zendThreadSafe": true,
+        "timezoneUsed": "UTC",
+        "lcTime": "C",
+        "intlLoaded": true,
+        "generatedAtUtc": "2026-09-10T22:59:14+00:00"
+    },
+    "timestamps": {
+        "epoch": 0,
+        "winter_morning": 1104537845,
+        "summer_noon": 1119873600,
+        "leap_day": 1583020800,
+        "year_end": 1609459199,
+        "iso_week_edge": 1546214400
+    },
+    "specifiers": {
+        "%a": {
+            "epoch": {
+                "value": "Thu",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "Sat",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "Mon",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "Sun",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "Thu",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "Mon",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%A": {
+            "epoch": {
+                "value": "Thursday",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "Saturday",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "Monday",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "Sunday",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "Thursday",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "Monday",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%b": {
+            "epoch": {
+                "value": "Jan",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "Jan",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "Jun",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "Mar",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "Dec",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "Dec",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%B": {
+            "epoch": {
+                "value": "January",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "January",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "June",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "March",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "December",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "December",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%c": {
+            "epoch": {
+                "value": "Thu Jan  1 00:00:00 1970",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "Sat Jan  1 00:04:05 2005",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "Mon Jun 27 12:00:00 2005",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "Sun Mar  1 00:00:00 2020",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "Thu Dec 31 23:59:59 2020",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "Mon Dec 31 00:00:00 2018",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%C": {
+            "epoch": {
+                "value": "19",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "20",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "20",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "20",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "20",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "20",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%d": {
+            "epoch": {
+                "value": "01",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "01",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "27",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "01",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "31",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "31",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%D": {
+            "epoch": {
+                "value": "01/01/70",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "01/01/05",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "06/27/05",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "03/01/20",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "12/31/20",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "12/31/18",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%e": {
+            "epoch": {
+                "value": " 1",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": " 1",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "27",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": " 1",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "31",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "31",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%F": {
+            "epoch": {
+                "value": "1970-01-01",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "2005-01-01",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "2005-06-27",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "2020-03-01",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "2020-12-31",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "2018-12-31",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%g": {
+            "epoch": {
+                "value": "70",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "04",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "05",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "20",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "20",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "19",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%G": {
+            "epoch": {
+                "value": "1970",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "2004",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "2005",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "2020",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "2020",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "2019",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%h": {
+            "epoch": {
+                "value": "Jan",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "Jan",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "Jun",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "Mar",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "Dec",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "Dec",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%H": {
+            "epoch": {
+                "value": "00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "12",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "23",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%I": {
+            "epoch": {
+                "value": "12",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "12",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "12",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "12",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "11",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "12",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%j": {
+            "epoch": {
+                "value": "001",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "001",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "178",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "061",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "366",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "365",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%k": {
+            "epoch": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%l": {
+            "epoch": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%m": {
+            "epoch": {
+                "value": "01",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "01",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "06",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "03",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "12",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "12",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%M": {
+            "epoch": {
+                "value": "00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "04",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "59",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%n": {
+            "epoch": {
+                "value": "\n",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "\n",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "\n",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "\n",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "\n",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "\n",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%p": {
+            "epoch": {
+                "value": "AM",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "AM",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "PM",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "AM",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "PM",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "AM",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%P": {
+            "epoch": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%r": {
+            "epoch": {
+                "value": "12:00:00 AM",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "12:04:05 AM",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "12:00:00 PM",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "12:00:00 AM",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "11:59:59 PM",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "12:00:00 AM",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%R": {
+            "epoch": {
+                "value": "00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "00:04",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "12:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "23:59",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%s": {
+            "epoch": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": null,
+                "supported": false,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%S": {
+            "epoch": {
+                "value": "00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "05",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "59",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%t": {
+            "epoch": {
+                "value": "\t",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "\t",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "\t",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "\t",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "\t",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "\t",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%T": {
+            "epoch": {
+                "value": "00:00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "00:04:05",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "12:00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "00:00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "23:59:59",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "00:00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%u": {
+            "epoch": {
+                "value": "4",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "6",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "1",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "7",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "4",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "1",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%U": {
+            "epoch": {
+                "value": "00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "26",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "09",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "52",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "52",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%V": {
+            "epoch": {
+                "value": "01",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "53",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "26",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "09",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "53",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "01",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%w": {
+            "epoch": {
+                "value": "4",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "6",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "1",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "0",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "4",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "1",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%W": {
+            "epoch": {
+                "value": "00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "26",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "08",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "52",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "53",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%x": {
+            "epoch": {
+                "value": "01/01/70",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "01/01/05",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "06/27/05",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "03/01/20",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "12/31/20",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "12/31/18",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%X": {
+            "epoch": {
+                "value": "00:00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "00:04:05",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "12:00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "00:00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "23:59:59",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "00:00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%y": {
+            "epoch": {
+                "value": "70",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "05",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "05",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "20",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "20",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "18",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%Y": {
+            "epoch": {
+                "value": "1970",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "2005",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "2005",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "2020",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "2020",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "2018",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%z": {
+            "epoch": {
+                "value": "+0100",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "+0100",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "+0100",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "+0100",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "+0100",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "+0100",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%Z": {
+            "epoch": {
+                "value": "W. Europe Standard Time",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "W. Europe Standard Time",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "W. Europe Standard Time",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "W. Europe Standard Time",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "W. Europe Standard Time",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "W. Europe Standard Time",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%%": {
+            "epoch": {
+                "value": "%",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "%",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "%",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "%",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "%",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "%",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        }
+    },
+    "masks": {
+        "%Y-%m-%d": {
+            "epoch": {
+                "value": "1970-01-01",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "2005-01-01",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "2005-06-27",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "2020-03-01",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "2020-12-31",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "2018-12-31",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%d/%m/%Y": {
+            "epoch": {
+                "value": "01/01/1970",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "01/01/2005",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "27/06/2005",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "01/03/2020",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "31/12/2020",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "31/12/2018",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%m/%d/%Y %H:%M": {
+            "epoch": {
+                "value": "01/01/1970 00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "01/01/2005 00:04",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "06/27/2005 12:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "03/01/2020 00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "12/31/2020 23:59",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "12/31/2018 00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%B %d, %Y": {
+            "epoch": {
+                "value": "January 01, 1970",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "January 01, 2005",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "June 27, 2005",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "March 01, 2020",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "December 31, 2020",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "December 31, 2018",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%a %d %b %Y %H:%M:%S": {
+            "epoch": {
+                "value": "Thu 01 Jan 1970 00:00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "Sat 01 Jan 2005 00:04:05",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "Mon 27 Jun 2005 12:00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "Sun 01 Mar 2020 00:00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "Thu 31 Dec 2020 23:59:59",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "Mon 31 Dec 2018 00:00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        },
+        "%H:%M:%S": {
+            "epoch": {
+                "value": "00:00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "winter_morning": {
+                "value": "00:04:05",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "summer_noon": {
+                "value": "12:00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "leap_day": {
+                "value": "00:00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "year_end": {
+                "value": "23:59:59",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            },
+            "iso_week_edge": {
+                "value": "00:00:00",
+                "supported": true,
+                "notices": [
+                    "Function strftime() is deprecated"
+                ]
+            }
+        }
+    },
+    "unsupportedSpecifiers": [
+        "%k",
+        "%l",
+        "%P",
+        "%s"
+    ]
+}

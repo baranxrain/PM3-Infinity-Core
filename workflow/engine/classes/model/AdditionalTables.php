@@ -374,9 +374,9 @@ class AdditionalTables extends BaseAdditionalTables
             $con = Propel::getConnection($aData['DBS_UID']);
             $oCriteria = new Criteria($aData['DBS_UID']);
 
-            eval('$oCriteria->addSelectColumn("\'1\' AS DUMMY");');
+            $oCriteria->addSelectColumn("'1' AS DUMMY");
             foreach ($aData['FIELDS'] as $aField) {
-                eval('$oCriteria->addSelectColumn(' . $sClassPeerName . '::' . $aField['FLD_NAME'] . ');');
+                $oCriteria->addSelectColumn(constant($sClassPeerName . '::' . $aField['FLD_NAME']));
             }
 
             switch ($aField['FLD_TYPE']) {
@@ -386,8 +386,11 @@ class AdditionalTables extends BaseAdditionalTables
                     break;
                 case 'INT':
                 case 'FLOAT':
-                    eval('$oCriteria->add(' . $sClassPeerName . '::' . $aField['FLD_NAME']
-                        . ', -99999999999, Criteria::NOT_EQUAL);');
+                    $oCriteria->add(
+                        constant($sClassPeerName . '::' . $aField['FLD_NAME']),
+                        -99999999999,
+                        Criteria::NOT_EQUAL
+                    );
                     break;
             }
             return $oCriteria;
@@ -443,80 +446,91 @@ class AdditionalTables extends BaseAdditionalTables
 
         if ($keyOrderUppercase) {
             foreach ($aData['FIELDS'] as $aField) {
-                $field = '$oCriteria->addSelectColumn(' . $sClassPeerName . '::' . $aField['FLD_NAME'] . ');';
+                $peerField = constant($sClassPeerName . '::' . $aField['FLD_NAME']);
                 if (in_array($aField['FLD_TYPE'], $types)) {
-
                     if ($aField['FLD_TYPE'] == 'DECIMAL' || $aField['FLD_TYPE'] == 'REAL') {
-                        $round = '", "" . ' . $sClassPeerName . '::' . $aField['FLD_NAME'] . ' . "");';
-
+                        $selectExpression = (string) $peerField;
                     } else {
                         $double = $this->validateParameter($conf['report_table_double_number'], 1, 8, 4);
                         $float = $this->validateParameter($conf['report_table_floating_number'], 1, 5, 4);
-                        $round = '", "round(" . ' . $sClassPeerName . '::' . $aField['FLD_NAME'] . ' . ", ' . ($aField['FLD_TYPE'] == 'DOUBLE' ? $double : $float) . ')");';
+                        $precision = $aField['FLD_TYPE'] == 'DOUBLE' ? $double : $float;
+                        $selectExpression = 'round(' . $peerField . ', ' . $precision . ')';
                     }
-                    
-                    $field = '$oCriteria->addAsColumn("' . $aField['FLD_NAME'] . $round;
+                    $oCriteria->addAsColumn($aField['FLD_NAME'], $selectExpression);
+                } else {
+                    $oCriteria->addSelectColumn($peerField);
                 }
-                eval($field);
             }
         }
         $oCriteriaCount = clone $oCriteria;
-        eval('$count = ' . $sClassPeerName . '::doCount($oCriteria);');
+        $count = call_user_func(array($sClassPeerName, 'doCount'), $oCriteria);
 
         if ($filter != '' && is_string($filter)) {
-            $stringOr = '';
-            $closure = '';
+            $criterionChain = null;
             $types = ['INTEGER', 'BIGINT', 'SMALLINT', 'TINYINT', 'DECIMAL', 'DOUBLE', 'FLOAT', 'REAL', 'BOOLEAN'];
             foreach ($aData['FIELDS'] as $aField) {
                 if (($appUid == false && $aField['FLD_NAME'] != 'APP_UID') || ($appUid == true)) {
+                    $comparison = null;
+                    $criterionValue = null;
                     if (in_array($aField['FLD_TYPE'], $types)) {
                         if (is_numeric($filter)) {
-                            $stringOr = $stringOr . '$a = $oCriteria->getNewCriterion(' . $sClassPeerName . '::' . $aField['FLD_NAME'] . ', "' . $filter . '", Criteria::EQUAL)' . $closure . ';';
-                            $closure = '->addOr($a)';
+                            $comparison = Criteria::EQUAL;
+                            $criterionValue = $filter;
                         }
                     } else {
-                        $stringOr = $stringOr . '$a = $oCriteria->getNewCriterion(' . $sClassPeerName . '::' . $aField['FLD_NAME'] . ', "%' . $filter . '%", Criteria::LIKE)' . $closure . ';';
-                        $closure = '->addOr($a)';
+                        $comparison = Criteria::LIKE;
+                        $criterionValue = '%' . $filter . '%';
+                    }
+                    if ($comparison !== null) {
+                        $criterion = $oCriteria->getNewCriterion(
+                            constant($sClassPeerName . '::' . $aField['FLD_NAME']),
+                            $criterionValue,
+                            $comparison
+                        );
+                        if ($criterionChain !== null) {
+                            $criterion->addOr($criterionChain);
+                        }
+                        $criterionChain = $criterion;
                     }
                 }
             }
-            $stringOr = $stringOr . '$oCriteria->add($a);';
-            eval($stringOr);
+            if ($criterionChain !== null) {
+                $oCriteria->add($criterionChain);
+            }
         }
         if ($search !== '' && is_string($search)) {
             try {
                 $object = G::json_decode($search);
                 if (isset($object->where)) {
-                    $stringAnd = "";
-                    $closure = "";
+                    $criterionChain = null;
                     $fields = $object->where;
                     foreach ($fields as $key => $value) {
+                        $fieldName = G::toUpper($key);
+                        $peerConstant = $sClassPeerName . '::' . $fieldName;
                         if (is_string($value)) {
-                            $stringAnd = $stringAnd . '$a = $oCriteria->getNewCriterion(' . $sClassPeerName . '::' . G::toUpper($key) . ', "' . $value . '", Criteria::EQUAL)' . $closure . ';';
-                            $closure = '->addAnd($a)';
-                        }
-                        if (is_object($value)) {
-                            $defined = defined("Base" . $sClassPeerName . "::" . G::toUpper($key));
+                            $operations = array(array($value, Criteria::EQUAL));
+                        } elseif (is_object($value)) {
+                            $defined = defined('Base' . $peerConstant);
                             if ($defined === false) {
-                                throw new Exception(G::loadTranslation("ID_FIELD_NOT_FOUND") . ": " . $key . "");
+                                throw new Exception(G::loadTranslation('ID_FIELD_NOT_FOUND') . ': ' . $key);
                             }
-                            if (isset($value->neq) && $defined) {
-                                $stringAnd = $stringAnd . '$a = $oCriteria->getNewCriterion(' . $sClassPeerName . '::' . G::toUpper($key) . ', "' . $value->neq . '", Criteria::NOT_EQUAL)' . $closure . ';';
-                                $closure = '->addAnd($a)';
+                            $operations = array();
+                            if (isset($value->neq)) { $operations[] = array($value->neq, Criteria::NOT_EQUAL); }
+                            if (isset($value->like)) { $operations[] = array($value->like, Criteria::LIKE); }
+                            if (isset($value->nlike)) { $operations[] = array($value->nlike, Criteria::NOT_LIKE); }
+                        } else {
+                            $operations = array();
+                        }
+                        foreach ($operations as $operation) {
+                            $criterion = $oCriteria->getNewCriterion(constant($peerConstant), $operation[0], $operation[1]);
+                            if ($criterionChain !== null) {
+                                $criterion->addAnd($criterionChain);
                             }
-                            if (isset($value->like) && $defined) {
-                                $stringAnd = $stringAnd . '$a = $oCriteria->getNewCriterion(' . $sClassPeerName . '::' . G::toUpper($key) . ', "' . $value->like . '", Criteria::LIKE)' . $closure . ';';
-                                $closure = '->addAnd($a)';
-                            }
-                            if (isset($value->nlike) && $defined) {
-                                $stringAnd = $stringAnd . '$a = $oCriteria->getNewCriterion(' . $sClassPeerName . '::' . G::toUpper($key) . ', "' . $value->nlike . '", Criteria::NOT_LIKE)' . $closure . ';';
-                                $closure = '->addAnd($a)';
-                            }
+                            $criterionChain = $criterion;
                         }
                     }
-                    if (!empty($stringAnd)) {
-                        $stringAnd = $stringAnd . '$oCriteria->add($a);';
-                        eval($stringAnd);
+                    if ($criterionChain !== null) {
+                        $oCriteria->add($criterionChain);
                     }
                 }
             } catch (Exception $oError) {
@@ -525,7 +539,7 @@ class AdditionalTables extends BaseAdditionalTables
         }
         if ($filter != '' && is_string($filter) || $search !== '' && is_string($search)) {
             $oCriteriaCount = clone $oCriteria;
-            eval('$count = ' . $sClassPeerName . '::doCount($oCriteria);');
+            $count = call_user_func(array($sClassPeerName, 'doCount'), $oCriteria);
         }
 
         $filter = new InputFilter();
@@ -536,15 +550,15 @@ class AdditionalTables extends BaseAdditionalTables
             $_POST['dir'] = $filter->validateInput($_POST['dir']);
             if ($_POST['dir'] == 'ASC') {
                 if ($keyOrderUppercase) {
-                    eval('$oCriteria->addAscendingOrderByColumn("' . $_POST['sort'] . '");');
+                    $oCriteria->addAscendingOrderByColumn($_POST['sort']);
                 } else {
-                    eval('$oCriteria->addAscendingOrderByColumn(' . $sClassPeerName . '::' . $_POST['sort'] . ');');
+                    $oCriteria->addAscendingOrderByColumn(constant($sClassPeerName . '::' . $_POST['sort']));
                 }
             } else {
                 if ($keyOrderUppercase) {
-                    eval('$oCriteria->addDescendingOrderByColumn("' . $_POST['sort'] . '");');
+                    $oCriteria->addDescendingOrderByColumn($_POST['sort']);
                 } else {
-                    eval('$oCriteria->addDescendingOrderByColumn(' . $sClassPeerName . '::' . $_POST['sort'] . ');');
+                    $oCriteria->addDescendingOrderByColumn(constant($sClassPeerName . '::' . $_POST['sort']));
                 }
             }
         }
@@ -555,7 +569,7 @@ class AdditionalTables extends BaseAdditionalTables
         if (isset($start)) {
             $oCriteria->setOffset($start);
         }
-        eval('$rs = ' . $sClassPeerName . '::doSelectRS($oCriteria);');
+        $rs = call_user_func(array($sClassPeerName, 'doSelectRS'), $oCriteria);
         $rs->setFetchmode(ResultSet::FETCHMODE_ASSOC);
 
         $rows = array();
@@ -619,7 +633,7 @@ class AdditionalTables extends BaseAdditionalTables
             $oConnection = Propel::getConnection($aData['DBS_UID']);
             $stmt = $oConnection->createStatement();
             require_once $sPath . $sClassName . '.php';
-            $sKeys = '';
+            $keyValues = array();
             $keysAutoIncrement = 0;
             $keyUIDAutoIncrement = '';
             foreach ($aData['FIELDS'] as $aField) {
@@ -631,15 +645,14 @@ class AdditionalTables extends BaseAdditionalTables
                         $keysAutoIncrement++;
                     }
                     $vValue = $aFields[$aField['FLD_NAME']];
-                    eval('$' . $aField['FLD_NAME'] . ' = $vValue;');
-                    $sKeys .= '$' . $aField['FLD_NAME'] . ',';
+                    $keyValues[] = $vValue;
                 }
             }
-            $sKeys = substr($sKeys, 0, -1);
             $oClass = new $sClassName;
             foreach ($aFields as $sKey => $sValue) {
                 if (!preg_match("/\(?\)/", $sKey)) {
-                    eval('$oClass->set' . $this->getPHPName($sKey) . '($aFields["' . $sKey . '"]);');
+                    $setter = 'set' . $this->getPHPName($sKey);
+                    $oClass->{$setter}($aFields[$sKey]);
                 }
             }
             if ($oClass->validate()) {
@@ -670,13 +683,9 @@ class AdditionalTables extends BaseAdditionalTables
                 ? $aData['ADD_TAB_CLASS_NAME']
                 : $this->getPHPName($aData['ADD_TAB_NAME']));
             require_once $sPath . $sClassName . '.php';
-            $sKeys = '';
-            foreach ($aKeys as $sName => $vValue) {
-                eval('$' . $sName . ' = $vValue;');
-                $sKeys .= '$' . $sName . ',';
-            }
-            $sKeys = substr($sKeys, 0, -1);
-            eval('$oClass = ' . $sClassName . 'Peer::retrieveByPK(' . $sKeys . ');');
+            $keyValues = array_values($aKeys);
+            $peerClass = $sClassName . 'Peer';
+            $oClass = call_user_func_array(array($peerClass, 'retrieveByPK'), $keyValues);
             if (!is_null($oClass)) {
                 return $oClass->toArray(BasePeer::TYPE_FIELDNAME);
             } else {
@@ -697,16 +706,14 @@ class AdditionalTables extends BaseAdditionalTables
                 : $this->getPHPName($aData['ADD_TAB_NAME']));
             $oConnection = Propel::getConnection(FieldsPeer::DATABASE_NAME);
             require_once $sPath . $sClassName . '.php';
-            $sKeys = '';
+            $keyValues = array();
             foreach ($aData['FIELDS'] as $aField) {
                 if ($aField['FLD_KEY'] == 1) {
-                    $vValue = $aFields[$aField['FLD_NAME']];
-                    eval('$' . $aField['FLD_NAME'] . ' = $vValue;');
-                    $sKeys .= '$' . $aField['FLD_NAME'] . ',';
+                    $keyValues[] = $aFields[$aField['FLD_NAME']];
                 }
             }
-            $sKeys = substr($sKeys, 0, -1);
-            eval('$oClass = ' . $sClassName . 'Peer::retrieveByPK(' . $sKeys . ');');
+            $peerClass = $sClassName . 'Peer';
+            $oClass = call_user_func_array(array($peerClass, 'retrieveByPK'), $keyValues);
             if (!is_null($oClass)) {
                 $oClass->fromArray($aFields, BasePeer::TYPE_FIELDNAME);
                 if ($oClass->validate()) {
@@ -743,13 +750,9 @@ class AdditionalTables extends BaseAdditionalTables
                 : $this->getPHPName($aData['ADD_TAB_NAME']));
             $oConnection = Propel::getConnection(FieldsPeer::DATABASE_NAME);
             require_once $sPath . $sClassName . '.php';
-            $sKeys = '';
-            foreach ($aKeys as $sName => $vValue) {
-                eval('$' . $sName . ' = $vValue;');
-                $sKeys .= '$' . $sName . ',';
-            }
-            $sKeys = substr($sKeys, 0, -1);
-            eval('$oClass = ' . $sClassName . 'Peer::retrieveByPK(' . $sKeys . ');');
+            $keyValues = array_values($aKeys);
+            $peerClass = $sClassName . 'Peer';
+            $oClass = call_user_func_array(array($peerClass, 'retrieveByPK'), $keyValues);
             if (!is_null($oClass)) {
                 if ($oClass->validate()) {
                     $oConnection->begin();
@@ -838,8 +841,9 @@ class AdditionalTables extends BaseAdditionalTables
             // create a criteria object of report table class
             $c = new Criteria(PmTable::resolveDbSource($row['DBS_UID']));
             // select all related records with this $appUid
-            eval('$c->add(' . $className . 'Peer::APP_UID, \'' . $appUid . '\');');
-            eval('$records = ' . $className . 'Peer::doSelect($c);');
+            $peerClass = $className . 'Peer';
+            $c->add(constant($peerClass . '::APP_UID'), $appUid);
+            $records = call_user_func(array($peerClass, 'doSelect'), $c);
 
             //Select all types
             require_once 'classes/model/Fields.php';
@@ -898,7 +902,7 @@ class AdditionalTables extends BaseAdditionalTables
                         }
                     } else {
                         // there are not any record for this application on the table, then create it
-                        eval('$obj = new ' . $className . '();');
+                        $obj = new $className();
                         $obj->fromArray(array_change_key_case($caseData, CASE_UPPER), BasePeer::TYPE_FIELDNAME);
                         $obj->setAppUid($appUid);
                         $obj->setAppNumber($appNumber);
@@ -920,7 +924,7 @@ class AdditionalTables extends BaseAdditionalTables
                     }
                     // save all grid rows on grid type report table
                     foreach ($gridData as $i => $gridRow) {
-                        eval('$obj = new ' . $className . '();');
+                        $obj = new $className();
                         //Parsing values
                         foreach ($gridRow as $j => $v) {
                             foreach ($fieldTypes as $key => $fieldType) {

@@ -11,6 +11,7 @@ use Google_Service_Gmail_Message;
 use Illuminate\Support\Facades\Log;
 use ProcessMaker\BusinessModel\EmailServer;
 use ProcessMaker\Core\System;
+use ProcessMaker\Util\LegacyUtf8;
 use TemplatePower;
 use WsBase;
 
@@ -421,7 +422,7 @@ trait EmailBase
         $phpMailerOAuth->AuthType = 'XOAUTH2';
         $phpMailerOAuth->SetFrom($senderEmail, $this->senderName);
         $phpMailerOAuth->Subject = G::LoadTranslation("ID_MESS_TEST_SUBJECT");
-        $phpMailerOAuth->Body = utf8_encode($this->getMessageBody());
+        $phpMailerOAuth->Body = LegacyUtf8::encode($this->getMessageBody());
         $phpMailerOAuth->AddAddress($this->mailTo);
         $status = $phpMailerOAuth->Send();
         $this->saveIntoStandardLogs($status ? "sent" : "pending");
@@ -446,7 +447,7 @@ trait EmailBase
         $spool->setAppMsgSubject(G::LoadTranslation("ID_MESS_TEST_SUBJECT"));
         $spool->setAppMsgFrom($this->fromAccount);
         $spool->setAppMsgTo($this->mailTo);
-        $spool->setAppMsgBody(utf8_encode($this->getMessageBody()));
+        $spool->setAppMsgBody(LegacyUtf8::encode($this->getMessageBody()));
         $spool->setAppMsgDate(date('Y-m-d H:i:s'));
         $spool->setAppMsgCc("");
         $spool->setAppMsgBcc("");

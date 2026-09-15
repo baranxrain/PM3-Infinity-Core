@@ -6,6 +6,7 @@ use Criteria;
 use DynaformHandler;
 use G;
 use PMmemcached;
+use ProcessMaker\BusinessModel\LegacyArrayLiteralParser;
 use ProcessPeer;
 use ResultSet;
 use UsersPropertiesPeer;
@@ -482,7 +483,7 @@ class Process
                                         }
 
                                         if (is_string($fieldValue) && trim($fieldValue) != '') {
-                                            //eval("\$arrayAux = $fieldValue;");
+                                            // Legacy string assignment is handled by LegacyArrayLiteralParser.
 
                                             if (preg_match("/^" . $regexpArray1 . "(.*)" . $regexpArray2 . "$/",
                                                 $fieldValue, $arrayMatch)) {
@@ -509,7 +510,8 @@ class Process
                                         }
 
                                         if (is_string($fieldValue) && trim($fieldValue) != '') {
-                                            eval("\$arrayAux = $fieldValue;");
+                                            $parsedArray = LegacyArrayLiteralParser::parse($fieldValue);
+                                            $arrayAux = is_array($parsedArray) ? $parsedArray : array();
                                         }
 
                                         foreach ($arrayAux as $value) {

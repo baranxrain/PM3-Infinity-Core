@@ -760,7 +760,8 @@ class Language extends BaseLanguage
         if (file_exists( PATH_LANGUAGECONT . $plugin . "." . $idLanguage)) {
             //reading the .po file
             include PATH_LANGUAGECONT . $plugin . "." . $idLanguage;
-            eval('$translatedText = $translation'.$plugin.';');
+            $translationVariable = 'translation' . $plugin;
+            $translatedText = ${$translationVariable};
         }
 
         //creating the .po file

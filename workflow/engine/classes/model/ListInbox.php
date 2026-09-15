@@ -674,9 +674,9 @@ class ListInbox extends BaseListInbox implements ListInterface
     public function getAppDelegationInfo($filters, $fieldName)
     {
         $criteria = new Criteria();
-        eval('$criteria->addSelectColumn( AppDelegationPeer::'.$fieldName.');');
+        $criteria->addSelectColumn(constant('AppDelegationPeer::' . $fieldName));
         foreach ($filters as $k => $v) {
-            eval('$criteria->add( AppDelegationPeer::'.$k.',$v, Criteria::EQUAL);');
+            $criteria->add(constant('AppDelegationPeer::' . $k), $v, Criteria::EQUAL);
         }
         $dataset = AppDelegationPeer::doSelectRS($criteria);
         $dataset->setFetchmode(ResultSet::FETCHMODE_ASSOC);

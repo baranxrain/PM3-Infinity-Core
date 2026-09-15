@@ -253,7 +253,10 @@ class DynaformEditor extends WebResource
         $tmpData = array();
         $file = PATH_C . 'dynEditor/' . session_id() . '.php';
         if (file_exists($file)) {
-            eval(implode('', file($file)));
+            $content = implode('', file($file));
+            if (preg_match("/^\$tmpData=unserialize\('((?:\\\\.|[^'])*)'\);$/s", $content, $match)) {
+                $tmpData = unserialize(strtr($match[1], array('\\\\' => '\\', "\\'" => "'")));
+            }
         }
         return $tmpData;
     }

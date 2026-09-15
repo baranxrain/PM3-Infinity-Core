@@ -26,7 +26,7 @@ use Google\Service\ArtifactRegistry\Tag;
  * Typical usage is:
  *  <code>
  *   $artifactregistryService = new Google\Service\ArtifactRegistry(...);
- *   $tags = $artifactregistryService->tags;
+ *   $tags = $artifactregistryService->projects_locations_repositories_packages_tags;
  *  </code>
  */
 class ProjectsLocationsRepositoriesPackagesTags extends \Google\Service\Resource
@@ -77,8 +77,9 @@ class ProjectsLocationsRepositoriesPackagesTags extends \Google\Service\Resource
   /**
    * Lists tags. (tags.listProjectsLocationsRepositoriesPackagesTags)
    *
-   * @param string $parent The name of the parent resource whose tags will be
-   * listed.
+   * @param string $parent The name of the parent package whose tags will be
+   * listed. Example: "projects/p1/locations/us-
+   * central1/repositories/repo1/packages/pkg1
    * @param array $optParams Optional parameters.
    *
    * @opt_param string filter An expression for filtering the results of the

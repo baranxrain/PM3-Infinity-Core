@@ -1751,7 +1751,9 @@ class G
                     }
                     //Call function
                     if (($match[1][$r][0] === '') && ($match[2][$r][0] === '') && ($match[3][$r][0] !== '')) {
-                        eval('$strAux = ' . $match[3][$r][0] . '(\'' . addcslashes(G::replaceDataField(stripslashes($match[4][$r][0]), $result), '\\\'') . '\');');
+                        $callable = $match[3][$r][0];
+                        $argument = G::replaceDataField(stripslashes($match[4][$r][0]), $result);
+                        $strAux = call_user_func($callable, $argument);
 
                         if ($match[3][$r][0] == "G::LoadTranslation") {
                             $arraySearch = array("'");
@@ -2065,7 +2067,7 @@ class G
                 while ($i < strlen($aux) && $aux[$i] != " " && $aux[$i] != "." && $aux[$i] != "'" && $aux[$i] != '"') {
                     $token .= $aux[$i ++];
                 }
-                eval("\$msg.= \$_SESSION['" . $token . "'] ; ");
+                $msg .= $_SESSION[$token];
                 $msg .= $aux[$i];
             } else {
                 $msg = $msg . $aux[$i];
@@ -2198,12 +2200,10 @@ class G
      */
     public static function LoadTranslationPlugin($namePlugin, $msgID, $data = null)
     {
-        eval('global $translation' . $namePlugin . ';');
-
-        $existId = false;
-        eval('if (isset( $translation' . $namePlugin . '[$msgID])) { $existId = true; }');
+        $translationVariable = 'translation' . $namePlugin;
+        $existId = isset($GLOBALS[$translationVariable][$msgID]);
         if ($existId) {
-            eval('$translationString = preg_replace( "[\n|\r|\n\r]", " ", $translation' . $namePlugin . '[$msgID] );');
+            $translationString = preg_replace("[\n|\r|\n\r]", " ", $GLOBALS[$translationVariable][$msgID]);
             if (isset($data) && is_array($data)) {
                 foreach ($data as $label => $value) {
                     $translationString = str_replace('{' . $label . '}', $value, $translationString);
@@ -3028,7 +3028,7 @@ class G
             $trans_tbl = get_html_translation_table(HTML_ENTITIES, ENT_COMPAT, 'ISO-8859-1');
         }
         foreach ($trans_tbl as $k => $v) {
-            $ttr[$v] = utf8_encode($k);
+            $ttr[$v] = \ProcessMaker\Util\LegacyUtf8::encode($k);
         }
         return strtr($string, $ttr);
     }

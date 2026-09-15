@@ -186,7 +186,8 @@ class Publisher
                 if (! class_exists( $Part['Template'] ) || $Part['Template'] === 'xmlform') {
                     $G_FORM = new Form( $Part['File'], $sPath, SYS_LANG, false );
                 } else {
-                    eval( '$G_FORM = new ' . $Part['Template'] . ' ( $Part[\'File\'] , "' . $sPath . '");' );
+                    $templateClass = $Part['Template'];
+                    $G_FORM = new $templateClass($Part['File'], $sPath);
                 }
 
                 if (($this->publishType == 'dynaform') && (($Part['Template'] == 'xmlform') || ($Part['Template'] == 'xmlform_preview'))) {

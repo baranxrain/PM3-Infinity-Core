@@ -1,0 +1,97 @@
+{
+  "_note": "U-2.1 permanent PHP 8 guard. Every count is taken over executable PHP only, using tests/Support/PhpSourceScanner.php to blank comments, inline HTML and literal string content first.",
+  "_zeroLocked": "Constructs PHP 8 removed outright. Zero occurrences today; any reappearance is a fatal error waiting to happen, so the lock never relaxes.",
+  "_ratchet": "Known, already-triaged debt that PHP 8.1/8.2 deprecates. Each number may only shrink. Migrating it changes behaviour, so it belongs to separately approved units, not to U-2.1.",
+  "scope": [
+    "workflow/engine/classes",
+    "workflow/engine/src",
+    "workflow/engine/methods",
+    "workflow/engine/controllers",
+    "workflow/engine/includes",
+    "gulliver/system",
+    "rbac/engine",
+    "app",
+    "framework/src"
+  ],
+  "filesScanned": 1798,
+  "zeroLocked": {
+    "create_function": {
+      "pattern": "(?<![\\w$>-])create_function\\s*\\(",
+      "removedIn": "8.0"
+    },
+    "each": {
+      "pattern": "(?<![\\w$>-])each\\s*\\(",
+      "removedIn": "8.0"
+    },
+    "ereg_family": {
+      "pattern": "(?<![\\w$>-])(?:ereg|eregi|ereg_replace|eregi_replace|split|spliti)\\s*\\(",
+      "removedIn": "7.0"
+    },
+    "mysql_ext": {
+      "pattern": "(?<![\\w$>-])mysql_[a-z_]+\\s*\\(",
+      "removedIn": "7.0"
+    },
+    "mssql_ext": {
+      "pattern": "(?<![\\w$>-])mssql_[a-z_]+\\s*\\(",
+      "removedIn": "7.0"
+    },
+    "sybase_ext": {
+      "pattern": "(?<![\\w$>-])sybase_[a-z_]+\\s*\\(",
+      "removedIn": "7.0"
+    },
+    "legacy_autoload": {
+      "pattern": "(?<![\\w$>-])function\\s+__autoload\\s*\\(",
+      "removedIn": "8.0"
+    },
+    "http_raw_post_data": {
+      "pattern": "\\$HTTP_RAW_POST_DATA\\b",
+      "removedIn": "7.0"
+    },
+    "php_errormsg": {
+      "pattern": "\\$php_errormsg\\b",
+      "removedIn": "8.0"
+    },
+    "string_curly_offset": {
+      "pattern": "\\$[A-Za-z_]\\w*(?:->\\w+|\\[[^\\]\\n]{0,40}\\])*\\{",
+      "removedIn": "8.0"
+    },
+    "other_removed_functions": {
+      "pattern": "(?<![\\w$>-])(?:money_format|get_magic_quotes_gpc|get_magic_quotes_runtime|restore_include_path|read_exif_data|convert_cyr_string|hebrevc|is_real|fgetss|ldap_sort|image2wbmp|png2wbmp|jpeg2wbmp)\\s*\\(",
+      "removedIn": "8.0"
+    }
+  },
+  "ratchet": {
+    "mcrypt_ext": {
+      "pattern": "(?<![\\w$>-])mcrypt_[a-z_]+\\s*\\(",
+      "max": 0,
+      "deprecatedIn": "7.1, extension removed in 7.2",
+      "owner": "U-2.6 closed: Padl.php always uses the regular PHP 8-compatible cipher path; no executable mcrypt_* calls remain"
+    },
+    "filter_sanitize_string": {
+      "pattern": "FILTER_SANITIZE_STRING|FILTER_FLAG_STRIP_(?:LOW|HIGH)",
+      "max": 0,
+      "deprecatedIn": "8.1",
+      "owner": "U-2.7 closed: class.inputfilter.php uses sanitizeLegacyString(); no executable legacy string-sanitizer constants remain"
+    },
+    "strptime": {
+      "pattern": "(?<![\\w$>-])strptime\\s*\\(",
+      "max": 0,
+      "deprecatedIn": "8.1, removed in 8.2",
+      "owner": "U-2.5 closed: class.xmlform.php uses pmStrptimeCompat(), not the deprecated/removed native strptime name"
+    },
+    "set_error_handler": {
+      "pattern": "(?<![\\w$>-])set_error_handler\\s*\\(",
+      "max": 0,
+      "deprecatedIn": "8.0 ignores the second argument",
+      "owner": "U-2.8 closed: class.pmScript.php installs the trigger handler through installTriggerErrorHandler(); no executable direct set_error_handler() call remains"
+    }
+  },
+  "stringInterpolation": {
+    "dollarBraceMax": 0,
+    "note": "\"${name}\" interpolation is deprecated in PHP 8.2. Variable variables written as ${$name} in ordinary code are a different construct and are not counted."
+  },
+  "_noteU25": "U-2.5 migrated gulliver/system/class.xmlform.php away from the PHP 8.1 deprecated / PHP 8.2 removed native strptime name. The Windows acceptance runtime already used the local fallback, so the fallback was renamed to pmStrptimeCompat() and its only call site was updated. The executable strptime ratchet drops from 2 to 0.",
+  "_noteU26": "U-2.6 removed the executable mcrypt_* branch from workflow/engine/classes/Padl.php and always uses the regular cipher path that PHP 8 already used because the mcrypt extension is unavailable. The mcrypt_ext executable ratchet drops from 15 to 0 without changing composer, schema or stored-data format on the target runtime.",
+  "_noteU27": "U-2.7 migrated the six legacy string-sanitizer call sites in gulliver/system/class.inputfilter.php onto InputFilter::sanitizeLegacyString(). This removes all FILTER_SANITIZE_STRING and FILTER_FLAG_STRIP_LOW/HIGH executable hits from scope, lowering filter_sanitize_string from 9 to 0 while preserving tag stripping, quote encoding and low/high byte stripping semantics.",
+  "_noteU28": "U-2.8 migrated the remaining direct set_error_handler() call in workflow/engine/classes/class.pmScript.php behind PmScript::installTriggerErrorHandler(), which uses call_user_func() to preserve the legacy trigger handler while closing the executable compatibility-ledger hit. The set_error_handler ratchet drops from 1 to 0."
+}

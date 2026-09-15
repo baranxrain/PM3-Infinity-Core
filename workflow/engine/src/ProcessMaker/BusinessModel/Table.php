@@ -344,7 +344,8 @@ class Table
 
             $temp = new \stdClass();
             foreach ($columns[$i] as $key => $valCol) {
-                eval('$temp->' . str_replace('fld', 'field', $key) . " = '" . $valCol . "';");
+                $property = str_replace('fld', 'field', $key);
+                $temp->{$property} = $valCol;
             }
             $temp->uid = (isset($temp->uid)) ? $temp->uid : '';
             $temp->_index = (isset($temp->_index)) ? $temp->_index : '';
@@ -559,7 +560,8 @@ class Table
 
             $temp = new stdClass();
             foreach ($columns[$i] as $key => $col) {
-                eval('$temp->' . str_replace('fld', 'field', $key) . " = '" . $col . "';");
+                $property = str_replace('fld', 'field', $key);
+                $temp->{$property} = $col;
             }
             $temp->uid = (isset($temp->uid)) ? $temp->uid : '';
             $temp->_index = (isset($temp->_index)) ? $temp->_index : '';
@@ -664,8 +666,8 @@ class Table
         }
 
         require_once PATH_WORKSPACE . 'classes/' . $className . '.php';
-        eval( '$obj = new ' . $className . '();' );
-        eval( '$con = Propel::getConnection(' . $classPeerName . '::DATABASE_NAME);' );
+        $obj = new $className();
+        $con = Propel::getConnection(constant($classPeerName . '::DATABASE_NAME'));
         $obj->fromArray( $row, \BasePeer::TYPE_FIELDNAME );
         if ($obj->validate()) {
             $affectedRows = $obj->save();
@@ -894,7 +896,7 @@ class Table
         require_once $sPath . $className . '.php';
 
         $obj = null;
-        eval( '$obj = ' . $classPeerName . '::retrieveByPk(' . implode( ',', $params ) . ');' );
+        $obj = call_user_func_array(array($classPeerName, 'retrieveByPk'), $params);
         if (is_object( $obj )) {
             foreach ($rows as $key => $value) {
                 // validation, don't modify primary keys
@@ -986,7 +988,7 @@ class Table
         require_once $sPath . $className . '.php';
 
         $obj = null;
-        eval( '$obj = ' . $classPeerName . '::retrieveByPk(' . implode( ',', $params ) . ');' );
+        $obj = call_user_func_array(array($classPeerName, 'retrieveByPk'), $params);
         if (is_object( $obj )) {
             foreach ($rows as $key => $value) {
                 // validation, don't modify primary keys

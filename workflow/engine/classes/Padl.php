@@ -198,7 +198,7 @@ class Padl
         if (!$challenge) {
             $this->_check_secure();
         }
-        $this->USE_MCRYPT = ($use_mcrypt && function_exists('mcrypt_generic'));
+        $this->USE_MCRYPT = false;
         $this->USE_TIME = $use_time;
         $this->ALLOW_LOCAL = $allow_local;
         $this->USE_SERVER = $use_server;
@@ -286,11 +286,15 @@ class Padl
         $fp = @fopen($url, 'rb', false, $ctx);
         //G::pr($fp);
         if (!$fp) {
-            throw new Exception("Problem with $url, $php_errormsg");
+            $lastError = error_get_last();
+            $lastErrorMessage = isset($lastError['message']) ? $lastError['message'] : '';
+            throw new Exception("Problem with $url, $lastErrorMessage");
         }
         $response = @stream_get_contents($fp);
         if ($response === false) {
-            throw new Exception("Problem reading data from $url, $php_errormsg");
+            $lastError = error_get_last();
+            $lastErrorMessage = isset($lastError['message']) ? $lastError['message'] : '';
+            throw new Exception("Problem reading data from $url, $lastErrorMessage");
         }
         return $response;
     }
@@ -528,37 +532,19 @@ class Padl
         $key = $this->_get_key($key_type);
         $key = $rand_add_on . $key;
 
-        # check to see if mycrypt exists
-        if ($this->USE_MCRYPT) {
-            # openup mcrypt
-            $td = @mcrypt_module_open($this->ALGORITHM, '', 'ecb', '');
-            $iv = @mcrypt_create_iv(@mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
-            # process the key
-            $key = substr($key, 0, @mcrypt_enc_get_key_size($td));
-            # init mcrypt
-            @mcrypt_generic_init($td, $key, $iv);
+        # PHP 8 no longer provides the mcrypt extension; keep using the
+        # regular encryption method that this class already used whenever
+        # mcrypt was unavailable.
+        # init the vars
+        $crypt = '';
+        $str = serialize($src_array);
 
-            # encrypt data
-            # double base64 gets makes all the characters alpha numeric
-            # and gets rig of the special characters
-            $crypt = @mcrypt_generic($td, serialize($src_array));
-
-            # shutdown mcrypt
-            @mcrypt_generic_deinit($td);
-            @mcrypt_module_close($td);
-        } else {
-            # if mcrypt doesn't exist use regular encryption method
-            # init the vars
-            $crypt = '';
-            $str = serialize($src_array);
-
-            # loop through the str and encrypt it
-            for ($i = 1; $i <= strlen($str); $i++) {
-                $char = substr($str, $i - 1, 1);
-                $keychar = substr($key, ($i % strlen($key)) - 1, 1);
-                $char = chr(ord($char) + ord($keychar));
-                $crypt .= $char;
-            }
+        # loop through the str and encrypt it
+        for ($i = 1; $i <= strlen($str); $i++) {
+            $char = substr($str, $i - 1, 1);
+            $keychar = substr($key, ($i % strlen($key)) - 1, 1);
+            $char = chr(ord($char) + ord($keychar));
+            $crypt .= $char;
         }
         # return the key
         return $rand_add_on . base64_encode(base64_encode(trim($crypt)));
@@ -583,34 +569,18 @@ class Padl
         # get the key
         $key = $rand_add_on . $this->_get_key($key_type);
 
-        # check to see if mycrypt exists
-        if ($this->USE_MCRYPT) {
-            # openup mcrypt
-            $td = @mcrypt_module_open($this->ALGORITHM, '', 'ecb', '');
-            $iv = @mcrypt_create_iv(@mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
-            # process the key
-            $key = substr($key, 0, @mcrypt_enc_get_key_size($td));
-            # init mcrypt
-            @mcrypt_generic_init($td, $key, $iv);
+        # PHP 8 no longer provides the mcrypt extension; keep using the
+        # regular decryption method that this class already used whenever
+        # mcrypt was unavailable.
+        # init the decrypt vars
+        $decrypt = '';
 
-            # decrypt the data and return
-            $decrypt = @mdecrypt_generic($td, $str);
-
-            # shutdown mcrypt
-            @mcrypt_generic_deinit($td);
-            @mcrypt_module_close($td);
-        } else {
-            # if mcrypt doesn't exist use regular decryption method
-            # init the decrypt vars
-            $decrypt = '';
-
-            # loop through the text and decode the string
-            for ($i = 1; $i <= strlen($str); $i++) {
-                $char = substr($str, $i - 1, 1);
-                $keychar = substr($key, ($i % strlen($key)) - 1, 1);
-                $char = chr(ord($char) - ord($keychar));
-                $decrypt .= $char;
-            }
+        # loop through the text and decode the string
+        for ($i = 1; $i <= strlen($str); $i++) {
+            $char = substr($str, $i - 1, 1);
+            $keychar = substr($key, ($i % strlen($key)) - 1, 1);
+            $char = chr(ord($char) - ord($keychar));
+            $decrypt .= $char;
         }
         # return the key
         return unserialize($decrypt);

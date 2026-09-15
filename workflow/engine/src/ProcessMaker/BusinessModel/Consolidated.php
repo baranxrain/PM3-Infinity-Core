@@ -339,7 +339,7 @@ class Consolidated
 
                 foreach ($searchFields as $index => $value) {
                     $value = strtoupper($value);
-                    eval("\$field = " . $tableName . "Peer::" . $value . ";");
+                    $field = constant($tableName . 'Peer::' . $value);
 
                     if ($sw == 0) {
                         if ($dataType[$index] == 'currency' || $dataType[$index] == 'percentage') {
@@ -383,9 +383,9 @@ class Consolidated
                 $sort = $filter->validateInput($sort);
                 if (in_array($sort, $arrayReportTableVar)) {
                     $sort = strtoupper($sort);
-                    eval('$field = ' . $tableName . 'Peer::' . $sort . ';');
+                    $field = constant($tableName . 'Peer::' . $sort);
                 } else {
-                    eval('$field = ListInboxPeer::' . $sort . ';');
+                    $field = constant('ListInboxPeer::' . $sort);
                 }
 
                 if ($dir == "ASC") {
