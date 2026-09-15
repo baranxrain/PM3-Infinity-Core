@@ -36,7 +36,7 @@ $required = [
     'tests/unit/Compatibility/LegacyUtf8ContractTest.php',
     'tests/tools/verify-u22.php',
     'tests/tools/run-u22-checks.cmd',
-    'tests/tools/README-FA.md',
+    'tests/tools/README.md',
     'tests/tools/phpunit-9.5.8.phar',
 ];
 foreach ($required as $relativeFile) {
