@@ -36,16 +36,17 @@ class Query extends \Google\Service\Resource
 {
   /**
    * Provides functionality to remove logged activity for a user. Currently to be
-   * used only for dynamite 1p clients **Note:** This API requires a standard end
-   * user account to execute. A service account can't perform Remove Activity
-   * requests directly; to use a service account to perform queries, set up
-   * [Google Workspace domain-wide delegation of
-   * authority](https://developers.google.com/cloud-
+   * used only for Chat 1p clients **Note:** This API requires a standard end user
+   * account to execute. A service account can't perform Remove Activity requests
+   * directly; to use a service account to perform queries, set up [Google
+   * Workspace domain-wide delegation of
+   * authority](https://developers.google.com/workspace/cloud-
    * search/docs/guides/delegation/). (query.removeActivity)
    *
    * @param RemoveActivityRequest $postBody
    * @param array $optParams Optional parameters.
    * @return RemoveActivityResponse
+   * @throws \Google\Service\Exception
    */
   public function removeActivity(RemoveActivityRequest $postBody, $optParams = [])
   {
@@ -61,12 +62,13 @@ class Query extends \Google\Service\Resource
    * standard end user account to execute. A service account can't perform Query
    * API requests directly; to use a service account to perform queries, set up
    * [Google Workspace domain-wide delegation of
-   * authority](https://developers.google.com/cloud-
+   * authority](https://developers.google.com/workspace/cloud-
    * search/docs/guides/delegation/). (query.search)
    *
    * @param SearchRequest $postBody
    * @param array $optParams Optional parameters.
    * @return SearchResponse
+   * @throws \Google\Service\Exception
    */
   public function search(SearchRequest $postBody, $optParams = [])
   {
@@ -79,12 +81,13 @@ class Query extends \Google\Service\Resource
    * requires a standard end user account to execute. A service account can't
    * perform Query API requests directly; to use a service account to perform
    * queries, set up [Google Workspace domain-wide delegation of
-   * authority](https://developers.google.com/cloud-
+   * authority](https://developers.google.com/workspace/cloud-
    * search/docs/guides/delegation/). (query.suggest)
    *
    * @param SuggestRequest $postBody
    * @param array $optParams Optional parameters.
    * @return SuggestResponse
+   * @throws \Google\Service\Exception
    */
   public function suggest(SuggestRequest $postBody, $optParams = [])
   {

@@ -21,9 +21,13 @@ class PolicyViolationInfo extends \Google\Model
 {
   protected $orgPolicyViolationInfoType = OrgPolicyViolationInfo::class;
   protected $orgPolicyViolationInfoDataType = '';
+  protected $rabPolicyViolationInfoType = RabPolicyViolationInfo::class;
+  protected $rabPolicyViolationInfoDataType = '';
 
   /**
-   * @param OrgPolicyViolationInfo
+   * Indicates the orgpolicy violations for this resource.
+   *
+   * @param OrgPolicyViolationInfo $orgPolicyViolationInfo
    */
   public function setOrgPolicyViolationInfo(OrgPolicyViolationInfo $orgPolicyViolationInfo)
   {
@@ -35,6 +39,22 @@ class PolicyViolationInfo extends \Google\Model
   public function getOrgPolicyViolationInfo()
   {
     return $this->orgPolicyViolationInfo;
+  }
+  /**
+   * Indicates the regional access boundary policy violations for this resource.
+   *
+   * @param RabPolicyViolationInfo $rabPolicyViolationInfo
+   */
+  public function setRabPolicyViolationInfo(RabPolicyViolationInfo $rabPolicyViolationInfo)
+  {
+    $this->rabPolicyViolationInfo = $rabPolicyViolationInfo;
+  }
+  /**
+   * @return RabPolicyViolationInfo
+   */
+  public function getRabPolicyViolationInfo()
+  {
+    return $this->rabPolicyViolationInfo;
   }
 }
 

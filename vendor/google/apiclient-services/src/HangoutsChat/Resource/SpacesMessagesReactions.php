@@ -32,12 +32,17 @@ use Google\Service\HangoutsChat\Reaction;
 class SpacesMessagesReactions extends \Google\Service\Resource
 {
   /**
-   * Creates a reaction and adds it to a message. For an example, see [Create a
-   * reaction](https://developers.google.com/chat/api/guides/v1/reactions/create).
-   * Requires [user
-   * authentication](https://developers.google.com/chat/api/guides/auth/users) and
-   * the `chat.messages`, `chat.messages.reactions`, or
-   * `chat.messages.reactions.create` scope. Only unicode emoji are supported.
+   * Creates a reaction and adds it to a message. For an example, see [Add a
+   * reaction to a message](https://developers.google.com/workspace/chat/create-
+   * reactions). Requires [user
+   * authentication](https://developers.google.com/workspace/chat/authenticate-
+   * authorize-chat-user) with one of the following [authorization
+   * scopes](https://developers.google.com/workspace/chat/authenticate-
+   * authorize#chat-api-scopes): -
+   * `https://www.googleapis.com/auth/chat.messages.reactions.create` -
+   * `https://www.googleapis.com/auth/chat.messages.reactions` -
+   * `https://www.googleapis.com/auth/chat.messages` -
+   * `https://www.googleapis.com/auth/chat.import` (import mode spaces only)
    * (reactions.create)
    *
    * @param string $parent Required. The message where the reaction is created.
@@ -45,6 +50,7 @@ class SpacesMessagesReactions extends \Google\Service\Resource
    * @param Reaction $postBody
    * @param array $optParams Optional parameters.
    * @return Reaction
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Reaction $postBody, $optParams = [])
   {
@@ -54,15 +60,22 @@ class SpacesMessagesReactions extends \Google\Service\Resource
   }
   /**
    * Deletes a reaction to a message. For an example, see [Delete a
-   * reaction](https://developers.google.com/chat/api/guides/v1/reactions/delete).
+   * reaction](https://developers.google.com/workspace/chat/delete-reactions).
    * Requires [user
-   * authentication](https://developers.google.com/chat/api/guides/auth/users) and
-   * the `chat.messages` or `chat.messages.reactions` scope. (reactions.delete)
+   * authentication](https://developers.google.com/workspace/chat/authenticate-
+   * authorize-chat-user) with one of the following [authorization
+   * scopes](https://developers.google.com/workspace/chat/authenticate-
+   * authorize#chat-api-scopes): -
+   * `https://www.googleapis.com/auth/chat.messages.reactions` -
+   * `https://www.googleapis.com/auth/chat.messages` -
+   * `https://www.googleapis.com/auth/chat.import` (import mode spaces only)
+   * (reactions.delete)
    *
    * @param string $name Required. Name of the reaction to delete. Format:
    * `spaces/{space}/messages/{message}/reactions/{reaction}`
    * @param array $optParams Optional parameters.
    * @return ChatEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -71,12 +84,17 @@ class SpacesMessagesReactions extends \Google\Service\Resource
     return $this->call('delete', [$params], ChatEmpty::class);
   }
   /**
-   * Lists reactions to a message. For an example, see [List
-   * reactions](https://developers.google.com/chat/api/guides/v1/reactions/list).
+   * Lists reactions to a message. For an example, see [List reactions for a
+   * message](https://developers.google.com/workspace/chat/list-reactions).
    * Requires [user
-   * authentication](https://developers.google.com/chat/api/guides/auth/users) and
-   * `chat.messages`, `chat.messages.readonly`, `chat.messages.reactions`, or
-   * `chat.messages.reactions.readonly` scope.
+   * authentication](https://developers.google.com/workspace/chat/authenticate-
+   * authorize-chat-user) with one of the following [authorization
+   * scopes](https://developers.google.com/workspace/chat/authenticate-
+   * authorize#chat-api-scopes): -
+   * `https://www.googleapis.com/auth/chat.messages.reactions.readonly` -
+   * `https://www.googleapis.com/auth/chat.messages.reactions` -
+   * `https://www.googleapis.com/auth/chat.messages.readonly` -
+   * `https://www.googleapis.com/auth/chat.messages`
    * (reactions.listSpacesMessagesReactions)
    *
    * @param string $parent Required. The message users reacted to. Format:
@@ -84,9 +102,9 @@ class SpacesMessagesReactions extends \Google\Service\Resource
    * @param array $optParams Optional parameters.
    *
    * @opt_param string filter Optional. A query filter. You can filter reactions
-   * by [emoji](https://developers.google.com/chat/api/reference/rest/v1/Emoji)
-   * (either `emoji.unicode` or `emoji.custom_emoji.uid`) and
-   * [user](https://developers.google.com/chat/api/reference/rest/v1/User)
+   * by [emoji](https://developers.google.com/workspace/chat/api/reference/rest/v1
+   * /Emoji) (either `emoji.unicode` or `emoji.custom_emoji.uid`) and [user](https
+   * ://developers.google.com/workspace/chat/api/reference/rest/v1/User)
    * (`user.name`). To filter reactions for multiple emojis or users, join similar
    * fields with the `OR` operator, such as `emoji.unicode = "🙂" OR emoji.unicode
    * = "👍"` and `user.name = "users/AAAAAA" OR user.name = "users/BBBBBB"`. To
@@ -102,8 +120,8 @@ class SpacesMessagesReactions extends \Google\Service\Resource
    * AND emoji.custom_emoji.uid = "{uid}" emoji.unicode = "🙂" OR user.name =
    * "users/{user}" emoji.unicode = "🙂" OR emoji.custom_emoji.uid = "{uid}" OR
    * user.name = "users/{user}" emoji.unicode = "🙂" OR emoji.custom_emoji.uid =
-   * "{uid}" AND user.name = "users/{user}" ``` Invalid queries are rejected by
-   * the server with an `INVALID_ARGUMENT` error.
+   * "{uid}" AND user.name = "users/{user}" ``` Invalid queries are rejected with
+   * an `INVALID_ARGUMENT` error.
    * @opt_param int pageSize Optional. The maximum number of reactions returned.
    * The service can return fewer reactions than this value. If unspecified, the
    * default value is 25. The maximum value is 200; values above 200 are changed
@@ -114,6 +132,7 @@ class SpacesMessagesReactions extends \Google\Service\Resource
    * the call that provided the page token. Passing a different value might lead
    * to unexpected results.
    * @return ListReactionsResponse
+   * @throws \Google\Service\Exception
    */
   public function listSpacesMessagesReactions($parent, $optParams = [])
   {

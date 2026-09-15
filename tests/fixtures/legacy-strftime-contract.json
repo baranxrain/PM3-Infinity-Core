@@ -3,7 +3,7 @@
     "_noteRefused": "Native strftime() returned false for %k, %l, %P and %s on that runtime, so the helper returns false too. %z and %Z are refused for a different reason: native output was the operating system zone ('+0100', 'W. Europe Standard Time') for every timestamp, identical in winter and summer and while PHP itself ran in UTC. That is neither portable nor internally consistent, so the helper refuses instead of inventing a value; a zone-dependent call site must be migrated explicitly.",
     "oracle": {
         "file": "tests/fixtures/legacy-strftime-oracle.json",
-        "sha256": "5c9db0711f9be95f436ebc072b06f9d9a57df8ecee22e4449872f4f4b1ee1c5b",
+        "sha256": "a1c1102d8b1780066e31a2b9f4ce21c5d683a46ffe27e2f12a95f124a3f04518",
         "runtime": {
             "phpVersion": "8.1.10",
             "phpOs": "Windows",

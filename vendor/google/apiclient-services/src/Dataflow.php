@@ -40,19 +40,16 @@ class Dataflow extends \Google\Service
   /** View and manage your Google Compute Engine resources. */
   const COMPUTE =
       "https://www.googleapis.com/auth/compute";
-  /** View your Google Compute Engine resources. */
-  const COMPUTE_READONLY =
-      "https://www.googleapis.com/auth/compute.readonly";
-  /** See your primary Google Account email address. */
-  const USERINFO_EMAIL =
-      "https://www.googleapis.com/auth/userinfo.email";
 
+  public $folders_locations_configStoreSettings;
+  public $organizations_locations_configStoreSettings;
   public $projects;
   public $projects_jobs;
   public $projects_jobs_debug;
   public $projects_jobs_messages;
   public $projects_jobs_workItems;
   public $projects_locations;
+  public $projects_locations_configStoreSettings;
   public $projects_locations_flexTemplates;
   public $projects_locations_jobs;
   public $projects_locations_jobs_debug;
@@ -64,6 +61,7 @@ class Dataflow extends \Google\Service
   public $projects_locations_templates;
   public $projects_snapshots;
   public $projects_templates;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Dataflow service.
@@ -76,11 +74,156 @@ class Dataflow extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://dataflow.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://dataflow.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1b3';
     $this->serviceName = 'dataflow';
 
+    $this->folders_locations_configStoreSettings = new Dataflow\Resource\FoldersLocationsConfigStoreSettings(
+        $this,
+        $this->serviceName,
+        'configStoreSettings',
+        [
+          'methods' => [
+            'create' => [
+              'path' => 'v1b3/{+parent}/configStoreSettings',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'configStoreSettingId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'v1b3/{+name}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v1b3/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v1b3/{+parent}/configStoreSettings',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'resolve' => [
+              'path' => 'v1b3/{+name}:resolve',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->organizations_locations_configStoreSettings = new Dataflow\Resource\OrganizationsLocationsConfigStoreSettings(
+        $this,
+        $this->serviceName,
+        'configStoreSettings',
+        [
+          'methods' => [
+            'create' => [
+              'path' => 'v1b3/{+parent}/configStoreSettings',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'configStoreSettingId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'v1b3/{+name}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v1b3/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v1b3/{+parent}/configStoreSettings',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'resolve' => [
+              'path' => 'v1b3/{+name}:resolve',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
     $this->projects = new Dataflow\Resource\Projects(
         $this,
         $this->serviceName,
@@ -153,6 +296,10 @@ class Dataflow extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+                'regionalFanoutRequested' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
                 'view' => [
                   'location' => 'query',
@@ -255,6 +402,10 @@ class Dataflow extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+                'regionalFanoutRequested' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
                 'view' => [
                   'location' => 'query',
@@ -457,6 +608,78 @@ class Dataflow extends \Google\Service
           ]
         ]
     );
+    $this->projects_locations_configStoreSettings = new Dataflow\Resource\ProjectsLocationsConfigStoreSettings(
+        $this,
+        $this->serviceName,
+        'configStoreSettings',
+        [
+          'methods' => [
+            'create' => [
+              'path' => 'v1b3/{+parent}/configStoreSettings',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'configStoreSettingId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'v1b3/{+name}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
+              'path' => 'v1b3/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v1b3/{+parent}/configStoreSettings',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'resolve' => [
+              'path' => 'v1b3/{+name}:resolve',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
     $this->projects_locations_flexTemplates = new Dataflow\Resource\ProjectsLocationsFlexTemplates(
         $this,
         $this->serviceName,
@@ -617,6 +840,10 @@ class Dataflow extends \Google\Service
                   'location' => 'query',
                   'type' => 'string',
                 ],
+                'regionalFanoutRequested' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
                 'view' => [
                   'location' => 'query',
                   'type' => 'string',
@@ -678,6 +905,26 @@ class Dataflow extends \Google\Service
           'methods' => [
             'getConfig' => [
               'path' => 'v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/getConfig',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'projectId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'location' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'jobId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'getWorkerStacktraces' => [
+              'path' => 'v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/getWorkerStacktraces',
               'httpMethod' => 'POST',
               'parameters' => [
                 'projectId' => [

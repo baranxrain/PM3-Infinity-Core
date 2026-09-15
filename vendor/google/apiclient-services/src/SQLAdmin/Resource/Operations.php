@@ -38,7 +38,10 @@ class Operations extends \Google\Service\Resource
    * @param string $project Project ID of the project that contains the instance.
    * @param string $operation Instance operation ID.
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string location Optional. Region of the Cloud SQL instance.
    * @return SqladminEmpty
+   * @throws \Google\Service\Exception
    */
   public function cancel($project, $operation, $optParams = [])
   {
@@ -50,10 +53,14 @@ class Operations extends \Google\Service\Resource
    * Retrieves an instance operation that has been performed on an instance.
    * (operations.get)
    *
-   * @param string $project Project ID of the project that contains the instance.
-   * @param string $operation Instance operation ID.
+   * @param string $project Required. Project ID of the project that contains the
+   * instance.
+   * @param string $operation Required. Instance operation ID.
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string location Optional. Region of the Cloud SQL instance.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function get($project, $operation, $optParams = [])
   {
@@ -71,10 +78,12 @@ class Operations extends \Google\Service\Resource
    *
    * @opt_param string instance Cloud SQL instance ID. This does not include the
    * project ID.
+   * @opt_param string location Optional. Region of the Cloud SQL instance.
    * @opt_param string maxResults Maximum number of operations per response.
    * @opt_param string pageToken A previously-returned page token representing
    * part of the larger set of results to view.
    * @return OperationsListResponse
+   * @throws \Google\Service\Exception
    */
   public function listOperations($project, $optParams = [])
   {

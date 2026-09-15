@@ -38,6 +38,7 @@ class ProjectsLocations extends \Google\Service\Resource
    * `projects/{project_id}/locations/{location_id}/biReservation`
    * @param array $optParams Optional parameters.
    * @return BiReservation
+   * @throws \Google\Service\Exception
    */
   public function getBiReservation($name, $optParams = [])
   {
@@ -70,6 +71,7 @@ class ProjectsLocations extends \Google\Service\Resource
    * query. Examples: * `assignee=projects/myproject` * `assignee=folders/123` *
    * `assignee=organizations/456`
    * @return SearchAllAssignmentsResponse
+   * @throws \Google\Service\Exception
    */
   public function searchAllAssignments($parent, $optParams = [])
   {
@@ -103,6 +105,7 @@ class ProjectsLocations extends \Google\Service\Resource
    * query. Examples: * `assignee=projects/myproject` * `assignee=folders/123` *
    * `assignee=organizations/456`
    * @return SearchAssignmentsResponse
+   * @throws \Google\Service\Exception
    */
   public function searchAssignments($parent, $optParams = [])
   {
@@ -117,14 +120,15 @@ class ProjectsLocations extends \Google\Service\Resource
    * 0. In order to release BI capacity reservation size must be set to 0.
    * (locations.updateBiReservation)
    *
-   * @param string $name The resource name of the singleton BI reservation.
-   * Reservation names have the form
+   * @param string $name Identifier. The resource name of the singleton BI
+   * reservation. Reservation names have the form
    * `projects/{project_id}/locations/{location_id}/biReservation`.
    * @param BiReservation $postBody
    * @param array $optParams Optional parameters.
    *
    * @opt_param string updateMask A list of fields to be updated in this request.
    * @return BiReservation
+   * @throws \Google\Service\Exception
    */
   public function updateBiReservation($name, BiReservation $postBody, $optParams = [])
   {

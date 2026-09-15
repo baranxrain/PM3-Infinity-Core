@@ -49,6 +49,7 @@ class BuyersProposals extends \Google\Service\Resource
    * @param AcceptProposalRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Proposal
+   * @throws \Google\Service\Exception
    */
   public function accept($name, AcceptProposalRequest $postBody, $optParams = [])
   {
@@ -57,13 +58,16 @@ class BuyersProposals extends \Google\Service\Resource
     return $this->call('accept', [$params], Proposal::class);
   }
   /**
-   * Creates a note for this proposal and sends to the seller. (proposals.addNote)
+   * Creates a note for this proposal and sends to the seller. This method is not
+   * supported for proposals with DealType set to 'PRIVATE_AUCTION'.
+   * (proposals.addNote)
    *
    * @param string $proposal Name of the proposal. Format:
    * `buyers/{accountId}/proposals/{proposalId}`
    * @param AddNoteRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Proposal
+   * @throws \Google\Service\Exception
    */
   public function addNote($proposal, AddNoteRequest $postBody, $optParams = [])
   {
@@ -87,6 +91,7 @@ class BuyersProposals extends \Google\Service\Resource
    * @param CancelNegotiationRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Proposal
+   * @throws \Google\Service\Exception
    */
   public function cancelNegotiation($proposal, CancelNegotiationRequest $postBody, $optParams = [])
   {
@@ -102,6 +107,7 @@ class BuyersProposals extends \Google\Service\Resource
    * `buyers/{accountId}/proposals/{proposalId}`
    * @param array $optParams Optional parameters.
    * @return Proposal
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -120,14 +126,15 @@ class BuyersProposals extends \Google\Service\Resource
    * @param array $optParams Optional parameters.
    *
    * @opt_param string filter Optional query string using the [Cloud API list
-   * filtering syntax](https://developers.google.com/authorized-buyers/apis/guides
-   * /list-filters) Supported columns for filtering are: * displayName * dealType
-   * * updateTime * state
+   * filtering syntax](https://developers.google.com/authorized-
+   * buyers/apis/guides/list-filters) Supported columns for filtering are: *
+   * displayName * dealType * updateTime * state
    * @opt_param int pageSize Requested page size. The server may return fewer
    * results than requested. If unspecified, the server will put a size of 500.
    * @opt_param string pageToken The page token as returned from
    * ListProposalsResponse.
    * @return ListProposalsResponse
+   * @throws \Google\Service\Exception
    */
   public function listBuyersProposals($parent, $optParams = [])
   {
@@ -142,8 +149,8 @@ class BuyersProposals extends \Google\Service\Resource
    * specified in the UpdateProposalRequest.update_mask will be updated; Fields
    * noted as 'Immutable' or 'Output only' yet specified in the
    * UpdateProposalRequest.update_mask will be ignored and left unchanged.
-   * Updating a private auction proposal is not allowed and will result in an
-   * error. (proposals.patch)
+   * Updating a private auction proposal is only allowed for buyer private data,
+   * all other fields are immutable. (proposals.patch)
    *
    * @param string $name Immutable. The name of the proposal serving as a unique
    * identifier. Format: buyers/{accountId}/proposals/{proposalId}
@@ -161,6 +168,7 @@ class BuyersProposals extends \Google\Service\Resource
    * or set to default value. Output only fields will be ignored regardless of the
    * value of updateMask.
    * @return Proposal
+   * @throws \Google\Service\Exception
    */
   public function patch($name, Proposal $postBody, $optParams = [])
   {
@@ -181,6 +189,7 @@ class BuyersProposals extends \Google\Service\Resource
    * @param SendRfpRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Proposal
+   * @throws \Google\Service\Exception
    */
   public function sendRfp($buyer, SendRfpRequest $postBody, $optParams = [])
   {

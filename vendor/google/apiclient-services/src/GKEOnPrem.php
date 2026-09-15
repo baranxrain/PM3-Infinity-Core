@@ -45,7 +45,6 @@ class GKEOnPrem extends \Google\Service
   public $projects_locations_bareMetalClusters_bareMetalNodePools;
   public $projects_locations_bareMetalClusters_bareMetalNodePools_operations;
   public $projects_locations_bareMetalClusters_operations;
-  public $projects_locations_bareMetalStandaloneClusters_bareMetalStandaloneNodePools;
   public $projects_locations_operations;
   public $projects_locations_vmwareAdminClusters;
   public $projects_locations_vmwareAdminClusters_operations;
@@ -53,6 +52,7 @@ class GKEOnPrem extends \Google\Service
   public $projects_locations_vmwareClusters_operations;
   public $projects_locations_vmwareClusters_vmwareNodePools;
   public $projects_locations_vmwareClusters_vmwareNodePools_operations;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the GKEOnPrem service.
@@ -65,6 +65,7 @@ class GKEOnPrem extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://gkeonprem.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://gkeonprem.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -94,6 +95,11 @@ class GKEOnPrem extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'extraLocationTypes' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
                 ],
                 'filter' => [
                   'location' => 'query',
@@ -127,6 +133,10 @@ class GKEOnPrem extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'allowPreflightFailure' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
                 'bareMetalAdminClusterId' => [
                   'location' => 'query',
                   'type' => 'string',
@@ -155,6 +165,10 @@ class GKEOnPrem extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'allowMissing' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
                 'view' => [
                   'location' => 'query',
                   'type' => 'string',
@@ -182,6 +196,10 @@ class GKEOnPrem extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'allowMissing' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
                 'pageSize' => [
                   'location' => 'query',
@@ -265,6 +283,10 @@ class GKEOnPrem extends \Google\Service
                   'location' => 'query',
                   'type' => 'string',
                 ],
+                'ignoreErrors' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
                 'validateOnly' => [
                   'location' => 'query',
                   'type' => 'boolean',
@@ -311,6 +333,10 @@ class GKEOnPrem extends \Google\Service
                   'location' => 'query',
                   'type' => 'string',
                 ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
               ],
             ],
           ]
@@ -330,6 +356,10 @@ class GKEOnPrem extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'allowPreflightFailure' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
                 'bareMetalClusterId' => [
                   'location' => 'query',
@@ -389,6 +419,10 @@ class GKEOnPrem extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'allowMissing' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
                 'view' => [
                   'location' => 'query',
                   'type' => 'string',
@@ -416,6 +450,10 @@ class GKEOnPrem extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'allowMissing' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
                 'filter' => [
                   'location' => 'query',
@@ -743,6 +781,10 @@ class GKEOnPrem extends \Google\Service
                   'location' => 'query',
                   'type' => 'string',
                 ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
               ],
             ],
           ]
@@ -785,25 +827,9 @@ class GKEOnPrem extends \Google\Service
                   'location' => 'query',
                   'type' => 'string',
                 ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->projects_locations_bareMetalStandaloneClusters_bareMetalStandaloneNodePools = new GKEOnPrem\Resource\ProjectsLocationsBareMetalStandaloneClustersBareMetalStandaloneNodePools(
-        $this,
-        $this->serviceName,
-        'bareMetalStandaloneNodePools',
-        [
-          'methods' => [
-            'enroll' => [
-              'path' => 'v1/{+parent}/bareMetalStandaloneNodePools:enroll',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
               ],
             ],
@@ -867,6 +893,10 @@ class GKEOnPrem extends \Google\Service
                   'location' => 'query',
                   'type' => 'string',
                 ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
               ],
             ],
           ]
@@ -878,7 +908,34 @@ class GKEOnPrem extends \Google\Service
         'vmwareAdminClusters',
         [
           'methods' => [
-            'enroll' => [
+            'create' => [
+              'path' => 'v1/{+parent}/vmwareAdminClusters',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'allowPreflightFailure' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
+                'skipValidations' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ],
+                'validateOnly' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
+                'vmwareAdminClusterId' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'enroll' => [
               'path' => 'v1/{+parent}/vmwareAdminClusters:enroll',
               'httpMethod' => 'POST',
               'parameters' => [
@@ -896,6 +953,10 @@ class GKEOnPrem extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'allowMissing' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
                 'view' => [
                   'location' => 'query',
@@ -925,6 +986,10 @@ class GKEOnPrem extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'allowMissing' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
                 'pageSize' => [
                   'location' => 'query',
                   'type' => 'integer',
@@ -946,6 +1011,11 @@ class GKEOnPrem extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'skipValidations' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
                 ],
                 'updateMask' => [
                   'location' => 'query',
@@ -993,6 +1063,10 @@ class GKEOnPrem extends \Google\Service
                   'location' => 'query',
                   'type' => 'string',
                 ],
+                'ignoreErrors' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
                 'validateOnly' => [
                   'location' => 'query',
                   'type' => 'boolean',
@@ -1039,6 +1113,10 @@ class GKEOnPrem extends \Google\Service
                   'location' => 'query',
                   'type' => 'string',
                 ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
               ],
             ],
           ]
@@ -1058,6 +1136,15 @@ class GKEOnPrem extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'allowPreflightFailure' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
+                'skipValidations' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
                 ],
                 'validateOnly' => [
                   'location' => 'query',
@@ -1117,6 +1204,10 @@ class GKEOnPrem extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'allowMissing' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
                 'view' => [
                   'location' => 'query',
                   'type' => 'string',
@@ -1145,6 +1236,10 @@ class GKEOnPrem extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
+                'allowMissing' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ],
                 'filter' => [
                   'location' => 'query',
                   'type' => 'string',
@@ -1170,6 +1265,11 @@ class GKEOnPrem extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'skipValidations' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
                 ],
                 'updateMask' => [
                   'location' => 'query',
@@ -1288,6 +1388,10 @@ class GKEOnPrem extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
               ],
             ],
@@ -1504,6 +1608,10 @@ class GKEOnPrem extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+                'returnPartialSuccess' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
               ],
             ],

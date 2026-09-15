@@ -20,11 +20,65 @@ namespace Google\Service\CloudNaturalLanguage;
 class ModerateTextResponse extends \Google\Collection
 {
   protected $collection_key = 'moderationCategories';
+  /**
+   * The language of the text, which will be the same as the language specified
+   * in the request or, if not specified, the automatically-detected language.
+   * See Document.language_code field for more details.
+   *
+   * @var string
+   */
+  public $languageCode;
+  /**
+   * Whether the language is officially supported. The API may still return a
+   * response when the language is not supported, but it is on a best effort
+   * basis.
+   *
+   * @var bool
+   */
+  public $languageSupported;
   protected $moderationCategoriesType = ClassificationCategory::class;
   protected $moderationCategoriesDataType = 'array';
 
   /**
-   * @param ClassificationCategory[]
+   * The language of the text, which will be the same as the language specified
+   * in the request or, if not specified, the automatically-detected language.
+   * See Document.language_code field for more details.
+   *
+   * @param string $languageCode
+   */
+  public function setLanguageCode($languageCode)
+  {
+    $this->languageCode = $languageCode;
+  }
+  /**
+   * @return string
+   */
+  public function getLanguageCode()
+  {
+    return $this->languageCode;
+  }
+  /**
+   * Whether the language is officially supported. The API may still return a
+   * response when the language is not supported, but it is on a best effort
+   * basis.
+   *
+   * @param bool $languageSupported
+   */
+  public function setLanguageSupported($languageSupported)
+  {
+    $this->languageSupported = $languageSupported;
+  }
+  /**
+   * @return bool
+   */
+  public function getLanguageSupported()
+  {
+    return $this->languageSupported;
+  }
+  /**
+   * Harmful and sensitive categories representing the input document.
+   *
+   * @param ClassificationCategory[] $moderationCategories
    */
   public function setModerationCategories($moderationCategories)
   {

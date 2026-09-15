@@ -14,6 +14,7 @@ namespace Monolog\Handler;
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Utils;
+use Monolog\Logger;
 
 use function count;
 use function headers_list;
@@ -177,7 +178,7 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
             $extra = static::dump('Extra', $record['extra']);
 
             if (empty($context) && empty($extra)) {
-                $script[] = static::call_array('log', static::handleStyles($record['formatted']));
+                $script[] = static::call_array(static::getConsoleMethodForLevel($record['level']), static::handleStyles($record['formatted']));
             } else {
                 $script = array_merge(
                     $script,
@@ -190,6 +191,20 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
         }
 
         return "(function (c) {if (c && c.groupCollapsed) {\n" . implode("\n", $script) . "\n}})(console);";
+    }
+
+    private static function getConsoleMethodForLevel(int $level): string
+    {
+        return [
+            Logger::DEBUG => 'debug',
+            Logger::INFO => 'info',
+            Logger::NOTICE => 'info',
+            Logger::WARNING => 'warn',
+            Logger::ERROR => 'error',
+            Logger::CRITICAL => 'error',
+            Logger::ALERT => 'error',
+            Logger::EMERGENCY => 'error',
+        ][$level] ?? 'log';
     }
 
     /**
@@ -255,10 +270,7 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
         }
         $script[] = static::call('log', static::quote('%c%s'), static::quote('font-weight: bold'), static::quote($title));
         foreach ($dict as $key => $value) {
-            $value = json_encode($value);
-            if (empty($value)) {
-                $value = static::quote('');
-            }
+            $value = Utils::jsonEncode($value, Utils::DEFAULT_JSON_FLAGS | JSON_HEX_TAG);
             $script[] = static::call('log', static::quote('%s: %o'), static::quote((string) $key), $value);
         }
 
@@ -267,7 +279,10 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
 
     private static function quote(string $arg): string
     {
-        return '"' . addcslashes($arg, "\"\n\\") . '"';
+        // JSON_HEX_TAG keeps a literal < out of the output, so that a log message cannot break out
+        // of the surrounding <script> element via </script> or <!--<script>. json_encode also
+        // escapes \r and U+2028/U+2029, which would otherwise terminate the JS string literal.
+        return Utils::jsonEncode($arg, Utils::DEFAULT_JSON_FLAGS | JSON_HEX_TAG);
     }
 
     /**

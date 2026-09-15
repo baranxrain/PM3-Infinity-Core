@@ -20,6 +20,8 @@ namespace Google\Service\NetworkSecurity\Resource;
 use Google\Service\NetworkSecurity\AddAddressGroupItemsRequest;
 use Google\Service\NetworkSecurity\AddressGroup;
 use Google\Service\NetworkSecurity\CloneAddressGroupItemsRequest;
+use Google\Service\NetworkSecurity\GoogleIamV1TestIamPermissionsRequest;
+use Google\Service\NetworkSecurity\GoogleIamV1TestIamPermissionsResponse;
 use Google\Service\NetworkSecurity\ListAddressGroupReferencesResponse;
 use Google\Service\NetworkSecurity\ListAddressGroupsResponse;
 use Google\Service\NetworkSecurity\Operation;
@@ -44,6 +46,7 @@ class OrganizationsLocationsAddressGroups extends \Google\Service\Resource
    * @param AddAddressGroupItemsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function addItems($addressGroup, AddAddressGroupItemsRequest $postBody, $optParams = [])
   {
@@ -60,6 +63,7 @@ class OrganizationsLocationsAddressGroups extends \Google\Service\Resource
    * @param CloneAddressGroupItemsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function cloneItems($addressGroup, CloneAddressGroupItemsRequest $postBody, $optParams = [])
   {
@@ -92,6 +96,7 @@ class OrganizationsLocationsAddressGroups extends \Google\Service\Resource
    * be a valid UUID with the exception that zero UUID is not supported
    * (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, AddressGroup $postBody, $optParams = [])
   {
@@ -118,6 +123,7 @@ class OrganizationsLocationsAddressGroups extends \Google\Service\Resource
    * be a valid UUID with the exception that zero UUID is not supported
    * (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -132,6 +138,7 @@ class OrganizationsLocationsAddressGroups extends \Google\Service\Resource
    * the format `projects/locations/{location}/addressGroups`.
    * @param array $optParams Optional parameters.
    * @return AddressGroup
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -153,7 +160,10 @@ class OrganizationsLocationsAddressGroups extends \Google\Service\Resource
    * `ListAddressGroupsResponse` Indicates that this is a continuation of a prior
    * `ListAddressGroups` call, and that the system should return the next page of
    * data.
+   * @opt_param bool returnPartialSuccess Optional. If true, allow partial
+   * responses for multi-regional Aggregated List requests.
    * @return ListAddressGroupsResponse
+   * @throws \Google\Service\Exception
    */
   public function listOrganizationsLocationsAddressGroups($parent, $optParams = [])
   {
@@ -176,6 +186,7 @@ class OrganizationsLocationsAddressGroups extends \Google\Service\Resource
    * @opt_param string pageToken The next_page_token value returned from a
    * previous List request, if any.
    * @return ListAddressGroupReferencesResponse
+   * @throws \Google\Service\Exception
    */
   public function listReferences($addressGroup, $optParams = [])
   {
@@ -208,6 +219,7 @@ class OrganizationsLocationsAddressGroups extends \Google\Service\Resource
    * full request. A field will be overwritten if it is in the mask. If the user
    * does not provide a mask then all fields will be overwritten.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, AddressGroup $postBody, $optParams = [])
   {
@@ -224,12 +236,36 @@ class OrganizationsLocationsAddressGroups extends \Google\Service\Resource
    * @param RemoveAddressGroupItemsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function removeItems($addressGroup, RemoveAddressGroupItemsRequest $postBody, $optParams = [])
   {
     $params = ['addressGroup' => $addressGroup, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('removeItems', [$params], Operation::class);
+  }
+  /**
+   * Returns permissions that a caller has on the specified resource. If the
+   * resource does not exist, this will return an empty set of permissions, not a
+   * `NOT_FOUND` error. Note: This operation is designed to be used for building
+   * permission-aware UIs and command-line tools, not for authorization checking.
+   * This operation may "fail open" without warning.
+   * (addressGroups.testIamPermissions)
+   *
+   * @param string $resource REQUIRED: The resource for which the policy detail is
+   * being requested. See [Resource
+   * names](https://cloud.google.com/apis/design/resource_names) for the
+   * appropriate value for this field.
+   * @param GoogleIamV1TestIamPermissionsRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return GoogleIamV1TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
+   */
+  public function testIamPermissions($resource, GoogleIamV1TestIamPermissionsRequest $postBody, $optParams = [])
+  {
+    $params = ['resource' => $resource, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('testIamPermissions', [$params], GoogleIamV1TestIamPermissionsResponse::class);
   }
 }
 

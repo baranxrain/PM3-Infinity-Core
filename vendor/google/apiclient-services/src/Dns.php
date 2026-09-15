@@ -56,6 +56,7 @@ class Dns extends \Google\Service
   public $resourceRecordSets;
   public $responsePolicies;
   public $responsePolicyRules;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Dns service.
@@ -68,6 +69,7 @@ class Dns extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://dns.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://dns.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -673,6 +675,10 @@ class Dns extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
                 ],
                 'maxResults' => [
                   'location' => 'query',

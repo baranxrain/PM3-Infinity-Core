@@ -17,33 +17,56 @@
 
 namespace Google\Service\Contactcenterinsights;
 
-class GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadata extends \Google\Model
+class GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadata extends \Google\Collection
 {
+  protected $collection_key = 'partialErrors';
   /**
+   * The number of requested analyses that have completed successfully so far.
+   *
    * @var int
    */
   public $completedAnalysesCount;
   /**
+   * The time the operation was created.
+   *
    * @var string
    */
   public $createTime;
   /**
+   * The time the operation finished running.
+   *
    * @var string
    */
   public $endTime;
   /**
+   * The number of requested analyses that have failed so far.
+   *
    * @var int
    */
   public $failedAnalysesCount;
+  protected $partialErrorsType = GoogleRpcStatus::class;
+  protected $partialErrorsDataType = 'array';
+  /**
+   * Output only. If true, the labeling rules will be re-evaluated for the
+   * conversations.
+   *
+   * @var bool
+   */
+  public $relabel;
   protected $requestType = GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest::class;
   protected $requestDataType = '';
   /**
+   * Total number of analyses requested. Computed by the number of conversations
+   * returned by `filter` multiplied by `analysis_percentage` in the request.
+   *
    * @var int
    */
   public $totalRequestedAnalysesCount;
 
   /**
-   * @param int
+   * The number of requested analyses that have completed successfully so far.
+   *
+   * @param int $completedAnalysesCount
    */
   public function setCompletedAnalysesCount($completedAnalysesCount)
   {
@@ -57,7 +80,9 @@ class GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadata extends
     return $this->completedAnalysesCount;
   }
   /**
-   * @param string
+   * The time the operation was created.
+   *
+   * @param string $createTime
    */
   public function setCreateTime($createTime)
   {
@@ -71,7 +96,9 @@ class GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadata extends
     return $this->createTime;
   }
   /**
-   * @param string
+   * The time the operation finished running.
+   *
+   * @param string $endTime
    */
   public function setEndTime($endTime)
   {
@@ -85,7 +112,9 @@ class GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadata extends
     return $this->endTime;
   }
   /**
-   * @param int
+   * The number of requested analyses that have failed so far.
+   *
+   * @param int $failedAnalysesCount
    */
   public function setFailedAnalysesCount($failedAnalysesCount)
   {
@@ -99,7 +128,43 @@ class GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadata extends
     return $this->failedAnalysesCount;
   }
   /**
-   * @param GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest
+   * Output only. Partial errors during bulk analyze operation that might cause
+   * the operation output to be incomplete.
+   *
+   * @param GoogleRpcStatus[] $partialErrors
+   */
+  public function setPartialErrors($partialErrors)
+  {
+    $this->partialErrors = $partialErrors;
+  }
+  /**
+   * @return GoogleRpcStatus[]
+   */
+  public function getPartialErrors()
+  {
+    return $this->partialErrors;
+  }
+  /**
+   * Output only. If true, the labeling rules will be re-evaluated for the
+   * conversations.
+   *
+   * @param bool $relabel
+   */
+  public function setRelabel($relabel)
+  {
+    $this->relabel = $relabel;
+  }
+  /**
+   * @return bool
+   */
+  public function getRelabel()
+  {
+    return $this->relabel;
+  }
+  /**
+   * The original request for bulk analyze.
+   *
+   * @param GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest $request
    */
   public function setRequest(GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest $request)
   {
@@ -113,7 +178,10 @@ class GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadata extends
     return $this->request;
   }
   /**
-   * @param int
+   * Total number of analyses requested. Computed by the number of conversations
+   * returned by `filter` multiplied by `analysis_percentage` in the request.
+   *
+   * @param int $totalRequestedAnalysesCount
    */
   public function setTotalRequestedAnalysesCount($totalRequestedAnalysesCount)
   {
