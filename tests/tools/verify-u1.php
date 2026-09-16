@@ -179,6 +179,17 @@ $required = [
     'tests/unit/Compatibility/BrowserRuntimeHarnessTest.php',
     'tests/tools/verify-u319.php',
     'tests/tools/run-u319-checks.cmd',
+    // T-1A/T-1B dual-runner infrastructure.
+    'phpunit-10.xml',
+    'tests/tools/phpunit-10.phar',
+    'tests/tools/phpunit-10.phar.sha256',
+    'tests/tools/acquire-phpunit10.ps1',
+    'tests/tools/verify-t1a-phpunit10.php',
+    'tests/tools/verify-t1b-phpunit10.php',
+    'tests/tools/run-t1a-phpunit10-checks.cmd',
+    'tests/tools/run-t1a-checks.cmd',
+    'tests/tools/run-t1b-phpunit10-checks.cmd',
+    'tests/tools/run-t1b-checks.cmd',
 ];
 foreach ($required as $relativeFile) {
     $pass(is_file($root . '/' . $relativeFile), 'Required file: ' . $relativeFile);
@@ -250,7 +261,8 @@ foreach ($iterator as $file) {
 // U-3.13 added GulliverFinalEvalMigrationTest.php and verify-u313.php.
 // U-3.14 added DynamicModelDispatchEvalMigrationTest.php and verify-u314.php.
 // U-3.16 added ExpressionExecutionClosureTest.php and verify-u316.php; U-3.17 added TriggerTemporaryExecutionClosureTest.php and verify-u317.php; U-3.18 added ClientEvalClosureTest.php and verify-u318.php.
-$pass($parsed === 88, 'All eighty-eight harness PHP files parse under PHP 8.1');
+// T-1A and T-1B add one verifier each; keep the syntax-file ratchet exact.
+$pass($parsed === 90, 'All ninety harness PHP files parse under PHP 8.1');
 
 $decode = static function (string $file): array {
     $contents = file_get_contents($file);

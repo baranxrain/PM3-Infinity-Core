@@ -1,0 +1,5 @@
+[CmdletBinding()]
+param([string]$Uri='https://phar.phpunit.de/phpunit-10.5.64.phar')
+Set-StrictMode -Version 2.0
+$ErrorActionPreference='Stop';$expected='a823d916151f628dd9943ccc81a98bcfbba9c5babf53f27be6c7dccc89f8ee23';$dir=Split-Path -Parent $MyInvocation.MyCommand.Path;$target=Join-Path $dir 'phpunit-10.phar';$tmp=Join-Path $env:TEMP ('phpunit10-'+[Guid]::NewGuid().ToString('N')+'.phar')
+try{$php=Get-Command php.exe,php -ErrorAction Stop|Select-Object -First 1;[Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls12;Invoke-WebRequest -UseBasicParsing -Uri $Uri -OutFile $tmp;$hash=(Get-FileHash $tmp -Algorithm SHA256).Hash.ToLowerInvariant();if($hash-ne$expected){throw "SHA-256 mismatch: $hash"};$version=(&$php.Source $tmp --version 2>&1|Out-String).Trim();if($version-notmatch'^PHPUnit 10\.5\.64\b'){throw "Version mismatch: $version"};Move-Item $tmp $target -Force;Write-Host "PHPUNIT10_VERSION=$version";Write-Host "PHPUNIT10_SHA256=$hash";Write-Host 'T1B_PINNED_ACQUISITION=PASS'}finally{if(Test-Path $tmp){Remove-Item $tmp -Force -ErrorAction SilentlyContinue}}

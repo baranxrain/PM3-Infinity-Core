@@ -40,19 +40,17 @@ final class FilterSanitizeStringMigrationTest extends TestCase
         );
     }
 
-    private static function nativeSanitizeString($value, int $flags = 0): string
+    private static function expectedLegacySanitizeString($value, int $flags = 0): string
     {
-        if (!defined('FILTER_SANITIZE_STRING')) {
-            self::markTestSkipped('The native legacy string sanitizer is unavailable on this runtime.');
+        $value = strip_tags((string) $value);
+        $value = str_replace(['"', "'"], ['&#34;', '&#39;'], $value);
+        if (($flags & FILTER_FLAG_STRIP_LOW) !== 0) {
+            $value = (string) preg_replace('/[\x00-\x1F]/', '', $value);
         }
-
-        $previousReporting = error_reporting();
-        error_reporting($previousReporting & ~E_DEPRECATED);
-        try {
-            return (string) filter_var($value, constant('FILTER_SANITIZE_STRING'), $flags);
-        } finally {
-            error_reporting($previousReporting);
+        if (($flags & FILTER_FLAG_STRIP_HIGH) !== 0) {
+            $value = (string) preg_replace('/[\x7F-\xFF]/', '', $value);
         }
+        return $value;
     }
 
     public function testNoExecutableLegacyStringSanitizerConstantRemainsInScope(): void
@@ -84,12 +82,12 @@ final class FilterSanitizeStringMigrationTest extends TestCase
         $sample = '<b>Tom "O\'Neil"</b><script>alert(1)</script>';
 
         self::assertSame(
-            addslashes(htmlspecialchars(self::nativeSanitizeString($sample), ENT_COMPAT, 'UTF-8')),
+            addslashes(htmlspecialchars(self::expectedLegacySanitizeString($sample), ENT_COMPAT, 'UTF-8')),
             $filter->xssFilter($sample),
             'Default xssFilter output must match the legacy sanitizer plus existing escaping.'
         );
         self::assertSame(
-            self::nativeSanitizeString($sample),
+            self::expectedLegacySanitizeString($sample),
             $filter->xssFilter($sample, 'url'),
             'URL mode must return only the legacy sanitized string.'
         );
@@ -101,12 +99,12 @@ final class FilterSanitizeStringMigrationTest extends TestCase
         $sample = "abc\x01<em>TAG</em>ñ\x7F\xC3\xB1 safe";
 
         self::assertSame(
-            self::nativeSanitizeString($sample, FILTER_FLAG_STRIP_LOW),
+            self::expectedLegacySanitizeString($sample, FILTER_FLAG_STRIP_LOW),
             $filter->sanitizeInputValue($sample, 'string'),
             'Default string sanitizing keeps the low-byte stripping behaviour.'
         );
         self::assertSame(
-            self::nativeSanitizeString($sample, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH),
+            self::expectedLegacySanitizeString($sample, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH),
             $filter->sanitizeInputValue($sample, 'nosql'),
             'nosql sanitizing keeps both low-byte and high-byte stripping before keyword truncation.'
         );

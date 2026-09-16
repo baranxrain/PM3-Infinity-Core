@@ -81,7 +81,7 @@ class LegacyStrftimeContractTest extends TestCase
     }
 
     /** @return iterable<string, array{string, int, string}> */
-    public function specifierCases(): iterable
+    public static function specifierCases(): iterable
     {
         $contract = self::loadContract();
 
@@ -108,7 +108,7 @@ class LegacyStrftimeContractTest extends TestCase
     }
 
     /** @return iterable<string, array{string, int, string}> */
-    public function maskCases(): iterable
+    public static function maskCases(): iterable
     {
         $contract = self::loadContract();
 

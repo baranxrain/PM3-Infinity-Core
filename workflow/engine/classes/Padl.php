@@ -505,7 +505,7 @@ class Padl
 
         list($usec, $sec) = explode(' ', microtime());
         $seed = (float) $sec + ((float) $usec * 100000);
-        mt_srand($seed);
+        mt_srand((int) $seed);
 
         for ($i = 0; $length > $i; $i++) {
             $str .= $seeds[mt_rand(0, $seeds_count - 1)];

@@ -79,17 +79,11 @@ final class McryptMigrationTest extends TestCase
             'NUMBER' => 2425,
         ];
 
-        $previousReporting = error_reporting();
-        error_reporting($previousReporting & ~E_DEPRECATED);
-        try {
-            foreach (['KEY', 'REQUESTKEY', 'HOMEKEY'] as $keyType) {
-                $encrypted = $padl->_encrypt($payload, $keyType);
-                self::assertIsString($encrypted);
-                self::assertNotSame('', $encrypted);
-                self::assertSame($payload, $padl->_decrypt($encrypted, $keyType), 'Regular cipher must round-trip for ' . $keyType . '.');
-            }
-        } finally {
-            error_reporting($previousReporting);
+        foreach (['KEY', 'REQUESTKEY', 'HOMEKEY'] as $keyType) {
+            $encrypted = $padl->_encrypt($payload, $keyType);
+            self::assertIsString($encrypted);
+            self::assertNotSame('', $encrypted);
+            self::assertSame($payload, $padl->_decrypt($encrypted, $keyType), 'Regular cipher must round-trip for ' . $keyType . '.');
         }
     }
 
