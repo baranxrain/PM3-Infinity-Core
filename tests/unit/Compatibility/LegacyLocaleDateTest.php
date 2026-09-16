@@ -207,6 +207,7 @@ final class LegacyLocaleDateTest extends TestCase
     }
 
     /** @dataProvider localeNameProvider */
+    #[\PHPUnit\Framework\Attributes\DataProvider('localeNameProvider')]
     public function testLegacyLocaleNamesResolveByLanguage(string $locale, string $expected): void
     {
         self::assertSame($expected, LegacyLocaleDate::language($locale));

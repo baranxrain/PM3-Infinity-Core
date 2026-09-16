@@ -68,6 +68,7 @@ class LegacyStrftimeContractTest extends TestCase
     /**
      * @dataProvider specifierCases
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('specifierCases')]
     public function testSpecifierMatchesTheRecordedNativeOutput(string $specifier, int $timestamp, string $expected): void
     {
         $previous = date_default_timezone_get();
@@ -95,6 +96,7 @@ class LegacyStrftimeContractTest extends TestCase
     /**
      * @dataProvider maskCases
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('maskCases')]
     public function testRealMaskMatchesTheRecordedNativeOutput(string $mask, int $timestamp, string $expected): void
     {
         $previous = date_default_timezone_get();

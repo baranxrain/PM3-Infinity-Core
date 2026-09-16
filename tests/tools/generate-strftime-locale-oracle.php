@@ -21,6 +21,7 @@ declare(strict_types=1);
  */
 
 $root = dirname(__DIR__, 2);
+require_once $root . '/tests/Support/LegacyUtf8Oracle.php';
 $target = $root . '/tests/fixtures/legacy-strftime-locale-oracle.json';
 
 // The user-selectable date formats, copied verbatim from
@@ -121,7 +122,7 @@ $capture = static function (string $format, int $timestamp): array {
     // UTF-8 and exactly what the PARTNER_FLAG branch of getSystemDate() emits.
     return [
         'hex' => bin2hex($value),
-        'utf8' => utf8_encode($value),
+        'utf8' => \Tests\Support\LegacyUtf8Oracle::encode($value),
         'isUtf8' => (bool) preg_match('//u', $value),
         'notices' => $notices,
     ];

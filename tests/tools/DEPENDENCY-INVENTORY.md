@@ -139,3 +139,9 @@ Do not update the stable dependency baseline merely to suppress PHP 8.2 deprecat
 | `nette/schema` | v1.2.2 | v1.2.5 | production | Removes the PHP `<8.2` platform ceiling while retaining PHP 8.1 support. |
 | `phpspec/prophecy` | v1.15.0 | v1.16.0 | development lock only | Adds PHP 8.2 compatibility for the Composer development graph. |
 | `nette/utils` | v3.2.8 | v3.2.8 | production | Intentionally unchanged; supports PHP 8.1 and 8.2. |
+
+## T-3A test-only PHPUnit 11 lane
+
+- `phpunit-11.phar`: PHPUnit 11.5.49, test-only, acquired separately from `https://phar.phpunit.de/phpunit-11.5.49.phar`.
+- Pinned SHA-256: `b20ea78f38bc6abccc96ace605c471b1d11912ad6f0285c74415919050d234a6`.
+- This does not alter `composer.json`, `composer.lock`, production vendor code, PHPUnit 9.5 baseline, or the accepted PHPUnit 10.5.64 lane.

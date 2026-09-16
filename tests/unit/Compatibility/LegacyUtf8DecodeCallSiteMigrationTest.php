@@ -211,6 +211,7 @@ final class LegacyUtf8DecodeCallSiteMigrationTest extends TestCase
     /**
      * @dataProvider realisticPayloadProvider
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('realisticPayloadProvider')]
     public function testHelperDecodeMatchesTheNativeDecoderForRealisticPayloads(string $payload): void
     {
         $this->assertSame(LegacyUtf8Oracle::decode($payload), LegacyUtf8::decode($payload));

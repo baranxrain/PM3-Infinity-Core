@@ -300,3 +300,16 @@ The cumulative runner executes every U-3.19 historical preflight, Composer check
 ## T-2B rev F: non-mutating cumulative oracle lifecycle
 
 `run-u319-checks.cmd` snapshots the frozen locale oracle before the live PHP 8.1/8.2 capture, executes every historical preflight against that live evidence, then restores the frozen fixture before browser, Composer, PHPUnit 9 and downstream PHPUnit 10 gates. The failure path restores it as well. This keeps standalone and cumulative acceptance deterministic without weakening the PHP 8.1 oracle contract test.
+
+
+## T-3A: pinned PHPUnit 11 discovery lane
+
+`run-t3a-checks.cmd` runs the complete historical U-1 through U-3.19 acceptance chain, the PHP 8.2/PHPUnit 10 lane, and then PHPUnit 11.5.49 using `phpunit-11.xml`. The PHPUnit 11 PHAR is acquired separately by `acquire-phpunit11.ps1` and verified against the pinned SHA-256 manifest. The acceptance ratchet remains exactly 604 tests and 9241 assertions.
+
+### T-3A rev B: additive harness ratchet and clean oracle capture
+
+The PHPUnit 11 verifier is the 93rd PHP harness file, so both historical preflights ratchet exactly 93 files. The standalone locale-oracle generator loads `Tests\Support\LegacyUtf8Oracle` and does not execute deprecated native `utf8_encode()` on PHP 8.2.
+
+### T-3A rev C: dual-compatible data-provider metadata
+
+The five data-provider tests reported by PHPUnit 11 now carry `PHPUnit\Framework\Attributes\DataProvider` metadata. Their existing `@dataProvider` annotations remain as the PHPUnit 9.5.8 compatibility path. PHPUnit 11 gives attribute metadata precedence, eliminating its test-runner deprecations without suppressing the deprecation gate or changing test cases, providers, assertions, production code, or suite scope.

@@ -27,7 +27,7 @@ $check(strpos($xml, 'failOnPhpunitDeprecation="true"') !== false, 'PHPUnit 10 fa
 $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($root . '/tests', RecursiveDirectoryIterator::SKIP_DOTS)); $parsed = 0; $parseFailures = [];
 foreach ($iterator as $file) { if (!$file->isFile() || strtolower($file->getExtension()) !== 'php') { continue; } try { token_get_all((string) file_get_contents($file->getPathname()), TOKEN_PARSE); ++$parsed; } catch (ParseError $error) { $parseFailures[] = str_replace('\\','/',$file->getPathname()) . ': ' . $error->getMessage(); } }
 foreach ($parseFailures as $failure) { echo '[PARSE-FAIL] ' . $failure . PHP_EOL; }
-$check($parseFailures === [] && $parsed === 92, 'All 92 test-harness PHP files parse on PHP 8.2');
+$check($parseFailures === [] && $parsed === 93, 'All 93 test-harness PHP files parse on PHP 8.2');
 $template = (string) file_get_contents($root . '/gulliver/system/class.templatePower.php');
 $check(strpos($template, '$this->{$tplvar}') === false && strpos($template, 'public $tpl_rawContent = [];') !== false, 'TemplatePower dynamic storage replaced by declared array');
 $testFiles = ['LegacyUtf8ContractTest.php','LegacyUtf8CallSiteMigrationTest.php','LegacyUtf8DecodeCallSiteMigrationTest.php','LegacyUtf8StrftimeCouplingTest.php','PmScriptGeneratedStringMigrationTest.php','StrftimeLocaleOracleTest.php'];

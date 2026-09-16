@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd" bootstrap="tests/bootstrap.php" colors="true" cacheDirectory=".phpunit.cache" failOnEmptyTestSuite="true" failOnRisky="true" failOnWarning="true" failOnDeprecation="true" failOnPhpunitDeprecation="true" beStrictAboutOutputDuringTests="true">
+ <testsuites><testsuite name="unit"><directory suffix="Test.php">tests/unit</directory></testsuite></testsuites>
+ <source><include><file>workflow/engine/src/ProcessMaker/Util/ArrayUtil.php</file></include></source>
+ <php><ini name="display_errors" value="1"/><ini name="error_reporting" value="-1"/><env name="APP_ENV" value="testing" force="true"/></php>
+</phpunit>

@@ -14,6 +14,7 @@ final class PublicApiCompatibilityTest extends TestCase
      *
      * @param list<string> $expectedMethods
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('legacyClassProvider')]
     public function testLegacyPublicMethodsCannotDisappear(
         string $className,
         string $relativeFile,
