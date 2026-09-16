@@ -5,6 +5,9 @@ chcp 65001 >nul
 for %%I in ("%~dp0\..\..") do set "ROOT=%%~fI"
 set "LOG=%ROOT%\U319-ACCEPTANCE.log"
 set "PHPUNIT_PHAR=tests\tools\phpunit-9.5.8.phar"
+set "ORACLE=%ROOT%\tests\fixtures\legacy-strftime-locale-oracle.json"
+set "ORACLE_BACKUP=%TEMP%\u319-oracle-%RANDOM%-%RANDOM%.json"
+set "ORACLE_BACKED_UP=0"
 set "COMPOSER_DISABLE_NETWORK=1"
 set "COMPOSER_NO_INTERACTION=1"
 cd /d "%ROOT%" || exit /b 2
@@ -20,6 +23,11 @@ cd /d "%ROOT%" || exit /b 2
 >>"%LOG%" echo.
 
 echo U-3.19 offline checks started. Full output: "%LOG%"
+if exist "%ORACLE%" (
+    copy /y "%ORACLE%" "%ORACLE_BACKUP%" >nul
+    if errorlevel 1 goto :failed
+    set "ORACLE_BACKED_UP=1"
+)
 call :run "Locate PHP" "where php"
 if errorlevel 1 goto :failed
 call :run "PHP version" "php --version"
@@ -104,6 +112,8 @@ call :run "U-3.18 client-side and textual eval closure preflight" "php tests\too
 if errorlevel 1 goto :failed
 call :run "U-3.19 browser harness preflight" "php tests\tools\verify-u319.php"
 if errorlevel 1 goto :failed
+call :restoreOracle
+if errorlevel 1 goto :failed
 call :run "U-3.19 real browser runtime suite" "tests\tools\run-u319-browser-checks.cmd"
 if errorlevel 1 goto :failed
 call :run "Locate Composer" "where composer"
@@ -145,8 +155,19 @@ if not "%RC%"=="0" (
 echo [PASS] %STEP%
 exit /b 0
 
+:restoreOracle
+if not "%ORACLE_BACKED_UP%"=="1" exit /b 0
+copy /y "%ORACLE_BACKUP%" "%ORACLE%" >nul
+if errorlevel 1 exit /b 1
+del /q "%ORACLE_BACKUP%" >nul 2>&1
+if exist "%ORACLE_BACKUP%" exit /b 1
+set "ORACLE_BACKED_UP=0"
+>>"%LOG%" echo [INFO] Restored frozen locale oracle before browser, Composer and PHPUnit gates.
+exit /b 0
+
 :failed
 set "FINAL_RC=%ERRORLEVEL%"
+call :restoreOracle >nul 2>&1
 if "%FINAL_RC%"=="0" set "FINAL_RC=1"
 >>"%LOG%" echo.
 >>"%LOG%" echo U319_ACCEPTANCE=FAIL

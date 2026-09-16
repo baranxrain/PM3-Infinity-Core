@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Compatibility;
 
 use PHPUnit\Framework\TestCase;
+use Tests\Support\LegacyUtf8Oracle;
 use ProcessMaker\Util\LegacyUtf8;
 use RuntimeException;
 use Tests\Support\CompatibilityLedger;
@@ -81,7 +82,7 @@ final class LegacyUtf8DecodeCallSiteMigrationTest extends TestCase
             $this->assertSame(
                 0,
                 PhpSourceScanner::matchCount($projection, self::DECODE_PATTERN),
-                $relativeFile . ' must not contain an executable native utf8_decode() call'
+                $relativeFile . ' must not contain an executable native LegacyUtf8Oracle::decode() call'
             );
         }
     }
@@ -162,7 +163,7 @@ final class LegacyUtf8DecodeCallSiteMigrationTest extends TestCase
         for ($byte = 0; $byte <= 255; ++$byte) {
             $input = chr($byte);
             $this->assertSame(
-                utf8_decode($input),
+                LegacyUtf8Oracle::decode($input),
                 LegacyUtf8::decode($input),
                 'Byte 0x' . strtoupper(dechex($byte)) . ' must decode identically'
             );
@@ -175,7 +176,7 @@ final class LegacyUtf8DecodeCallSiteMigrationTest extends TestCase
         for ($lead = 0xC0; $lead <= 0xDF; ++$lead) {
             for ($trail = 0x00; $trail <= 0xFF; ++$trail) {
                 $input = chr($lead) . chr($trail);
-                if (utf8_decode($input) !== LegacyUtf8::decode($input)) {
+                if (LegacyUtf8Oracle::decode($input) !== LegacyUtf8::decode($input)) {
                     $divergent[] = sprintf('%02X%02X', $lead, $trail);
                 }
             }
@@ -212,7 +213,7 @@ final class LegacyUtf8DecodeCallSiteMigrationTest extends TestCase
      */
     public function testHelperDecodeMatchesTheNativeDecoderForRealisticPayloads(string $payload): void
     {
-        $this->assertSame(utf8_decode($payload), LegacyUtf8::decode($payload));
+        $this->assertSame(LegacyUtf8Oracle::decode($payload), LegacyUtf8::decode($payload));
     }
 
     public function testRoundTripOfEveryLatin1ByteIsPreserved(): void
@@ -220,7 +221,7 @@ final class LegacyUtf8DecodeCallSiteMigrationTest extends TestCase
         for ($byte = 0; $byte <= 255; ++$byte) {
             $input = chr($byte);
             $this->assertSame(
-                utf8_decode(utf8_encode($input)),
+                LegacyUtf8Oracle::decode(LegacyUtf8Oracle::encode($input)),
                 LegacyUtf8::decode(LegacyUtf8::encode($input)),
                 'Round trip must match the native round trip for byte ' . $byte
             );
@@ -231,7 +232,7 @@ final class LegacyUtf8DecodeCallSiteMigrationTest extends TestCase
     public function testHelperDecodeMatchesTheNativeDecoderForTheFullByteString(): void
     {
         $allBytes = implode('', array_map('chr', range(0, 255)));
-        $this->assertSame(utf8_decode($allBytes), LegacyUtf8::decode($allBytes));
-        $this->assertSame(utf8_decode(utf8_encode($allBytes)), LegacyUtf8::decode(LegacyUtf8::encode($allBytes)));
+        $this->assertSame(LegacyUtf8Oracle::decode($allBytes), LegacyUtf8::decode($allBytes));
+        $this->assertSame(LegacyUtf8Oracle::decode(LegacyUtf8Oracle::encode($allBytes)), LegacyUtf8::decode(LegacyUtf8::encode($allBytes)));
     }
 }

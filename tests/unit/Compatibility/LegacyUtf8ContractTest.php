@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Compatibility;
 
 use PHPUnit\Framework\TestCase;
+use Tests\Support\LegacyUtf8Oracle;
 use ProcessMaker\Util\LegacyUtf8;
 
 require_once PM_TEST_ROOT . '/workflow/engine/src/ProcessMaker/Util/LegacyUtf8.php';
@@ -48,25 +49,25 @@ final class LegacyUtf8ContractTest extends TestCase
         }
     }
 
-    public function testHelperAndFixtureMatchPhpEightOneNativeOracle(): void
+    public function testHelperAndFixtureMatchFrozenLegacyOracle(): void
     {
         self::assertGreaterThanOrEqual(80100, PHP_VERSION_ID);
-        self::assertLessThan(80200, PHP_VERSION_ID);
-        self::assertTrue(function_exists('utf8_encode'));
-        self::assertTrue(function_exists('utf8_decode'));
+        self::assertLessThan(80300, PHP_VERSION_ID);
+        self::assertTrue(is_callable([LegacyUtf8Oracle::class, 'encode']));
+        self::assertTrue(is_callable([LegacyUtf8Oracle::class, 'decode']));
 
         foreach (self::fixture()['singleByteEncodeCases'] as $case) {
             $input = self::bytes($case['inputHex']);
             $expected = self::bytes($case['expectedHex']);
-            self::assertSame($expected, utf8_encode($input), 'Native encode oracle mismatch for 0x' . $case['inputHex']);
-            self::assertSame(utf8_encode($input), LegacyUtf8::encode($input), 'Helper encode oracle mismatch for 0x' . $case['inputHex']);
+            self::assertSame($expected, LegacyUtf8Oracle::encode($input), 'Frozen encode oracle mismatch for 0x' . $case['inputHex']);
+            self::assertSame(LegacyUtf8Oracle::encode($input), LegacyUtf8::encode($input), 'Helper encode oracle mismatch for 0x' . $case['inputHex']);
         }
 
         foreach (self::fixture()['decodeCases'] as $case) {
             $input = self::bytes($case['inputHex']);
             $expected = self::bytes($case['expectedHex']);
-            self::assertSame($expected, utf8_decode($input), 'Native decode oracle mismatch for ' . $case['name']);
-            self::assertSame(utf8_decode($input), LegacyUtf8::decode($input), 'Helper decode oracle mismatch for ' . $case['name']);
+            self::assertSame($expected, LegacyUtf8Oracle::decode($input), 'Frozen decode oracle mismatch for ' . $case['name']);
+            self::assertSame(LegacyUtf8Oracle::decode($input), LegacyUtf8::decode($input), 'Helper decode oracle mismatch for ' . $case['name']);
         }
     }
 

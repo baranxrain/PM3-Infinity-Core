@@ -45,7 +45,7 @@ class ComposerStaticInit4fdb3046034ab6356b3ed1cb25f55b57
         '4d91dd78b19c48ca08f9722f053de1a3' => __DIR__ . '/../..' . '/workflow/engine/classes/class.pmFunctions.php',
         'a7e627efa6c9d1116d0855cb05b9ae90' => __DIR__ . '/../..' . '/workflow/engine/src/ProcessMaker/Util/helpers.php',
         '11b9e75510633a4e766ad43713ca8c86' => __DIR__ . '/../..' . '/framework/src/Maveriks/Extension/Restler/UploadFormat.php',
-        'f6bc4fdcd28354c1b38ac1665185edff' => __DIR__ . '/..' . '/typo3/alias-loader-include.php',
+        '8b1a0b934a147572693c01d7e9bdcf63' => __DIR__ . '/..' . '/typo3/alias-loader-include.php',
     );
 
     public static $prefixLengthsPsr4 = array (

@@ -22,7 +22,7 @@ Accepted file SHA-256 values:
 
 ```text
 composer.json  708119e1eb1f15b263a35366ff18116dcd828329f2481aa588efc49d81a33ad2
-composer.lock  c6d4c0da3da7483ad9499f8fdc5a137997cf57a55b1bbeee09f8210711a4c50f
+composer.lock  9f879af7b047666ee70708741d74521c91925e1b6addd80a9d465b6ea76e9cb3
 ```
 
 Any intentional Composer change must update the dependency fixture and all historical dependency-baseline guards together. A hash must never be changed only to make a test pass; review the lock diff first and rerun the complete U-3.19 suite.
@@ -131,3 +131,11 @@ PHP 8.1 is the stable release target. PHP 8.2 work must happen on `compatibility
 The main remaining compatibility risks include dynamic-property deprecations in Smarty 2.6.31, Propel 1, Creole, generated model classes, and other legacy third-party code. U-4.1 must inventory and ratchet those deprecations while preserving every PHP 8.1 historical preflight, all 16 browser tests, and at least 604 PHPUnit tests.
 
 Do not update the stable dependency baseline merely to suppress PHP 8.2 deprecations. Review dependency upgrades and source compatibility changes as separate, testable units.
+
+## T-2B rev E accepted delta
+
+| Package | Previous | Accepted | Scope | Reason |
+|---|---:|---:|---|---|
+| `nette/schema` | v1.2.2 | v1.2.5 | production | Removes the PHP `<8.2` platform ceiling while retaining PHP 8.1 support. |
+| `phpspec/prophecy` | v1.15.0 | v1.16.0 | development lock only | Adds PHP 8.2 compatibility for the Composer development graph. |
+| `nette/utils` | v3.2.8 | v3.2.8 | production | Intentionally unchanged; supports PHP 8.1 and 8.2. |

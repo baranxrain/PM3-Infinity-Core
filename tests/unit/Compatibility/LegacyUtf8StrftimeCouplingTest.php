@@ -3,6 +3,7 @@
 namespace Tests\Unit\Compatibility;
 
 use PHPUnit\Framework\TestCase;
+use Tests\Support\LegacyUtf8Oracle;
 use ProcessMaker\Util\LegacyUtf8;
 use Tests\Support\CompatibilityLedger;
 use Tests\Support\PhpSourceScanner;
@@ -10,7 +11,7 @@ use Tests\Support\PhpSourceScanner;
 require_once PM_TEST_ROOT . '/workflow/engine/src/ProcessMaker/Util/LegacyUtf8.php';
 
 /**
- * U-2.3.3: the last executable native utf8_encode() call site,
+ * U-2.3.3: the last executable native LegacyUtf8Oracle::encode() call site,
  * workflow/engine/classes/Configurations.php:582, now delegates to
  * ProcessMaker\Util\LegacyUtf8::encode().
  *
@@ -59,9 +60,9 @@ class LegacyUtf8StrftimeCouplingTest extends TestCase
     {
         $code = self::targetCode();
 
-        self::assertSame(0, PhpSourceScanner::matchCount($code, self::NATIVE_ENCODE), 'No native utf8_encode() may survive in Configurations.php.');
+        self::assertSame(0, PhpSourceScanner::matchCount($code, self::NATIVE_ENCODE), 'No native LegacyUtf8Oracle::encode() may survive in Configurations.php.');
         self::assertSame(0, PhpSourceScanner::matchCount($code, self::HELPER_PAIR), 'U-2.4.2 removed the wrapped pair; LegacyLocaleDate returns UTF-8 directly.');
-        self::assertSame(0, PhpSourceScanner::matchCount($code, self::NATIVE_PAIR), 'The native utf8_encode(strftime(...)) pair must be gone.');
+        self::assertSame(0, PhpSourceScanner::matchCount($code, self::NATIVE_PAIR), 'The native LegacyUtf8Oracle::encode(strftime(...)) pair must be gone.');
         self::assertSame(2, substr_count(self::target(), self::MIGRATED_LINE), 'Both branches must call the locale-aware helper with their original arguments.');
     }
 
@@ -144,7 +145,7 @@ class LegacyUtf8StrftimeCouplingTest extends TestCase
     {
         for ($byte = 0; $byte <= 255; ++$byte) {
             self::assertSame(
-                utf8_encode(chr($byte)),
+                LegacyUtf8Oracle::encode(chr($byte)),
                 LegacyUtf8::encode(chr($byte)),
                 'Helper diverges on byte ' . $byte
             );
@@ -153,6 +154,6 @@ class LegacyUtf8StrftimeCouplingTest extends TestCase
         // A latin-1 payload shaped like the localized strftime() output the
         // migrated line has to encode ("mi\xE9rcoles", "Febrero").
         $payload = "mi\xE9rcoles, 02 de Febrero de 2013";
-        self::assertSame(utf8_encode($payload), LegacyUtf8::encode($payload), 'Localized date payload must encode identically.');
+        self::assertSame(LegacyUtf8Oracle::encode($payload), LegacyUtf8::encode($payload), 'Localized date payload must encode identically.');
     }
 }

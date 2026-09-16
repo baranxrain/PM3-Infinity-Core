@@ -8,7 +8,7 @@ $pass = static function (bool $condition, string $message) use (&$checks): void 
 $required = ['gulliver/system/class.publisher.php','tests/fixtures/deprecation-budget.json','tests/fixtures/eval-inventory.json','tests/unit/Compatibility/PublisherEvalMigrationTest.php','tests/tools/verify-u39.php','tests/tools/run-u39-checks.cmd'];
 foreach ($required as $relative) { $pass(is_file($root . '/' . $relative), 'Required U-3.9 file: ' . $relative); }
 $pass(hash_file('sha256', $root . '/composer.json') === '708119e1eb1f15b263a35366ff18116dcd828329f2481aa588efc49d81a33ad2', 'Unchanged since U-1: composer.json');
-$pass(hash_file('sha256', $root . '/composer.lock') === 'c6d4c0da3da7483ad9499f8fdc5a137997cf57a55b1bbeee09f8210711a4c50f', 'Unchanged since U-1: composer.lock');
+$pass(hash_file('sha256', $root . '/composer.lock') === '9f879af7b047666ee70708741d74521c91925e1b6addd80a9d465b6ea76e9cb3', 'Accepted T-2B rev E Composer lock');
 require_once $root . '/tests/bootstrap.php';
 $target='gulliver/system/class.publisher.php'; $pattern='(?<![\\w$>-])eval\\s*\\('; $raw=PhpSourceScanner::read($root.'/'.$target); $code=PhpSourceScanner::codeOnlySource($raw);
 $budget=json_decode((string)file_get_contents($root.'/tests/fixtures/deprecation-budget.json'),true,512,JSON_THROW_ON_ERROR); $inventory=json_decode((string)file_get_contents($root.'/tests/fixtures/eval-inventory.json'),true,512,JSON_THROW_ON_ERROR); $counts=CompatibilityLedger::counts($budget['scope'],['eval'=>$pattern]);

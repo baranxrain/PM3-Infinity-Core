@@ -80,6 +80,7 @@ class TemplatePowerParser
     public $tpl_include;
     //Array( [filename/varcontent], [T_BYFILE/T_BYVAR] )
     public $tpl_count;
+    public $tpl_rawContent = [];
     public $parent = [];
     // $parent[{blockname}] = {parentblockname}
     public $defBlock = [];
@@ -144,7 +145,7 @@ class TemplatePowerParser
     {
         for ($i = 0; $i <= $this->tpl_count; $i++) {
             $tplvar = 'tpl_rawContent' . $i;
-            unset($this->{$tplvar});
+            unset($this->tpl_rawContent[$tplvar]);
         }
     }
 
@@ -159,13 +160,13 @@ class TemplatePowerParser
     {
         $tplvar = 'tpl_rawContent' . $this->tpl_count;
         if ($type == T_BYVAR) {
-            $this->{$tplvar}["content"] = preg_split("/\r\n/", $tpl_file, -1, PREG_SPLIT_DELIM_CAPTURE);
+            $this->tpl_rawContent[$tplvar]["content"] = preg_split("/\r\n/", $tpl_file, -1, PREG_SPLIT_DELIM_CAPTURE);
         } else {
             //Trigger the error in the local scope of the function
             //trigger_error ("Some error", E_USER_WARNING);
-            $this->{$tplvar}["content"] = @file($tpl_file) or die($this->errorAlert('TemplatePower Error: Couldn\'t open [ ' . $tpl_file . ' ]!'));
+            $this->tpl_rawContent[$tplvar]["content"] = @file($tpl_file) or die($this->errorAlert('TemplatePower Error: Couldn\'t open [ ' . $tpl_file . ' ]!'));
         }
-        $this->{$tplvar}["size"] = sizeof($this->{$tplvar}["content"]);
+        $this->tpl_rawContent[$tplvar]["size"] = sizeof($this->tpl_rawContent[$tplvar]["content"]);
         $this->tpl_count++;
         return $tplvar;
     }
@@ -184,8 +185,8 @@ class TemplatePowerParser
         $varrow = $initdev["varrow"];
         $index = $initdev["index"];
         $ignore = $initdev["ignore"];
-        while ($index < $this->{$tplvar}["size"]) {
-            if (preg_match('/<!--[ ]?(START|END) IGNORE -->/', $this->{$tplvar}["content"][$index], $ignreg)) {
+        while ($index < $this->tpl_rawContent[$tplvar]["size"]) {
+            if (preg_match('/<!--[ ]?(START|END) IGNORE -->/', $this->tpl_rawContent[$tplvar]["content"][$index], $ignreg)) {
                 if ($ignreg[1] == 'START') {
                     //$ignore = true;
                     array_push($this->ignore_stack, true);
@@ -196,7 +197,7 @@ class TemplatePowerParser
             } else {
                 if (!end($this->ignore_stack)) {
                     if (preg_match('/<!--[ ]?(START|END|INCLUDE|INCLUDESCRIPT|REUSE) BLOCK : (.+)-->/',
-                        $this->{$tplvar}["content"][$index], $regs)) {
+                        $this->tpl_rawContent[$tplvar]["content"][$index], $regs)) {
                         //remove trailing and leading spaces
                         $regs[2] = trim($regs[2]);
                         if ($regs[1] == 'INCLUDE') {
@@ -284,7 +285,7 @@ class TemplatePowerParser
                                 }
                             } else {
                                 //so it isn't a correct REUSE tag, save as code
-                                $this->defBlock[$blockname]["_C:$coderow"] = $this->{$tplvar}["content"][$index];
+                                $this->defBlock[$blockname]["_C:$coderow"] = $this->tpl_rawContent[$tplvar]["content"][$index];
                                 $coderow++;
                             }
                         } else {
@@ -312,7 +313,7 @@ class TemplatePowerParser
                     } else {
                         //is it code and/or var(s)
                         //explode current template line on the curly bracket '{'
-                        $sstr = explode('{', $this->{$tplvar}["content"][$index]);
+                        $sstr = explode('{', $this->tpl_rawContent[$tplvar]["content"][$index]);
                         reset($sstr);
                         if (current($sstr) != '') {
                             //the template didn't start with a '{',
@@ -355,7 +356,7 @@ class TemplatePowerParser
                         }
                     }
                 } else {
-                    $this->defBlock[$blockname]["_C:$coderow"] = $this->{$tplvar}["content"][$index];
+                    $this->defBlock[$blockname]["_C:$coderow"] = $this->tpl_rawContent[$tplvar]["content"][$index];
                     $coderow++;
                 }
             }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Compatibility;
 
 use PHPUnit\Framework\TestCase;
+use Tests\Support\LegacyUtf8Oracle;
 use ProcessMaker\Util\LegacyUtf8;
 use RuntimeException;
 use Tests\Support\PhpSourceScanner;
@@ -68,7 +69,7 @@ final class LegacyUtf8CallSiteMigrationTest extends TestCase
             self::assertSame(
                 0,
                 PhpSourceScanner::matchCount($projection, self::ENCODE_PATTERN),
-                $relativeFile . ' still executes native utf8_encode().'
+                $relativeFile . ' still executes native LegacyUtf8Oracle::encode().'
             );
         }
     }
@@ -106,7 +107,7 @@ final class LegacyUtf8CallSiteMigrationTest extends TestCase
         $pmScriptRaw = self::read('workflow/engine/classes/class.pmScript.php');
         $pmScript = PhpSourceScanner::codeOnlySource($pmScriptRaw);
         self::assertSame(0, PhpSourceScanner::matchCount($pmScript, self::ENCODE_PATTERN), 'No executable native encode may remain in PMScript.');
-        self::assertStringNotContainsString('utf8_encode(\\$oException->getMessage())', $pmScriptRaw, 'U-6 replaced the native encode inside the generated string.');
+        self::assertStringNotContainsString('LegacyUtf8Oracle::encode(\\$oException->getMessage())', $pmScriptRaw, 'U-6 replaced the native encode inside the generated string.');
         self::assertStringContainsString('\\\\ProcessMaker\\\\Util\\\\LegacyUtf8::encode(\\$oException->getMessage())', $pmScriptRaw, 'The generated catch block must call the helper.');
     }
 
@@ -115,7 +116,7 @@ final class LegacyUtf8CallSiteMigrationTest extends TestCase
         foreach (range(0, 255) as $byte) {
             $input = chr($byte);
             self::assertSame(
-                utf8_encode($input),
+                LegacyUtf8Oracle::encode($input),
                 LegacyUtf8::encode($input),
                 sprintf('Byte 0x%02x diverges from the native encoder.', $byte)
             );
@@ -138,7 +139,7 @@ final class LegacyUtf8CallSiteMigrationTest extends TestCase
         ];
 
         foreach ($payloads as $name => $payload) {
-            self::assertSame(utf8_encode($payload), LegacyUtf8::encode($payload), 'Payload diverges: ' . $name);
+            self::assertSame(LegacyUtf8Oracle::encode($payload), LegacyUtf8::encode($payload), 'Payload diverges: ' . $name);
         }
     }
 
@@ -146,10 +147,10 @@ final class LegacyUtf8CallSiteMigrationTest extends TestCase
     {
         // Mirrors gulliver/system/class.inputfilter.php decimal and hex callbacks.
         foreach (range(0, 255) as $byte) {
-            self::assertSame(utf8_encode(chr($byte)), LegacyUtf8::encode(chr($byte)));
+            self::assertSame(LegacyUtf8Oracle::encode(chr($byte)), LegacyUtf8::encode(chr($byte)));
             $hex = sprintf('%x', $byte);
             self::assertSame(
-                utf8_encode(chr((int) ('0x' . $hex))),
+                LegacyUtf8Oracle::encode(chr((int) ('0x' . $hex))),
                 LegacyUtf8::encode(chr((int) ('0x' . $hex))),
                 'Hex notation callback diverges for 0x' . $hex
             );
@@ -165,7 +166,7 @@ final class LegacyUtf8CallSiteMigrationTest extends TestCase
         $native = [];
         $migrated = [];
         foreach ($table as $character => $entity) {
-            $native[$entity] = utf8_encode($character);
+            $native[$entity] = LegacyUtf8Oracle::encode($character);
             $migrated[$entity] = LegacyUtf8::encode($character);
         }
 

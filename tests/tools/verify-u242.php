@@ -30,7 +30,7 @@ $pass = static function (bool $condition, string $message) use (&$checks): void 
 };
 
 $pass(PHP_SAPI === 'cli', 'CLI runtime');
-$pass(PHP_VERSION_ID >= 80100 && PHP_VERSION_ID < 80200, 'PHP 8.1.x target (' . PHP_VERSION . ')');
+$pass(PHP_VERSION_ID >= 80100 && PHP_VERSION_ID < 80300, 'PHP 8.1/8.2 target (' . PHP_VERSION . ')');
 
 $required = [
     'workflow/engine/src/ProcessMaker/Util/LegacyLocaleDate.php',
@@ -44,7 +44,7 @@ foreach ($required as $relative) {
 }
 
 $pass(hash_file('sha256', $root . '/composer.json') === '708119e1eb1f15b263a35366ff18116dcd828329f2481aa588efc49d81a33ad2', 'Unchanged since U-1: composer.json');
-$pass(hash_file('sha256', $root . '/composer.lock') === 'c6d4c0da3da7483ad9499f8fdc5a137997cf57a55b1bbeee09f8210711a4c50f', 'Unchanged since U-1: composer.lock');
+$pass(hash_file('sha256', $root . '/composer.lock') === '9f879af7b047666ee70708741d74521c91925e1b6addd80a9d465b6ea76e9cb3', 'Accepted T-2B rev E Composer lock');
 $pass(hash_file('sha256', $root . '/workflow/engine/src/ProcessMaker/Util/LegacyUtf8.php') === '1edb3051e45aa7096143251eb429681bc215f11ec5abf8b515270608f9601823', 'Unchanged since U-2.2.1: LegacyUtf8.php');
 $pass(hash_file('sha256', $root . '/workflow/engine/src/ProcessMaker/Util/LegacyStrftime.php') === 'a992b694b354b3b86643e03525ce03864199214732d457934e15dab404fa560d', 'Unchanged since U-2.3.2a: LegacyStrftime.php');
 $pass(hash_file('sha256', $root . '/workflow/engine/src/ProcessMaker/Util/LegacyLocaleDate.php') === 'a5a07377bef7ce64afee0bfcdfd3fcdb5061ad6643a6d4a4db7648eea264740f', 'The reviewed U-2.4.2 helper: LegacyLocaleDate.php');

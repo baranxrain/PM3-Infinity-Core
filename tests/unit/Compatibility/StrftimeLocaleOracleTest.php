@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Compatibility;
 
 use PHPUnit\Framework\TestCase;
+use Tests\Support\LegacyUtf8Oracle;
 use Tests\Support\CompatibilityLedger;
 use Tests\Support\PhpSourceScanner;
 
@@ -253,7 +254,7 @@ final class StrftimeLocaleOracleTest extends TestCase
                         $decoded = hex2bin($capture['hex']);
                         self::assertIsString($decoded, 'Byte evidence must decode for ' . $name . '/' . $id . '/' . $stamp);
                         self::assertSame(
-                            utf8_encode($decoded),
+                            LegacyUtf8Oracle::encode($decoded),
                             (string) ($capture['utf8'] ?? ''),
                             'The stored bytes and their ISO-8859-1 lift disagree for ' . $name . '/' . $id . '/' . $stamp
                         );

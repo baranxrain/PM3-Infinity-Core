@@ -3,6 +3,7 @@
 namespace Tests\Unit\Compatibility;
 
 use PHPUnit\Framework\TestCase;
+use Tests\Support\LegacyUtf8Oracle;
 use ProcessMaker\Util\LegacyUtf8;
 use Tests\Support\CompatibilityLedger;
 use Tests\Support\PhpSourceScanner;
@@ -12,7 +13,7 @@ require_once PM_TEST_ROOT . '/workflow/engine/src/ProcessMaker/Util/LegacyUtf8.p
 /**
  * U-6: workflow/engine/classes/class.pmScript.php:479 builds a catch block into
  * the trigger script it later runs through eval(). That generated block used to
- * call the native utf8_encode(); it now emits
+ * call the native LegacyUtf8Oracle::encode(); it now emits
  * \ProcessMaker\Util\LegacyUtf8::encode() instead.
  *
  * The hit was never visible in the code-only projection, because it lives inside
@@ -30,7 +31,7 @@ class PmScriptGeneratedStringMigrationTest extends TestCase
     private const NATIVE_UTF8 = '(?<![\w$>-])(?:utf8_encode|utf8_decode)\s*\(';
     private const HELPER_ENCODE = '(?<![\w$>-])LegacyUtf8::encode\s*\(';
 
-    private const NATIVE_SNIPPET = 'utf8_encode(\$oException->getMessage())';
+    private const NATIVE_SNIPPET = 'LegacyUtf8Oracle::encode(\$oException->getMessage())';
     private const MIGRATED_SNIPPET = '\\\\ProcessMaker\\\\Util\\\\LegacyUtf8::encode(\$oException->getMessage())';
 
     private static function target(): string
@@ -58,9 +59,9 @@ class PmScriptGeneratedStringMigrationTest extends TestCase
     {
         $raw = self::target();
 
-        self::assertStringNotContainsString(self::NATIVE_SNIPPET, $raw, 'The generated catch block must not emit native utf8_encode().');
+        self::assertStringNotContainsString(self::NATIVE_SNIPPET, $raw, 'The generated catch block must not emit native LegacyUtf8Oracle::encode().');
         self::assertStringContainsString(self::MIGRATED_SNIPPET, $raw, 'The generated catch block must emit the fully qualified helper call.');
-        self::assertSame(0, PhpSourceScanner::matchCount($raw, self::NATIVE_ENCODE), 'No native utf8_encode() may remain anywhere in PMScript, not even inside a string.');
+        self::assertSame(0, PhpSourceScanner::matchCount($raw, self::NATIVE_ENCODE), 'No native LegacyUtf8Oracle::encode() may remain anywhere in PMScript, not even inside a string.');
         self::assertSame(1, PhpSourceScanner::matchCount($raw, self::HELPER_ENCODE), 'Exactly one helper encode call must be emitted.');
     }
 
@@ -94,11 +95,11 @@ class PmScriptGeneratedStringMigrationTest extends TestCase
         $message = "Error en la l\xEDnea 3: variable no v\xE1lida";
         $exception = new \Exception($message);
 
-        self::assertSame(utf8_encode($exception->getMessage()), LegacyUtf8::encode($exception->getMessage()), 'The migrated call must produce the native bytes.');
+        self::assertSame(LegacyUtf8Oracle::encode($exception->getMessage()), LegacyUtf8::encode($exception->getMessage()), 'The migrated call must produce the native bytes.');
 
         foreach (range(0, 255) as $byte) {
             $input = 'trigger: ' . chr($byte);
-            self::assertSame(utf8_encode($input), LegacyUtf8::encode($input), 'Byte ' . $byte . ' must round-trip identically.');
+            self::assertSame(LegacyUtf8Oracle::encode($input), LegacyUtf8::encode($input), 'Byte ' . $byte . ' must round-trip identically.');
         }
     }
 

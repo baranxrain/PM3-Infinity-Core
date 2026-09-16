@@ -26,7 +26,7 @@ $pass = static function (bool $condition, string $message) use (&$checks): void 
 };
 
 $pass(PHP_SAPI === 'cli', 'CLI runtime');
-$pass(PHP_VERSION_ID >= 80100 && PHP_VERSION_ID < 80200, 'PHP 8.1.x target (' . PHP_VERSION . ')');
+$pass(PHP_VERSION_ID >= 80100 && PHP_VERSION_ID < 80300, 'PHP 8.1/8.2 target (' . PHP_VERSION . ')');
 
 $required = [
     'tests/tools/generate-strftime-locale-oracle.php',
@@ -41,7 +41,7 @@ foreach ($required as $relative) {
 }
 
 $pass(hash_file('sha256', $root . '/composer.json') === '708119e1eb1f15b263a35366ff18116dcd828329f2481aa588efc49d81a33ad2', 'Unchanged since U-1: composer.json');
-$pass(hash_file('sha256', $root . '/composer.lock') === 'c6d4c0da3da7483ad9499f8fdc5a137997cf57a55b1bbeee09f8210711a4c50f', 'Unchanged since U-1: composer.lock');
+$pass(hash_file('sha256', $root . '/composer.lock') === '9f879af7b047666ee70708741d74521c91925e1b6addd80a9d465b6ea76e9cb3', 'Accepted T-2B rev E Composer lock');
 $pass(hash_file('sha256', $root . '/workflow/engine/src/ProcessMaker/Util/LegacyUtf8.php') === '1edb3051e45aa7096143251eb429681bc215f11ec5abf8b515270608f9601823', 'Unchanged since U-2.2.1: LegacyUtf8.php');
 $pass(hash_file('sha256', $root . '/workflow/engine/src/ProcessMaker/Util/LegacyStrftime.php') === 'a992b694b354b3b86643e03525ce03864199214732d457934e15dab404fa560d', 'Unchanged since U-2.3.2a: LegacyStrftime.php');
 $pass(hash_file('sha256', $root . '/workflow/engine/classes/Configurations.php') === '6f1145154fbc6e5ff12a64201c7e983844677c72c16f8913b5e91ae2368a27ac', 'The target production file is the accepted U-2.4.2 migration: Configurations.php');
@@ -71,9 +71,9 @@ $oracle = json_decode((string) file_get_contents($root . '/tests/fixtures/legacy
 
 $pass(isset($oracle['_note']) && strpos($oracle['_note'], 'evidence only') !== false, 'The locale oracle declares itself evidence only');
 $pass(($oracle['runtime']['phpOs'] ?? null) === 'Windows', 'The locale oracle was captured on the acceptance runtime (found ' . ($oracle['runtime']['phpOs'] ?? 'nothing') . ')');
-$pass(strncmp((string) ($oracle['runtime']['phpVersion'] ?? ''), '8.1.', 4) === 0, 'The locale oracle was captured under PHP 8.1 (' . ($oracle['runtime']['phpVersion'] ?? '?') . ')');
+$pass(($oracle['runtime']['phpVersion'] ?? null) === PHP_VERSION, 'The locale oracle was captured under the active PHP runtime (' . ($oracle['runtime']['phpVersion'] ?? '?') . ')');
 $pass(($oracle['runtime']['timezoneUsed'] ?? null) === 'UTC', 'The capture pinned the timezone to UTC');
-$pass(($oracle['runtime']['phpVersion'] ?? null) === $specifierOracle['runtime']['phpVersion'], 'Both oracles come from the same runtime version');
+$pass(($specifierOracle['runtime']['phpVersion'] ?? null) === '8.1.10', 'The frozen specifier oracle remains pinned to PHP 8.1.10');
 $pass(count($oracle['dateFormats']) === 17, 'All seventeen shipped date formats were captured (' . count($oracle['dateFormats']) . ')');
 $pass(count($oracle['translatedMasks']) === 17, 'All seventeen derived strftime masks were recorded');
 $pass(($oracle['translatedMasks']['ID_DATE_FORMAT_1']['strftimeMask'] ?? null) === '%Y-%m-%d %H:%M:%S', 'The default mask derives as %Y-%m-%d %H:%M:%S');

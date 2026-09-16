@@ -179,7 +179,7 @@ Current dependency-file SHA-256 values:
 
 ```text
 composer.json  708119e1eb1f15b263a35366ff18116dcd828329f2481aa588efc49d81a33ad2
-composer.lock  c6d4c0da3da7483ad9499f8fdc5a137997cf57a55b1bbeee09f8210711a4c50f
+composer.lock  9f879af7b047666ee70708741d74521c91925e1b6addd80a9d465b6ea76e9cb3
 ```
 
 The dependency fixture and historical verifier hashes must be updated together after any intentional Composer change. Do not silence a mismatch without reviewing the lock diff and rerunning the full suite.
@@ -270,3 +270,33 @@ git push -u origin compatibility/php82
 The first PHP 8.2 unit is U-4.1. It will inventory and ratchet dynamic-property deprecations, update the runtime-version gate in a dedicated runner, and preserve the complete PHP 8.1 acceptance baseline.
 
 Do not weaken or overwrite the stable PHP 8.1 gates while developing PHP 8.2 compatibility.
+
+## T-2A: PHP 8.2 discovery with PHPUnit 10
+
+The PHP 8.2 compatibility branch starts from accepted T-1 commit `c2793bed56d3cb1b71895b407ba822f86e827d27`.
+It keeps the pinned PHPUnit 9.5.8 historical lane and pinned PHPUnit 10.5.64 clean lane.
+
+Run the focused PHP 8.2 discovery first:
+
+```bat
+tests\tools\run-t2a-php82-checks.cmd
+```
+
+If it passes, run the cumulative gate:
+
+```bat
+tests\tools\run-t2a-checks.cmd
+```
+
+The cumulative runner executes every U-3.19 historical preflight, Composer check, all 16 browser cases and PHPUnit 9 before the strict PHPUnit 10 PHP 8.2 lane. Return `T2A-PHP82-DISCOVERY.log`, `T2A-ACCEPTANCE.log`, `U319-ACCEPTANCE.log`, and `git status --short`. T-2A is discovery only; do not commit until its findings are reviewed.
+
+## T-2B rev E: PHP 8.2 Composer platform closure
+
+- Production lock SHA-256: `9f879af7b047666ee70708741d74521c91925e1b6addd80a9d465b6ea76e9cb3`.
+- Minimal lock updates: `nette/schema` v1.2.2 -> v1.2.5 and dev-only `phpspec/prophecy` v1.15.0 -> v1.16.0.
+- `nette/utils` remains v3.2.8 to preserve the PHP 8.1/8.2 dual lane.
+- Acceptance remains `tests\tools\run-t2a-checks.cmd`; it runs every historical preflight, Composer validation/platform checks, browser tests, PHPUnit 9 and the PHP 8.2 PHPUnit 10 focused lane.
+
+## T-2B rev F: non-mutating cumulative oracle lifecycle
+
+`run-u319-checks.cmd` snapshots the frozen locale oracle before the live PHP 8.1/8.2 capture, executes every historical preflight against that live evidence, then restores the frozen fixture before browser, Composer, PHPUnit 9 and downstream PHPUnit 10 gates. The failure path restores it as well. This keeps standalone and cumulative acceptance deterministic without weakening the PHP 8.1 oracle contract test.

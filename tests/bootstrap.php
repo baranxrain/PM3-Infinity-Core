@@ -25,3 +25,4 @@ $_SERVER['APP_ENV'] = 'testing';
 
 require_once __DIR__ . '/Support/PhpSourceScanner.php';
 require_once __DIR__ . '/Support/CompatibilityLedger.php';
+require_once __DIR__ . '/Support/LegacyUtf8Oracle.php';

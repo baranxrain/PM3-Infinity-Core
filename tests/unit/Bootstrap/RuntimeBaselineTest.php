@@ -8,11 +8,11 @@ use PHPUnit\Framework\TestCase;
 
 final class RuntimeBaselineTest extends TestCase
 {
-    public function testTheApprovedRuntimeIsPhp81Cli(): void
+    public function testTheApprovedRuntimeIsPhp81OrPhp82Cli(): void
     {
         self::assertSame('cli', PHP_SAPI);
-        self::assertGreaterThanOrEqual(80100, PHP_VERSION_ID, 'ProcessMaker 3.8.3 U-1 requires PHP 8.1.x.');
-        self::assertLessThan(80200, PHP_VERSION_ID, 'Use PHP 8.1.x for the compatibility-preserving baseline.');
+        self::assertGreaterThanOrEqual(80100, PHP_VERSION_ID, 'ProcessMaker 3.8.3 compatibility tests require PHP 8.1 or PHP 8.2.');
+        self::assertLessThan(80300, PHP_VERSION_ID, 'Use PHP 8.1.x or PHP 8.2.x for the approved compatibility lanes.');
     }
 
     public function testMinimalTestExtensionsAreAvailable(): void
