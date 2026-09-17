@@ -119,7 +119,7 @@ tests\tools\run-u319-checks.cmd
 ## PHPUnit acceptance-runtime exception
 
 - The Composer development constraint remains `phpunit/phpunit=9.5` and currently locks 9.5.0.
-- The suite bundles the official `phpunit-9.5.8.phar` as its standalone offline PHP 8.1 runner.
+- PHPUnit 9.5.8 is a test-only runtime artifact acquired from the official PHAR endpoint and verified against `phpunit-9.5.8.phar.sha256`; the binary is not tracked.
 - PHPUnit 9.5.8 includes the PHAR compatibility fix needed for PHP 8.1.
 - The PHAR is an acceptance tool and does not change application runtime dependencies.
 - Official runner SHA-256: `11f27cf3f9522241fe234e9bf5813667207a074ac92089aac26d502ffc5e9517`.
@@ -145,3 +145,11 @@ Do not update the stable dependency baseline merely to suppress PHP 8.2 deprecat
 - `phpunit-11.phar`: PHPUnit 11.5.49, test-only, acquired separately from `https://phar.phpunit.de/phpunit-11.5.49.phar`.
 - Pinned SHA-256: `b20ea78f38bc6abccc96ace605c471b1d11912ad6f0285c74415919050d234a6`.
 - This does not alter `composer.json`, `composer.lock`, production vendor code, PHPUnit 9.5 baseline, or the accepted PHPUnit 10.5.64 lane.
+
+
+## Acquisition-only PHPUnit PHAR policy (T-3B)
+
+- `phpunit-9.5.8.phar`: official PHPUnit 9.5.8 test runtime; SHA-256 `11f27cf3f9522241fe234e9bf5813667207a074ac92089aac26d502ffc5e9517`.
+- `phpunit-10.phar`: official PHPUnit 10.5.64 test runtime; SHA-256 `a823d916151f628dd9943ccc81a98bcfbba9c5babf53f27be6c7dccc89f8ee23`.
+- `phpunit-11.phar`: official PHPUnit 11.5.49 test runtime; SHA-256 `b20ea78f38bc6abccc96ace605c471b1d11912ad6f0285c74415919050d234a6`.
+- All three binaries are ignored and untracked. Acquisition scripts and checksum manifests remain tracked to provide reproducible, authenticated test tooling.

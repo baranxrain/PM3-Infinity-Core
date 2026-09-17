@@ -267,7 +267,7 @@ foreach ($iterator as $file) {
 // U-3.16 added ExpressionExecutionClosureTest.php and verify-u316.php; U-3.17 added TriggerTemporaryExecutionClosureTest.php and verify-u317.php; U-3.18 added ClientEvalClosureTest.php and verify-u318.php.
 // T-1A and T-1B add one verifier each; T-3A adds the PHPUnit 11 verifier.
 // Keep the syntax-file ratchet exact.
-$pass($parsed === 93, 'All ninety-three harness PHP files parse under PHP 8.1/8.2');
+$pass($parsed === 94, 'All ninety-four harness PHP files parse under PHP 8.1/8.2');
 
 $decode = static function (string $file): array {
     $contents = file_get_contents($file);

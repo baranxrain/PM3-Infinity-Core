@@ -313,3 +313,8 @@ The PHPUnit 11 verifier is the 93rd PHP harness file, so both historical preflig
 ### T-3A rev C: dual-compatible data-provider metadata
 
 The five data-provider tests reported by PHPUnit 11 now carry `PHPUnit\Framework\Attributes\DataProvider` metadata. Their existing `@dataProvider` annotations remain as the PHPUnit 9.5.8 compatibility path. PHPUnit 11 gives attribute metadata precedence, eliminating its test-runner deprecations without suppressing the deprecation gate or changing test cases, providers, assertions, production code, or suite scope.
+
+
+## T-3B: acquisition-only PHPUnit runtime artifacts
+
+The PHPUnit 9.5.8, 10.5.64, and 11.5.49 PHAR binaries are runtime-only artifacts and are no longer tracked. Their official HTTPS URLs, exact versions, and SHA-256 values are pinned by acquisition scripts and checksum manifests. Run `tests\tools\apply-t3b-acquisition-only.cmd` once to remove the historical PHPUnit 9/10 binaries from the Git index while preserving local copies, then run `tests\tools\run-t3b-checks.cmd`. The T-3B runner reacquires and verifies all three PHARs before executing every historical preflight, browser test, Composer gate, and the exact 604-test/9241-assertion PHPUnit 9/10/11 lanes.

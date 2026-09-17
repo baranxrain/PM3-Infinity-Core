@@ -15,7 +15,7 @@ cd /d "%ROOT%" || exit /b 2
 > "%LOG%" echo ProcessMaker 3.8.3 Community - U-3.19 Client and Raw Eval Closure Acceptance Offline
 >>"%LOG%" echo Started: %DATE% %TIME%
 >>"%LOG%" echo Root: %ROOT%
->>"%LOG%" echo Network policy: OFFLINE; bundled PHPUnit PHAR; package acquisition disabled.
+>>"%LOG%" echo Network policy: OFFLINE after pinned PHAR acquisition; no package acquisition occurs inside historical gates.
 >>"%LOG%" echo Expected PHPUnit PHAR SHA256: 11f27cf3f9522241fe234e9bf5813667207a074ac92089aac26d502ffc5e9517
 >>"%LOG%" echo Expected PHPUnit result: OK (604 tests, assertions may vary)
 >>"%LOG%" echo Scope: execute browser-side regression contracts for JSON parsing, callback resolution, table hooks, dynamic scripts and generated conditions.
@@ -124,7 +124,7 @@ call :run "Validate project Composer metadata offline" "composer validate --no-c
 if errorlevel 1 goto :failed
 call :run "Check production lock platform offline without installing packages" "composer check-platform-reqs --lock --no-dev"
 if errorlevel 1 goto :failed
-call :run "Record bundled PHPUnit version" "php %PHPUNIT_PHAR% --version"
+call :run "Record locally acquired PHPUnit version" "php %PHPUNIT_PHAR% --version"
 if errorlevel 1 goto :failed
 call :run "Recheck PHPUnit 9.5.8 PHAR integrity before suite" "php tests\tools\verify-u22.php --phar-only"
 if errorlevel 1 goto :failed
