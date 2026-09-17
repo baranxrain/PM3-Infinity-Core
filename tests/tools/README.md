@@ -318,3 +318,16 @@ The five data-provider tests reported by PHPUnit 11 now carry `PHPUnit\Framework
 ## T-3B: acquisition-only PHPUnit runtime artifacts
 
 The PHPUnit 9.5.8, 10.5.64, and 11.5.49 PHAR binaries are runtime-only artifacts and are no longer tracked. Their official HTTPS URLs, exact versions, and SHA-256 values are pinned by acquisition scripts and checksum manifests. Run `tests\tools\apply-t3b-acquisition-only.cmd` once to remove the historical PHPUnit 9/10 binaries from the Git index while preserving local copies, then run `tests\tools\run-t3b-checks.cmd`. The T-3B runner reacquires and verifies all three PHARs before executing every historical preflight, browser test, Composer gate, and the exact 604-test/9241-assertion PHPUnit 9/10/11 lanes.
+
+
+## R-2: PHP 8.2 production release gate
+
+`run-r2-release-checks.cmd` first executes the complete T-3B chain: every historical preflight, Composer validation, all 16 browser tests, and the exact 604-test/9241-assertion PHPUnit 9/10/11 lanes. It then builds a production ZIP from committed `HEAD` and verifies its content and SHA-256.
+
+```bat
+tests\tools\run-r2-release-checks.cmd
+```
+
+Generated artifacts are written under `build\releases\` and ignored by Git. The production archive excludes `tests/`, every `phpunit*.xml`, every PHAR binary, acceptance/discovery logs, and CI/VCS/editor metadata. It retains the accepted production `composer.json`, `composer.lock`, tracked `vendor/` tree, application sources, and an embedded release manifest recording the exact source commit.
+
+Return `R2-ACCEPTANCE.log`, `T3B-ACCEPTANCE.log`, the generated ZIP `.sha256` file, `git status --short`, and the output of `git rev-parse HEAD`. Do not tag or publish until archive inspection and Laragon smoke testing pass.

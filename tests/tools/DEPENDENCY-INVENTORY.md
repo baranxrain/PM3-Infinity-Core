@@ -153,3 +153,10 @@ Do not update the stable dependency baseline merely to suppress PHP 8.2 deprecat
 - `phpunit-10.phar`: official PHPUnit 10.5.64 test runtime; SHA-256 `a823d916151f628dd9943ccc81a98bcfbba9c5babf53f27be6c7dccc89f8ee23`.
 - `phpunit-11.phar`: official PHPUnit 11.5.49 test runtime; SHA-256 `b20ea78f38bc6abccc96ace605c471b1d11912ad6f0285c74415919050d234a6`.
 - All three binaries are ignored and untracked. Acquisition scripts and checksum manifests remain tracked to provide reproducible, authenticated test tooling.
+
+
+## R-2 PHP 8.2 production-release packaging
+
+R-2 introduces no Composer dependency or production-code change. The release is built from committed `HEAD`; the accepted `composer.lock` SHA-256 remains `9f879af7b047666ee70708741d74521c91925e1b6addd80a9d465b6ea76e9cb3`.
+
+Release-only exclusions are `tests/`, all `phpunit*.xml` files, PHAR binaries, acceptance/discovery logs, and CI/VCS/editor metadata. Test acquisition scripts and PHPUnit runtimes remain repository/developer concerns and are not production dependencies. The archive contains a commit-bound manifest and has a separately generated SHA-256 file.
