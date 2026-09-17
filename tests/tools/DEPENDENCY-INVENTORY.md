@@ -160,3 +160,12 @@ Do not update the stable dependency baseline merely to suppress PHP 8.2 deprecat
 R-2 introduces no Composer dependency or production-code change. The release is built from committed `HEAD`; the accepted `composer.lock` SHA-256 remains `9f879af7b047666ee70708741d74521c91925e1b6addd80a9d465b6ea76e9cb3`.
 
 Release-only exclusions are `tests/`, all `phpunit*.xml` files, PHAR binaries, acceptance/discovery logs, and CI/VCS/editor metadata. Test acquisition scripts and PHPUnit runtimes remain repository/developer concerns and are not production dependencies. The archive contains a commit-bound manifest and has a separately generated SHA-256 file.
+
+## S-1 installer/runtime boundary
+
+S-1 changes no Composer package, lock entry, PHAR version, or production dependency. The accepted `composer.lock` SHA-256 remains `9f879af7b047666ee70708741d74521c91925e1b6addd80a9d465b6ea76e9cb3`.
+
+The installer runtime boundary is now PHP `>=7.4` and `<8.3`, matching the completed PHP 8.2 acceptance scope while keeping PHP 8.3 closed until its own discovery and remediation phase. cURL, SOAP, and LDAP remain runtime extension requirements detected from the active web SAPI; they are not Composer dependencies.
+
+The Laragon repair helper changes no repository or Composer dependency. It synchronizes Apache's preloaded `nghttp2.dll` with the selected PHP 8.2 distribution after creating a timestamped backup, and updates only extension directives in the active `php.ini`. OpenSSL DLLs are intentionally not copied.
+

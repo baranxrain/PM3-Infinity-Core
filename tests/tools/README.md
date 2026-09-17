@@ -331,3 +331,30 @@ tests\tools\run-r2-release-checks.cmd
 Generated artifacts are written under `build\releases\` and ignored by Git. The production archive excludes `tests/`, every `phpunit*.xml`, every PHAR binary, acceptance/discovery logs, and CI/VCS/editor metadata. It retains the accepted production `composer.json`, `composer.lock`, tracked `vendor/` tree, application sources, and an embedded release manifest recording the exact source commit.
 
 Return `R2-ACCEPTANCE.log`, `T3B-ACCEPTANCE.log`, the generated ZIP `.sha256` file, `git status --short`, and the output of `git rev-parse HEAD`. Do not tag or publish until archive inspection and Laragon smoke testing pass.
+
+## S-1: PHP 8.2 installer smoke-fix gate
+
+S-1 aligns the installer requirement gate with the accepted PHP 8.2 runtime. `InstallerModule` now accepts PHP 7.4 through PHP 8.2.x and rejects PHP 8.3+ until the dedicated PHP 8.3 compatibility phase. The implementation compares the captured version string directly with `version_compare`; it no longer performs unused, lossy float parsing. English PO, compiled-language, and fresh-install SQL labels all identify PHP 8.2 as the recommended version.
+
+Run the cumulative smoke-fix gate before commit:
+
+```bat
+tests\tools\run-s1-smoke-checks.cmd
+```
+
+It reacquires/verifies pinned PHPUnit runtimes and runs the complete T-3B historical chain: all preflights, Composer checks, 16 browser cases, and the exact PHPUnit 9/10/11 lanes before the S-1 installer matrix verifier. After committing, run `tests\tools\run-r2-release-checks.cmd` to build and verify a new commit-bound PHP 8.2 production archive containing the smoke fix.
+
+The S-1 source verifier also confirms that cURL, SOAP, and LDAP checks remain capability-based. A red result for those entries therefore means the active Apache PHP SAPI did not load the extension; it must not be bypassed in application code.
+
+### Laragon Apache extension repair
+
+The observed PHP 8.2.33 CLI loads cURL, but Apache resolves the older `nghttp2.dll` beside `httpd.exe` before the PHP runtime copy. `repair-laragon-php82-apache.ps1` requires Apache to be stopped, verifies the selected PHP is 8.2.x, backs up Apache's DLL and the active `php.ini`, copies only PHP 8.2's `nghttp2.dll`, enables cURL/SOAP/LDAP/ZIP without duplicate active directives, runs `httpd.exe -t`, verifies CLI extension loading, and restores both backups on failure. It does not copy OpenSSL DLLs.
+
+Run only after **Laragon > Stop All**:
+
+```bat
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tests\tools\repair-laragon-php82-apache.ps1
+```
+
+After `S1_LARAGON_REPAIR=PASS`, start Laragon and verify the installer through Apache. The web-SAPI check is authoritative; CLI success alone does not prove Apache loaded the same DLL set.
+

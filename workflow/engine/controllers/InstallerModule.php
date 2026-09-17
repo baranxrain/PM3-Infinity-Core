@@ -13,8 +13,8 @@ include PATH_LANGUAGECONT . "translation." . SYS_LANG;
 class InstallerModule extends Controller
 {
     const MYSQL_VERSION_MAXIMUM_SUPPORTED = "5.7";
-    const PHP_VERSION_MINIMUM_SUPPORTED = "7.3";
-    const PHP_VERSION_NOT_SUPPORTED = "8.2";
+    const PHP_VERSION_MINIMUM_SUPPORTED = "7.4";
+    const PHP_VERSION_NOT_SUPPORTED = "8.3";
     public $path_config;
     public $path_languages;
     public $path_plugins;
@@ -190,8 +190,6 @@ class InstallerModule extends Controller
 
         // PHP info and verification
         $phpVer = phpversion();
-        preg_match('/[0-9\.]+/', $phpVer, $match);
-        $phpVerNum = (float)$match[0];
 
         $info = new stdclass();
         $info->php = new stdclass();
@@ -207,8 +205,8 @@ class InstallerModule extends Controller
 
         $info->php->version = $phpVer;
         $info->php->result = (
-            version_compare(phpversion(), self::PHP_VERSION_MINIMUM_SUPPORTED, '>=') &&
-            version_compare(phpversion(), self::PHP_VERSION_NOT_SUPPORTED, '<')) ? true : false;
+            version_compare($phpVer, self::PHP_VERSION_MINIMUM_SUPPORTED, '>=') &&
+            version_compare($phpVer, self::PHP_VERSION_NOT_SUPPORTED, '<')) ? true : false;
 
         // MYSQL info and verification
         $info->mysql->result = false;

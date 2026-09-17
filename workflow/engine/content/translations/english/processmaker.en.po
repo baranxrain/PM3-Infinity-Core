@@ -22736,8 +22736,8 @@ msgstr "Open SSL is optional"
 # TRANSLATION
 # LABEL/ID_PROCESSMAKER_REQUIREMENTS_PHP
 #: LABEL/ID_PROCESSMAKER_REQUIREMENTS_PHP
-msgid "PHP recommended version 8.1, we maintain compatibility starting with PHP 7.4"
-msgstr "PHP recommended version 8.1, we maintain compatibility starting with PHP 7.4"
+msgid "PHP recommended version 8.2, we maintain compatibility starting with PHP 7.4"
+msgstr "PHP recommended version 8.2, we maintain compatibility starting with PHP 7.4"
 
 # TRANSLATION
 # LABEL/ID_PROCESSMAKER_REQUIREMENTS_SOAP

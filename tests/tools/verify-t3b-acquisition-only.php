@@ -52,7 +52,7 @@ foreach ($iterator as $file) {
     catch (ParseError $error) { $parseFailures[] = str_replace('\\', '/', $file->getPathname()) . ': ' . $error->getMessage(); }
 }
 foreach ($parseFailures as $failure) { echo '[PARSE-FAIL] ' . $failure . PHP_EOL; }
-$check($parseFailures === [] && $parsed === 95, 'All 95 test-harness PHP files parse on PHP 8.2');
+$check($parseFailures === [] && $parsed === 96, 'All 96 test-harness PHP files parse on PHP 8.2');
 echo '[SUMMARY] checks=' . $checks . ', failures=' . count($errors) . PHP_EOL;
 echo $errors ? "T3B_PREFLIGHT=FAIL\n" : "T3B_PREFLIGHT=PASS\n";
 exit($errors ? 1 : 0);
