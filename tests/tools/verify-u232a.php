@@ -25,7 +25,7 @@ $pass = static function (bool $condition, string $message) use (&$checks): void 
 };
 
 $pass(PHP_SAPI === 'cli', 'CLI runtime');
-$pass(PHP_VERSION_ID >= 80100 && PHP_VERSION_ID < 80300, 'PHP 8.1/8.2 target (' . PHP_VERSION . ')');
+$pass(PHP_VERSION_ID >= 80100 && PHP_VERSION_ID < 80400, 'PHP 8.1/8.2/8.3 target (' . PHP_VERSION . ')');
 
 $helperRelative = 'workflow/engine/src/ProcessMaker/Util/LegacyStrftime.php';
 $required = [
@@ -43,7 +43,7 @@ foreach ($required as $relative) {
 // Locks that this unit may not touch.
 $locks = [
     'composer.json' => '708119e1eb1f15b263a35366ff18116dcd828329f2481aa588efc49d81a33ad2',
-    'composer.lock' => '9f879af7b047666ee70708741d74521c91925e1b6addd80a9d465b6ea76e9cb3',
+    'composer.lock' => '913f83c278ba95912c1c0498a86033f01ce62d6a3501798e254cfda62c573033',
     'workflow/engine/src/ProcessMaker/Util/LegacyUtf8.php' => '1edb3051e45aa7096143251eb429681bc215f11ec5abf8b515270608f9601823',
 ];
 foreach ($locks as $relative => $expected) {

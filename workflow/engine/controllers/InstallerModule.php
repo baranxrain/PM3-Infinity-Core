@@ -14,7 +14,7 @@ class InstallerModule extends Controller
 {
     const MYSQL_VERSION_MAXIMUM_SUPPORTED = "5.7";
     const PHP_VERSION_MINIMUM_SUPPORTED = "7.4";
-    const PHP_VERSION_NOT_SUPPORTED = "8.3";
+    const PHP_VERSION_NOT_SUPPORTED = "8.4";
     public $path_config;
     public $path_languages;
     public $path_plugins;

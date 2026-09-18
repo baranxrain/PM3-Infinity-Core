@@ -1,6 +1,6 @@
-# Dependency inventory — PHP 8.1 stable release
+# Dependency inventory — PHP 8.3 compatibility branch
 
-This inventory describes the accepted Composer baseline for **PM3-Infinity-Core 3.8.3-PHP81.1**. It was generated from the reviewed `composer.json` and `composer.lock` used by the cumulative U-3.19 acceptance suite.
+This inventory preserves the historical PHP 8.1/8.2 baselines and records the reviewed T-4B Composer closure for the PHP 8.3 compatibility branch.
 
 - Repository: <https://github.com/baranxrain/PM3-Infinity-Core>
 - Stable branch: `release/php81-stable`
@@ -22,7 +22,7 @@ Accepted file SHA-256 values:
 
 ```text
 composer.json  708119e1eb1f15b263a35366ff18116dcd828329f2481aa588efc49d81a33ad2
-composer.lock  9f879af7b047666ee70708741d74521c91925e1b6addd80a9d465b6ea76e9cb3
+composer.lock  913f83c278ba95912c1c0498a86033f01ce62d6a3501798e254cfda62c573033
 ```
 
 Any intentional Composer change must update the dependency fixture and all historical dependency-baseline guards together. A hash must never be changed only to make a test pass; review the lock diff first and rerun the complete U-3.19 suite.
@@ -169,3 +169,42 @@ The installer runtime boundary is now PHP `>=7.4` and `<8.3`, matching the compl
 
 The Laragon repair helper changes no repository or Composer dependency. It synchronizes Apache's preloaded `nghttp2.dll` with the selected PHP 8.2 distribution after creating a timestamped backup, and updates only extension directives in the active `php.ini`. OpenSSL DLLs are intentionally not copied.
 
+
+
+## T-4A PHP 8.3 / PHPUnit 12 acceptance lane
+
+- Runtime target: PHP 8.3.x; initial validated environment is PHP 8.3.33 ZTS VS16 x64.
+- `phpunit-12.phar`: PHPUnit 12.5.35, test-only and acquired from `https://phar.phpunit.de/phpunit-12.5.35.phar`.
+- SHA-256: `2c076d3d30f3bca762b13d996ad665d23220bc29afdb98a40387f7896b324195`.
+- The PHAR is ignored and untracked; only its acquisition script and checksum manifest are versioned.
+- T-4A made no dependency change; T-4B below supersedes its discovery lock with the reviewed minimal closure.
+- `run-t4a-checks.cmd` retains every historical preflight, Composer gate, all 16 browser tests, and PHPUnit 9/10/11 before the strict PHPUnit 12 discovery lane.
+- The unit-test acceptance ratchet remains exactly 604 tests and 9241 assertions; the PHP harness parse ratchet is 99 files.
+
+
+## T-4B PHP 8.3 Composer closure
+
+Accepted lock SHA-256: `913f83c278ba95912c1c0498a86033f01ce62d6a3501798e254cfda62c573033`; content-hash remains `080123d899a9a1dacbeb10a5d1f5fe04`; cardinality remains 106 production / 41 development packages.
+
+| Package | Previous | Accepted | Scope | PHP constraint | Source reference |
+|---|---:|---:|---|---|---|
+| `nette/utils` | v3.2.8 | v3.2.10 | production | `>=7.2 <8.4` | `a4175c62652f2300c8017fb7e640f9ccb11648d2` |
+| `phpspec/prophecy` | v1.16.0 | v1.18.0 | development lock only | `^7.2 || 8.0.* || 8.1.* || 8.2.* || 8.3.*` | `d4f454f7e1193933f04e6500de3e79191648ed0c` |
+| `nette/schema` | v1.2.5 | v1.2.5 | production | `7.1 - 8.3` | `0462f0166e823aad657c9224d0f849ecac1ba10a` |
+| `phpunit/phpunit` | 9.5.0 | 9.5.0 | development lock only | `>=7.3` | `8e16c225d57c3d6808014df6b1dd7598d0a5bbbe` |
+
+No package was added or removed. Tracked production `vendor/nette/utils` and generated `vendor/composer` metadata are expected to change after `composer install --no-dev`; development vendor trees must remain untracked and excluded from production archives.
+
+
+## T-4C PHP 8.3 runtime baseline
+
+No Composer or production dependency changed. Two DB-free unit-test runtime guards now accept `80100 <= PHP_VERSION_ID < 80400`, preserving PHP 8.1/8.2 coverage, adding PHP 8.3, and intentionally rejecting PHP 8.4+. The frozen legacy UTF-8 fixture, oracle, and expected conversions are byte-for-byte unchanged.
+
+
+## T-4D PHP 8.3 installer boundary
+
+- Installer minimum remains PHP 7.4; the exclusive unsupported ceiling moves from PHP 8.3 to PHP 8.4.
+- PHP 8.3.33 is accepted by the installer; PHP 8.4+ remains explicitly rejected.
+- The English PO source, fresh-install SQL label, and compiled English catalog recommend PHP 8.3.
+- No Composer package, lock metadata, vendor file, frozen fixture, or unit-test baseline changes in T-4D.
+- The historical S-1 PHP 8.2 installer verifier and R-2 PHP 8.2 release lock record remain unchanged.

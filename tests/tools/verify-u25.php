@@ -23,7 +23,7 @@ $pass = static function (bool $condition, string $message) use (&$checks): void 
 };
 
 $pass(PHP_SAPI === 'cli', 'CLI runtime');
-$pass(PHP_VERSION_ID >= 80100 && PHP_VERSION_ID < 80300, 'PHP 8.1/8.2 target (' . PHP_VERSION . ')');
+$pass(PHP_VERSION_ID >= 80100 && PHP_VERSION_ID < 80400, 'PHP 8.1/8.2/8.3 target (' . PHP_VERSION . ')');
 
 $required = [
     'gulliver/system/class.xmlform.php',
@@ -37,7 +37,7 @@ foreach ($required as $relative) {
 }
 
 $pass(hash_file('sha256', $root . '/composer.json') === '708119e1eb1f15b263a35366ff18116dcd828329f2481aa588efc49d81a33ad2', 'Unchanged since U-1: composer.json');
-$pass(hash_file('sha256', $root . '/composer.lock') === '9f879af7b047666ee70708741d74521c91925e1b6addd80a9d465b6ea76e9cb3', 'Accepted T-2B rev E Composer lock');
+$pass(hash_file('sha256', $root . '/composer.lock') === '913f83c278ba95912c1c0498a86033f01ce62d6a3501798e254cfda62c573033', 'Accepted T-4B PHP 8.3 Composer lock');
 
 require_once $root . '/tests/bootstrap.php';
 

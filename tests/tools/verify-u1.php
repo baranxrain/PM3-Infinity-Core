@@ -30,7 +30,7 @@ if ($pharOnly) {
 }
 
 $pass(PHP_SAPI === 'cli', 'CLI runtime');
-$pass(PHP_VERSION_ID >= 80100 && PHP_VERSION_ID < 80300, 'PHP 8.1/8.2 compatibility target (' . PHP_VERSION . ')');
+$pass(PHP_VERSION_ID >= 80100 && PHP_VERSION_ID < 80400, 'PHP 8.1/8.2/8.3 compatibility target (' . PHP_VERSION . ')');
 $xmlExtensions = ['dom', 'libxml', 'xml', 'xmlwriter'];
 $missingXmlExtensions = array_values(array_filter(
     $xmlExtensions,
@@ -267,7 +267,7 @@ foreach ($iterator as $file) {
 // U-3.16 added ExpressionExecutionClosureTest.php and verify-u316.php; U-3.17 added TriggerTemporaryExecutionClosureTest.php and verify-u317.php; U-3.18 added ClientEvalClosureTest.php and verify-u318.php.
 // T-1A and T-1B add one verifier each; T-3A adds the PHPUnit 11 verifier.
 // Keep the syntax-file ratchet exact.
-$pass($parsed === 96, 'All ninety-six harness PHP files parse under PHP 8.1/8.2');
+$pass($parsed === 99, 'All ninety-nine harness PHP files parse under PHP 8.1/8.2/8.3');
 
 $decode = static function (string $file): array {
     $contents = file_get_contents($file);

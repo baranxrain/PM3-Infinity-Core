@@ -3,7 +3,7 @@ declare(strict_types=1);
 $root = dirname(__DIR__, 2); $errors = []; $checks = 0;
 $check = static function (bool $ok, string $message) use (&$errors, &$checks): void { echo ($ok ? '[PASS] ' : '[FAIL] ') . $message . PHP_EOL; if ($ok) { ++$checks; } else { $errors[] = $message; } };
 $check(PHP_SAPI === 'cli', 'CLI runtime');
-$check(PHP_VERSION_ID >= 80200 && PHP_VERSION_ID < 80300, 'PHP 8.2.x discovery runtime (' . PHP_VERSION . ')');
+$check(PHP_VERSION_ID >= 80200 && PHP_VERSION_ID < 80400, 'PHP 8.2/8.3 discovery runtime (' . PHP_VERSION . ')');
 foreach (['dom','json','libxml','mbstring','phar','tokenizer','xml','xmlwriter'] as $extension) { $check(extension_loaded($extension), 'Required extension: ' . $extension); }
 $required = ['phpunit.xml','phpunit-10.xml','tests/bootstrap.php','tests/tools/run-u319-checks.cmd','tests/tools/phpunit-9.5.8.phar','tests/tools/phpunit-10.phar','tests/tools/phpunit-10.phar.sha256','tests/Support/LegacyUtf8Oracle.php','tests/tools/verify-t2a-php82.php','tests/tools/run-t2a-php82-checks.cmd','tests/tools/run-t2a-checks.cmd'];
 foreach ($required as $file) { $check(is_file($root . '/' . $file), 'Required file: ' . $file); }
@@ -14,20 +14,20 @@ $check($versionExit === 0 && preg_match('/^PHPUnit 10\.5\.64\b/', $version) === 
 $composer = json_decode((string) file_get_contents($root . '/composer.json'), true);
 $check(($composer['require']['php'] ?? null) === '>=7.4', 'Composer PHP constraint remains >=7.4');
 $check(($composer['require-dev']['phpunit/phpunit'] ?? null) === '9.5', 'Composer development baseline remains PHPUnit 9.5');
-$check(hash_file('sha256', $root . '/composer.lock') === '9f879af7b047666ee70708741d74521c91925e1b6addd80a9d465b6ea76e9cb3', 'Accepted T-2B rev E Composer lock SHA-256');
+$check(hash_file('sha256', $root . '/composer.lock') === '913f83c278ba95912c1c0498a86033f01ce62d6a3501798e254cfda62c573033', 'Accepted T-4B PHP 8.3 Composer lock SHA-256');
 $lock = json_decode((string) file_get_contents($root . '/composer.lock'), true, 512, JSON_THROW_ON_ERROR);
 $lockedVersions = [];
 foreach (array_merge($lock['packages'] ?? [], $lock['packages-dev'] ?? []) as $package) { $lockedVersions[$package['name']] = $package['version']; }
 $check(($lockedVersions['nette/schema'] ?? null) === 'v1.2.5', 'nette/schema is pinned to v1.2.5');
-$check(($lockedVersions['nette/utils'] ?? null) === 'v3.2.8', 'nette/utils remains pinned to v3.2.8');
-$check(($lockedVersions['phpspec/prophecy'] ?? null) === 'v1.16.0', 'phpspec/prophecy is pinned to v1.16.0');
+$check(($lockedVersions['nette/utils'] ?? null) === 'v3.2.10', 'nette/utils is pinned to T-4B v3.2.10');
+$check(($lockedVersions['phpspec/prophecy'] ?? null) === 'v1.18.0', 'phpspec/prophecy is pinned to T-4B v1.18.0');
 $xml = (string) file_get_contents($root . '/phpunit-10.xml');
 $check(strpos($xml, 'failOnDeprecation="true"') !== false, 'PHPUnit 10 fails on PHP deprecations');
 $check(strpos($xml, 'failOnPhpunitDeprecation="true"') !== false, 'PHPUnit 10 fails on PHPUnit deprecations');
 $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($root . '/tests', RecursiveDirectoryIterator::SKIP_DOTS)); $parsed = 0; $parseFailures = [];
 foreach ($iterator as $file) { if (!$file->isFile() || strtolower($file->getExtension()) !== 'php') { continue; } try { token_get_all((string) file_get_contents($file->getPathname()), TOKEN_PARSE); ++$parsed; } catch (ParseError $error) { $parseFailures[] = str_replace('\\','/',$file->getPathname()) . ': ' . $error->getMessage(); } }
 foreach ($parseFailures as $failure) { echo '[PARSE-FAIL] ' . $failure . PHP_EOL; }
-$check($parseFailures === [] && $parsed === 96, 'All 96 test-harness PHP files parse on PHP 8.2');
+$check($parseFailures === [] && $parsed === 99, 'All 99 test-harness PHP files parse on PHP 8.2/8.3');
 $template = (string) file_get_contents($root . '/gulliver/system/class.templatePower.php');
 $check(strpos($template, '$this->{$tplvar}') === false && strpos($template, 'public $tpl_rawContent = [];') !== false, 'TemplatePower dynamic storage replaced by declared array');
 $testFiles = ['LegacyUtf8ContractTest.php','LegacyUtf8CallSiteMigrationTest.php','LegacyUtf8DecodeCallSiteMigrationTest.php','LegacyUtf8StrftimeCouplingTest.php','PmScriptGeneratedStringMigrationTest.php','StrftimeLocaleOracleTest.php'];

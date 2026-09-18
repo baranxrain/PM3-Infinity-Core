@@ -3,36 +3,33 @@
 This directory contains the DB-free, offline compatibility and regression suite for **PM3-Infinity-Core**, a maintained fork of ProcessMaker 3.8.3 Community.
 
 - Repository: <https://github.com/baranxrain/PM3-Infinity-Core>
-- Stable PHP 8.1 branch: `release/php81-stable`
-- Stable release tag: `pm3infinity-3.8.3-php81.1`
+- Stable PHP 8.2 branch: `release/php82-stable`
+- Stable PHP 8.2 release tag: `pm3infinity-3.8.3-php82.1`
 - License: `AGPL-3.0-only`
-- Target runtime for this release: PHP 8.1.x on Windows/Laragon
+- Active discovery target: PHP 8.3.x on Windows/Laragon with PHPUnit 12
 
 ## Current accepted baseline
 
-The final PHP 8.1 acceptance run completed on September 15, 2026 using PHP 8.1.10 on Windows:
+The stable PHP 8.2 release gate completed on September 17, 2026 using PHP 8.2.33 on Windows. The active T-4A discovery environment is PHP 8.3.33 with PHPUnit 12.5.35.
 
 ```text
 Browser tests: 16, Passed: 16, Failures: 0
-U319_BROWSER_ACCEPTANCE=PASS
-OK (604 tests, 9241 assertions)
-U319_ACCEPTANCE=PASS
+PHPUnit 9.5.8:   OK (604 tests, 9241 assertions)
+PHPUnit 10.5.64: OK (604 tests, 9241 assertions)
+PHPUnit 11.5.49: OK (604 tests, 9241 assertions)
+R2_BUILD=PASS
+R2_PREFLIGHT=PASS
+R2_ACCEPTANCE=PASS
 ```
 
-Acceptance-log SHA-256:
-
-```text
-6bba037c733d665a094669bfe67e9b0ccedcdb8eee5d1762638d2785b5f5dab3
-```
-
-Assertion totals may vary slightly with environment details. The test count and PASS markers must match.
+T-4A adds PHPUnit 12 as a strict discovery lane. T-4B accepts the minimal PHP 8.3 dependency closure while preserving production release exclusions and the Composer PHPUnit 9.5 baseline.
 
 ## Run the complete suite
 
-Open a new Laragon Terminal after selecting PHP 8.1, change to the repository root, and run:
+Open a new Laragon Terminal after selecting PHP 8.3, change to the repository root, and run:
 
 ```bat
-tests\tools\run-u319-checks.cmd
+tests\tools\run-t4c-checks.cmd
 ```
 
 This is the authoritative cumulative runner. It executes all historical preflights in order, the browser runtime suite, Composer validation, PHAR integrity checks, and the complete DB-free PHPUnit unit suite. Normal users and release maintainers do **not** need to run every historical runner separately.
@@ -40,7 +37,7 @@ This is the authoritative cumulative runner. It executes all historical prefligh
 The output is written to:
 
 ```text
-U319-ACCEPTANCE.log
+T4A-ACCEPTANCE.log
 ```
 
 A successful run must contain:
@@ -48,20 +45,22 @@ A successful run must contain:
 ```text
 Browser tests: 16, Passed: 16, Failures: 0
 U319_BROWSER_ACCEPTANCE=PASS
-OK (604 tests, ... assertions)
-U319_ACCEPTANCE=PASS
+T3B_ACCEPTANCE=PASS
+OK (604 tests, 9241 assertions)
+T4A_PHPUNIT12_DISCOVERY=PASS
+T4A_ACCEPTANCE=PASS
 ```
 
 Every `[EXIT]` line must be `0`. The final marker alone is not enough if the log was truncated or edited.
 
 ## Requirements
 
-- Windows with Laragon, or an equivalent PHP 8.1 CLI environment
-- PHP 8.1.x selected in the same terminal used to run the suite
+- Windows with Laragon, or an equivalent PHP 8.3 CLI environment
+- PHP 8.3.x selected in the same terminal used to run the suite
 - Required PHP extensions reported by the preflights, including JSON, mbstring, PCRE, tokenizer, and PHAR
 - Microsoft Edge, Google Chrome, or Chromium for the U-3.19 browser checks
 - No database, workspace, web server, Packagist access, Bitbucket access, or network access is required
-- The official PHPUnit 9.5.8 PHAR stored at `tests/tools/phpunit-9.5.8.phar`
+- The pinned acquisition-only PHPUnit 9.5.8, 10.5.64, 11.5.49, and 12.5.35 PHARs under `tests/tools/`
 
 ## Browser runtime checks
 
@@ -98,7 +97,7 @@ The suite intentionally avoids application boot, Laravel/Artisan startup, databa
 - an offline PHPUnit PHAR;
 - a real browser-side JavaScript harness.
 
-The suite currently contains 88 PHP harness files and 604 PHPUnit tests. The cumulative U-3.19 runner has 50 stages.
+The suite currently contains 99 PHP harness files and 604 PHPUnit tests. The cumulative U-3.19 runner has 50 stages.
 
 ## Complete runner index
 
@@ -179,7 +178,7 @@ Current dependency-file SHA-256 values:
 
 ```text
 composer.json  708119e1eb1f15b263a35366ff18116dcd828329f2481aa588efc49d81a33ad2
-composer.lock  9f879af7b047666ee70708741d74521c91925e1b6addd80a9d465b6ea76e9cb3
+composer.lock  913f83c278ba95912c1c0498a86033f01ce62d6a3501798e254cfda62c573033
 ```
 
 The dependency fixture and historical verifier hashes must be updated together after any intentional Composer change. Do not silence a mismatch without reviewing the lock diff and rerunning the full suite.
@@ -358,3 +357,31 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tests\tools\repair-lar
 
 After `S1_LARAGON_REPAIR=PASS`, start Laragon and verify the installer through Apache. The web-SAPI check is authoritative; CLI success alone does not prove Apache loaded the same DLL set.
 
+
+
+## T-4A: PHP 8.3 discovery with pinned PHPUnit 12
+
+`run-t4a-checks.cmd` is the cumulative PHP 8.3 discovery runner. It first acquires the exact PHPUnit 12.5.35 PHAR, executes the complete T-3B historical chain (all preflights, Composer checks, 16 browser cases, and PHPUnit 9/10/11), and then runs the same 604-test/9241-assertion unit scope with PHPUnit 12 using `phpunit-12.xml`.
+
+The PHPUnit 12 runtime is acquisition-only: `phpunit-12.phar` is ignored and must never be committed. `acquire-phpunit12.ps1` downloads only the official versioned HTTPS endpoint and verifies SHA-256 `2c076d3d30f3bca762b13d996ad665d23220bc29afdb98a40387f7896b324195` before installation. The Composer development baseline remains PHPUnit 9.5. T-4B supersedes the discovery lock with the reviewed minimal PHP 8.3 closure.
+
+T-4A deliberately extends historical compatibility preflight bounds through PHP 8.3 while leaving the S-1 and R-2 PHP 8.2 release gates exact. The added verifier raises the harness parse ratchet from 96 to 97. Run `tests\\tools\\run-t4a-checks.cmd` and return `T4A-ACCEPTANCE.log`, `T4A-PHPUNIT12-DISCOVERY.log`, `T3B-ACCEPTANCE.log`, and `git status --short`. T-4A is discovery-only; do not commit until the result is reviewed.
+
+
+## T-4B: PHP 8.3 Composer dependency closure
+
+T-4B accepts a minimal two-entry lock update: production `nette/utils` v3.2.8 -> v3.2.10 (`>=7.2 <8.4`) and development-only `phpspec/prophecy` v1.16.0 -> v1.18.0 (adds PHP 8.3). `nette/schema` remains v1.2.5, Composer `phpunit/phpunit` remains 9.5.0, and `composer.json` remains byte-identical with production PHP `>=7.4`.
+
+Accepted `composer.lock` SHA-256: `913f83c278ba95912c1c0498a86033f01ce62d6a3501798e254cfda62c573033`. Run `tests\tools\run-t4b-checks.cmd`; it executes the full historical/browser/Composer/PHPUnit 9/10/11/12 chain before exact closure checks. Development vendor trees must remain untracked. Production archives still exclude `tests/`, `phpunit*.xml`, PHARs, logs, and Git/CI metadata.
+
+
+## T-4C: PHP 8.3 runtime baseline closure
+
+T-4C updates only two DB-free tests so the approved compatibility interval is PHP 8.1.x through PHP 8.3.x, with PHP 8.4+ still rejected. The frozen UTF-8 fixture and oracle comparisons are unchanged; the runtime gate now permits those assertions to execute on PHP 8.3. No production code or dependency metadata changes. Run `tests\tools\run-t4c-checks.cmd`, which executes the complete T-4B historical/browser/Composer/PHPUnit 9/10/11/12 chain before the exact T-4C verifier.
+
+
+## T-4D: PHP 8.3 installer boundary
+
+T-4D follows the fully green T-4C CLI chain and the Apache/Laragon pre-installation smoke check on PHP 8.3.33. It advances only the installer exclusive ceiling from PHP 8.3 to PHP 8.4, so PHP 7.4 through PHP 8.3 are accepted while PHP 8.4+ remains rejected. The English installer recommendation is updated from PHP 8.2 to PHP 8.3 in the PO source, fresh-install SQL, and compiled English catalog.
+
+Run `tests\tools\run-t4d-checks.cmd`. It executes the complete historical/browser/Composer/PHPUnit 9/10/11/12 T-4C chain first, then validates exact installer and translation hashes, the PHP support matrix, capability-based extension checks, and preservation of the historical S-1/R-2 PHP 8.2 records. After it passes, repeat the browser pre-installation check and confirm that PHP 8.3.33 is accepted.

@@ -52,7 +52,7 @@ final class LegacyUtf8ContractTest extends TestCase
     public function testHelperAndFixtureMatchFrozenLegacyOracle(): void
     {
         self::assertGreaterThanOrEqual(80100, PHP_VERSION_ID);
-        self::assertLessThan(80300, PHP_VERSION_ID);
+        self::assertLessThan(80400, PHP_VERSION_ID);
         self::assertTrue(is_callable([LegacyUtf8Oracle::class, 'encode']));
         self::assertTrue(is_callable([LegacyUtf8Oracle::class, 'decode']));
 

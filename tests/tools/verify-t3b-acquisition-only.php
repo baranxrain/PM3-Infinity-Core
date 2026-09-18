@@ -8,7 +8,7 @@ $check = static function (bool $ok, string $message) use (&$errors, &$checks): v
     if ($ok) { ++$checks; } else { $errors[] = $message; }
 };
 $check(PHP_SAPI === 'cli', 'CLI runtime');
-$check(PHP_VERSION_ID >= 80200 && PHP_VERSION_ID < 80300, 'PHP 8.2.x runtime (' . PHP_VERSION . ')');
+$check(PHP_VERSION_ID >= 80200 && PHP_VERSION_ID < 80400, 'PHP 8.2/8.3 runtime (' . PHP_VERSION . ')');
 foreach (['json','phar','tokenizer'] as $extension) { $check(extension_loaded($extension), 'Required extension: ' . $extension); }
 $pins = [
     '9' => ['file'=>'phpunit-9.5.8.phar','manifest'=>'phpunit-9.5.8.phar.sha256','script'=>'acquire-phpunit9.ps1','hash'=>'11f27cf3f9522241fe234e9bf5813667207a074ac92089aac26d502ffc5e9517','version'=>'/^PHPUnit 9\\.5\\.8\\b/','url'=>'https://phar.phpunit.de/phpunit-9.5.8.phar'],
@@ -43,7 +43,7 @@ foreach (['tests/tools/acquire-phpunit-all.ps1','tests/tools/apply-t3b-acquisiti
 $composer = json_decode((string) file_get_contents($root . '/composer.json'), true, 512, JSON_THROW_ON_ERROR);
 $check(($composer['require']['php'] ?? null) === '>=7.4', 'Production PHP constraint remains >=7.4');
 $check(($composer['require-dev']['phpunit/phpunit'] ?? null) === '9.5', 'Composer baseline remains PHPUnit 9.5');
-$check(hash_file('sha256', $root . '/composer.lock') === '9f879af7b047666ee70708741d74521c91925e1b6addd80a9d465b6ea76e9cb3', 'Accepted PHP 8.2 composer.lock unchanged');
+$check(hash_file('sha256', $root . '/composer.lock') === '913f83c278ba95912c1c0498a86033f01ce62d6a3501798e254cfda62c573033', 'Accepted T-4B PHP 8.3 composer.lock');
 $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($root . '/tests', RecursiveDirectoryIterator::SKIP_DOTS));
 $parsed = 0; $parseFailures = [];
 foreach ($iterator as $file) {
@@ -52,7 +52,7 @@ foreach ($iterator as $file) {
     catch (ParseError $error) { $parseFailures[] = str_replace('\\', '/', $file->getPathname()) . ': ' . $error->getMessage(); }
 }
 foreach ($parseFailures as $failure) { echo '[PARSE-FAIL] ' . $failure . PHP_EOL; }
-$check($parseFailures === [] && $parsed === 96, 'All 96 test-harness PHP files parse on PHP 8.2');
+$check($parseFailures === [] && $parsed === 99, 'All 99 test-harness PHP files parse on PHP 8.2/8.3');
 echo '[SUMMARY] checks=' . $checks . ', failures=' . count($errors) . PHP_EOL;
 echo $errors ? "T3B_PREFLIGHT=FAIL\n" : "T3B_PREFLIGHT=PASS\n";
 exit($errors ? 1 : 0);

@@ -87,7 +87,7 @@ foreach ($iterator as $file) {
     }
 }
 foreach ($parseFailures as $failure) { echo '[PARSE-FAIL] ' . $failure . PHP_EOL; }
-$check($parseFailures === [] && $parsed === 96, 'All 96 test-harness PHP files parse on PHP 8.2');
+$check($parseFailures === [] && $parsed === 99, 'All 99 test-harness PHP files parse on PHP 8.2');
 
 echo '[SUMMARY] checks=' . $checks . ', failures=' . count($errors) . PHP_EOL;
 echo $errors ? "S1_PREFLIGHT=FAIL\n" : "S1_PREFLIGHT=PASS\n";

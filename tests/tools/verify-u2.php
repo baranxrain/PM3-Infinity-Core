@@ -25,7 +25,7 @@ if (in_array('--phar-only', $argv, true)) {
 }
 
 $pass(PHP_SAPI === 'cli', 'CLI runtime');
-$pass(PHP_VERSION_ID >= 80100 && PHP_VERSION_ID < 80300, 'PHP 8.1/8.2 target (' . PHP_VERSION . ')');
+$pass(PHP_VERSION_ID >= 80100 && PHP_VERSION_ID < 80400, 'PHP 8.1/8.2/8.3 target (' . PHP_VERSION . ')');
 $extensions = ['json', 'mbstring', 'pcre', 'tokenizer'];
 $missing = array_values(array_filter($extensions, static fn (string $extension): bool => !extension_loaded($extension)));
 $pass($missing === [], $missing === [] ? 'U-2.1 extensions: json, mbstring, pcre, tokenizer' : 'Missing U-2.1 extensions: ' . implode(', ', $missing));

@@ -29,7 +29,7 @@ foreach ($required as $relative) {
     $pass(is_file($root . '/' . $relative), 'Required U-3.8 file: ' . $relative);
 }
 $pass(hash_file('sha256', $root . '/composer.json') === '708119e1eb1f15b263a35366ff18116dcd828329f2481aa588efc49d81a33ad2', 'Unchanged since U-1: composer.json');
-$pass(hash_file('sha256', $root . '/composer.lock') === '9f879af7b047666ee70708741d74521c91925e1b6addd80a9d465b6ea76e9cb3', 'Accepted T-2B rev E Composer lock');
+$pass(hash_file('sha256', $root . '/composer.lock') === '913f83c278ba95912c1c0498a86033f01ce62d6a3501798e254cfda62c573033', 'Accepted T-4B PHP 8.3 Composer lock');
 
 require_once $root . '/tests/bootstrap.php';
 require_once $root . '/workflow/engine/src/ProcessMaker/Core/System.php';
